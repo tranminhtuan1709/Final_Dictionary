@@ -13,7 +13,7 @@ public class Word {
     }
 
     public void setWord_target(String word_target) {
-        Word_target = word_target.toLowerCase();
+        Word_target = word_target;
     }
 
     public String getWord_explain() {
