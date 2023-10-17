@@ -6,6 +6,9 @@ module com.example.final_dictionary {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires voicerss.tts;
+    requires java.desktop;
+    requires freetts;
 
     opens com.example.final_dictionary to javafx.fxml;
     exports com.example.final_dictionary;
