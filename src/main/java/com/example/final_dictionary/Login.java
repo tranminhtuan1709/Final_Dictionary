@@ -82,31 +82,31 @@ public class Login implements Initializable {
     private ResultSet result;
 
 
-    public Connection connectDB() {
-        connect = null;
-        try {
-            //Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdb?characterEncoding=utf8", "root", "22028238vnu");
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return connect;
-    }
+//    public Connection connectDB() {
+//        connect = null;
+//        try {
+//            //Class.forName("com.mysql.cj.jdbc.Driver");
+//            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdb?characterEncoding=utf8", "root", "22028238vnu");
+//
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//        return connect;
+//    }
 
     public void login(ActionEvent e) {
-        connect = connectDB();
+        //connect = connectDB();
 
         try {
 
             String sql = "SELECT * FROM userinformation WHERE username = ? AND pass = ?";
+//
+//            statement = connect.prepareStatement(sql);
+//            statement.setString(1, username.getText());
+//            statement.setString(2, password.getText());
+//            result = statement.executeQuery();
 
-            statement = connect.prepareStatement(sql);
-            statement.setString(1, username.getText());
-            statement.setString(2, password.getText());
-            result = statement.executeQuery();
-
-            if (result.next()) {
+            if (username.getText().equals("admin")  && password.getText().equals("123")) {
                 //Show the dictionary after successful login
                 javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 loginButton.getScene().getWindow().hide();
@@ -141,15 +141,15 @@ public class Login implements Initializable {
 
 
     public void signup(ActionEvent e) {
-        connect = connectDB();
+        //connect = connectDB();
         try {
 
-            String sql = "INSERT INTO userinformation VALUES (?, ?, ?)";
-            statement = connect.prepareStatement(sql);
-            statement.setString(1, su_username.getText());
-            statement.setString(2, su_pass.getText());
-            statement.setString(3, su_email.getText());
-            statement.execute();
+//            String sql = "INSERT INTO userinformation VALUES (?, ?, ?)";
+//            statement = connect.prepareStatement(sql);
+//            statement.setString(1, su_username.getText());
+//            statement.setString(2, su_pass.getText());
+//            statement.setString(3, su_email.getText());
+//            statement.execute();
 
             javax.swing.JOptionPane.showMessageDialog(null, "Sign up successfully, please sign in now!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 

@@ -6,6 +6,8 @@ module com.mydictionaryfx {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.desktop;
+    requires voicerss.tts;
+    requires freetts;
 
     opens com.example.final_dictionary to javafx.fxml;
     exports com.example.final_dictionary;
