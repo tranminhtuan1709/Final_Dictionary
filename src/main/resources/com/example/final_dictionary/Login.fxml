@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.Login">
+   <children>
+      <ImageView fitHeight="848.0" fitWidth="1272.0" layoutX="-168.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@back.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="login_form" layoutX="230.0" layoutY="112.0" prefHeight="551.0" prefWidth="561.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="558.0" layoutX="-37.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
+            <Label layoutX="155.0" layoutY="100.0" text="Welcome">
+               <font>
+                  <Font name="Segoe UI Bold" size="48.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="179.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@profile.png" />
+               </image>
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+            <TextField fx:id="username" layoutX="43.0" layoutY="223.0" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Light" size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="password" layoutX="43.0" layoutY="332.0" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
+               <font>
+                  <Font name="Segoe UI Light" size="14.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="loginButton" layoutX="149.0" layoutY="435.0" mnemonicParsing="false" onAction="#login" onKeyPressed="#login" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign In" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Semibold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Hyperlink fx:id="createAcc" layoutX="214.0" layoutY="503.0" onAction="#changeForm" text="Create one!">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutX="43.0" layoutY="507.0" text="You don't have any accounts?">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="signup_form" layoutX="240.0" layoutY="122.0" prefHeight="551.0" prefWidth="561.0" visible="false">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="558.0" layoutX="-47.0" layoutY="10.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
+            <Label layoutX="155.0" layoutY="100.0" text="Sign up">
+               <font>
+                  <Font name="Segoe UI Bold" size="48.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="169.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@profile.png" />
+               </image>
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+            <TextField fx:id="su_email" layoutX="43.0" layoutY="185.0" prefHeight="47.0" prefWidth="434.0" promptText="Email" stylesheets="@login.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Light" size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="su_pass" layoutX="43.0" layoutY="332.0" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
+               <font>
+                  <Font name="Segoe UI Light" size="14.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="signUpButton" layoutX="149.0" layoutY="435.0" mnemonicParsing="false" onAction="#signup" onKeyPressed="#login" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign Up!" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Semibold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Hyperlink fx:id="signIn" layoutX="177.0" layoutY="503.0" onAction="#changeForm" text="Sign in now!">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutX="43.0" layoutY="507.0" text="Already have accounts?">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="su_username" layoutX="43.0" layoutY="261.0" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Light" size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <Rectangle fx:id="waiting" arcHeight="5.0" arcWidth="5.0" height="829.0" layoutX="-23.0" layoutY="-17.0" opacity="0.43" stroke="BLACK" strokeType="INSIDE" visible="false" width="1035.0" />
+      <ProgressIndicator fx:id="waiting1" layoutX="460.0" layoutY="372.0" visible="false" />
+      <Label fx:id="waiting2" layoutX="401.0" layoutY="454.0" text="Wait a second..." textFill="WHITE" visible="false">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
