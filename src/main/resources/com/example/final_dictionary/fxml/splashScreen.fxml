@@ -14,7 +14,7 @@
             <children>
             <ImageView fitHeight="379.0" fitWidth="665.0" layoutX="-24.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@intro.png" />
+                  <Image url="@../image/intro.png" />
                </image>
             </ImageView>
                 <ProgressIndicator layoutX="254.0" layoutY="294.0" prefHeight="22.0" prefWidth="23.0" />

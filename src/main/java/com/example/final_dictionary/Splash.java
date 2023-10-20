@@ -45,10 +45,10 @@ public class Splash implements Initializable {
                     @Override
                     public void run() {
                         try {
-                            borderPane = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                            borderPane = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
                             Stage stage = new Stage();
                             Scene scene = new Scene(borderPane);
-                            Image icon = new Image("D:\\BTLoop\\image\\logo.png");
+                            Image icon = new Image(getClass().getResource("image/logo.png").toString());
                             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
 
 

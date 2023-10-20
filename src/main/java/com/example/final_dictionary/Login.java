@@ -112,12 +112,12 @@ public class Login implements Initializable {
                 loginButton.getScene().getWindow().hide();
 
 
-                Parent root = FXMLLoader.load(getClass().getResource("DictionaryScene1.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
 
 
-                Image icon = new Image("D:\\BTLoop\\image\\logo.png");
+                Image icon = new Image(getClass().getResource("image/logo.png").toString());
                 stage.getIcons().add(icon);
 
                 stage.setTitle("My application");

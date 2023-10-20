@@ -19,7 +19,7 @@
    <children>
       <ImageView fitHeight="848.0" fitWidth="1272.0" layoutX="-168.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@back.jpg" />
+            <Image url="@../image/back.jpg" />
          </image>
       </ImageView>
       <AnchorPane fx:id="login_form" layoutX="230.0" layoutY="112.0" prefHeight="551.0" prefWidth="561.0">
@@ -35,7 +35,7 @@
             </Label>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="179.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@profile.png" />
+                  <Image url="@../image/profile.png" />
                </image>
                <effect>
                   <Glow />
@@ -87,7 +87,7 @@
             </Label>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="169.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@profile.png" />
+                  <Image url="@../image/profile.png" />
                </image>
                <effect>
                   <Glow />
