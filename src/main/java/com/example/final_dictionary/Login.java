@@ -130,8 +130,8 @@ public class Login implements Initializable {
                 stage.setTitle("My application");
 
                 Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-                stage.setX((screen.getWidth() - 1000) / 2);
-                stage.setY((screen.getHeight() - 800) / 2);
+                stage.setX((screen.getWidth() - 1200) / 2);
+                stage.setY((screen.getHeight() - 700) / 2);
 
                 stage.setResizable(false);
                 stage.setScene(scene);
@@ -181,8 +181,8 @@ public class Login implements Initializable {
                             stage.setTitle("My application");
 
                             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-                            stage.setX((screen.getWidth() - 1000) / 2);
-                            stage.setY((screen.getHeight() - 800) / 2);
+                            stage.setX((screen.getWidth() - 1200) / 2);
+                            stage.setY((screen.getHeight() - 700) / 2);
 
                             stage.setResizable(false);
                             stage.setScene(scene);
@@ -229,8 +229,8 @@ public class Login implements Initializable {
                             stage.setTitle("My application");
 
                             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-                            stage.setX((screen.getWidth() - 1000) / 2);
-                            stage.setY((screen.getHeight() - 800) / 2);
+                            stage.setX((screen.getWidth() - 1200) / 2);
+                            stage.setY((screen.getHeight() - 700) / 2);
 
                             stage.setResizable(false);
                             stage.setScene(scene);

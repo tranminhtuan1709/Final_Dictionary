@@ -8,6 +8,7 @@ module com.mydictionaryfx {
     requires java.desktop;
     requires voicerss.tts;
     requires freetts;
+    requires javafx.web;
 
     opens com.example.final_dictionary to javafx.fxml;
     exports com.example.final_dictionary;
