@@ -2,19 +2,15 @@ package com.example.final_dictionary;
 
 
 import javafx.application.Platform;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +32,7 @@ public class Splash implements Initializable {
         new Thread() {
             public void run() {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                 } catch (Exception e) {
                     //System.out.println(e);
                 }

@@ -136,3 +136,37 @@
 .defineword-field:hover{
     -fx-background-color: #F2F2F2;
 }
+
+.worddetail-field{
+    -fx-background-color: transparent;
+    -fx-border-color: #000000;
+    -fx-border-width: 0.5px 0.5px 0.5px 0.5px;
+}
+
+.worddetail-field:hover{
+    -fx-background-color: #F2F2F2;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px 1px 1px 1px;
+}
+
+.savebutton{
+    -fx-background-color: #0070C0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.savebutton:hover{
+    -fx-background-color: #008AF2;
+}
+
+.discardbutton{
+    -fx-background-color: #C00000;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.discardbutton:hover{
+    -fx-background-color: #F20000;
+}

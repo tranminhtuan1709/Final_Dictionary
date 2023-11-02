@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,13 +24,150 @@
             <Font name="Segoe UI Bold" size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="292.0" layoutY="104.0" prefHeight="64.0" prefWidth="616.0" promptText="Enter your word here" styleClass="defineword-field" stylesheets="@Style.css" text="Enter your word here">
+      <TextField layoutX="291.0" layoutY="82.0" prefHeight="64.0" prefWidth="616.0" promptText="Enter your word here" styleClass="defineword-field" stylesheets="@Style.css" text="Enter your word here">
          <font>
             <Font name="Segoe UI Bold" size="36.0" />
          </font>
       </TextField>
+      <ImageView fitHeight="69.0" fitWidth="69.0" layoutX="184.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/pencil.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="218.0" layoutY="196.0" text="PoS">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="291.0" layoutY="188.0" prefHeight="40.0" prefWidth="616.0" styleClass="worddetail-field" stylesheets="@Style.css" />
+      <TextField layoutX="291.0" layoutY="271.0" prefHeight="40.0" prefWidth="616.0" styleClass="worddetail-field" stylesheets="@Style.css" />
+      <Label layoutX="187.0" layoutY="279.0" text="Bre IPA">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="291.0" layoutY="357.0" prefHeight="40.0" prefWidth="616.0" styleClass="worddetail-field" stylesheets="@Style.css" />
+      <Label layoutX="162.0" layoutY="365.0" text="NAmE IPA">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="291.0" layoutY="441.0" prefHeight="109.0" prefWidth="616.0" styleClass="worddetail-field" stylesheets="@Style.css" />
+      <Label layoutX="173.0" layoutY="449.0" prefHeight="24.0" prefWidth="82.0" text="Meaning">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="834.0" layoutY="588.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" styleClass="discardbutton" stylesheets="@Style.css" text="Discard">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="992.0" layoutY="588.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" styleClass="savebutton" stylesheets="@Style.css" text="Save">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="927.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/alert-icon-red-11.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="927.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/alert-icon-red-11.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="927.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/alert-icon-red-11.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="359.0" layoutY="251.0" prefHeight="212.0" prefWidth="468.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="212.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="481.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Rectangle>
+            <Label layoutX="161.0" layoutY="14.0" text="Notification">
+               <font>
+                  <Font name="Segoe UI Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="94.0" text="Your new word is added successfully!">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="189.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" styleClass="savebutton" stylesheets="@Style.css" text="Okay">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="326.0" layoutY="210.0" prefHeight="294.0" prefWidth="545.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fdf3aa" height="294.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="545.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Rectangle>
+            <Label layoutX="239.0" layoutY="14.0" text="Alert">
+               <font>
+                  <Font name="Segoe UI Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="80.0" prefHeight="90.0" prefWidth="435.0" text="The word to be added has already existed. Do you want to update or append? Once you update the word, the old data will be replace with the new one." textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="155.0" layoutY="192.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="237.0" styleClass="savebutton" stylesheets="@Style.css" text="I want to update the word">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="153.0" layoutY="239.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="237.0" styleClass="savebutton" stylesheets="@Style.css" text="Just append it">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="359.0" layoutY="251.0" prefHeight="212.0" prefWidth="468.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="212.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="481.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Rectangle>
+            <Label layoutX="161.0" layoutY="14.0" text="Notification">
+               <font>
+                  <Font name="Segoe UI Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="106.0" layoutY="94.0" text="The word is changed successfully!">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="189.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" styleClass="savebutton" stylesheets="@Style.css" text="Okay">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
    <cursor>
-      <Cursor fx:constant="HAND" />
+      <Cursor fx:constant="DEFAULT" />
    </cursor>
 </AnchorPane>
