@@ -22,7 +22,7 @@
             <Font name="Segoe UI Bold" size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="292.0" layoutY="104.0" prefHeight="64.0" prefWidth="616.0" promptText="Enter your word here" styleClass="defineword-field" stylesheets="@Style.css">
+      <TextField layoutX="292.0" layoutY="104.0" prefHeight="64.0" prefWidth="616.0" promptText="Enter your word here" styleClass="defineword-field" stylesheets="@Style.css" text="Enter your word here">
          <font>
             <Font name="Segoe UI Bold" size="36.0" />
          </font>
