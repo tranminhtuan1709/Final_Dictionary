@@ -24,6 +24,7 @@ import java.sql.*;
 
 import java.net.URL;
 
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -111,8 +112,9 @@ public class Login implements Initializable {
                 javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 loginButton.getScene().getWindow().hide();
 
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
 
-                Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
+                //Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
 
