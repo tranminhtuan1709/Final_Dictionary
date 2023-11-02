@@ -112,7 +112,7 @@ public class Login implements Initializable {
 //            statement.setString(2, password.getText());
 //            result = statement.executeQuery();
 
-            if (username.getText().equals("admin")  && password.getText().equals("123")) {
+            if (username.getText().equals("")  && password.getText().equals("")) {
                 //Show the dictionary after successful login
                 javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 loginButton.getScene().getWindow().hide();

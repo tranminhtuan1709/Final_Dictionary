@@ -12,7 +12,7 @@ public class TextToSpeech {
             Voice voice = VoiceManager.getInstance().getVoice("kevin16");
             if(voice != null) {
                 voice.allocate();
-                voice.speak("Fuck you");
+                voice.speak(text);
                 voice.deallocate();
             }
         } catch (Exception e) {
