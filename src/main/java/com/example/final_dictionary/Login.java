@@ -5,6 +5,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,13 +14,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
+import javafx.scene.input.KeyEvent;
 
+//import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.*;
 
 import java.net.URL;
@@ -139,6 +144,108 @@ public class Login implements Initializable {
         } catch(Exception event) {
             event.printStackTrace();
         }
+    }
+
+
+
+    public void login_enter(KeyEvent e) {
+        //connect = connectDB();
+        password.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    try {
+
+                        String sql = "SELECT * FROM userinformation WHERE username = ? AND pass = ?";
+            //
+            //            statement = connect.prepareStatement(sql);
+            //            statement.setString(1, username.getText());
+            //            statement.setString(2, password.getText());
+            //            result = statement.executeQuery();
+
+                        if (username.getText().equals("admin")  && password.getText().equals("123")) {
+                            //Show the dictionary after successful login
+                            javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            loginButton.getScene().getWindow().hide();
+
+                            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
+
+                            //Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage stage = new Stage();
+
+
+                            Image icon = new Image(getClass().getResource("image/logo.png").toString());
+                            stage.getIcons().add(icon);
+
+                            stage.setTitle("My application");
+
+                            Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+                            stage.setX((screen.getWidth() - 1000) / 2);
+                            stage.setY((screen.getHeight() - 800) / 2);
+
+                            stage.setResizable(false);
+                            stage.setScene(scene);
+                            stage.show();
+
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(null, "Wrong Username of Password. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } catch(Exception ev) {
+                        ev.printStackTrace();
+                    }
+                }
+            }
+        });
+        username.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    try {
+
+                        String sql = "SELECT * FROM userinformation WHERE username = ? AND pass = ?";
+                        //
+                        //            statement = connect.prepareStatement(sql);
+                        //            statement.setString(1, username.getText());
+                        //            statement.setString(2, password.getText());
+                        //            result = statement.executeQuery();
+
+                        if (username.getText().equals("admin")  && password.getText().equals("123")) {
+                            //Show the dictionary after successful login
+                            javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            loginButton.getScene().getWindow().hide();
+
+                            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
+
+                            //Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage stage = new Stage();
+
+
+                            Image icon = new Image(getClass().getResource("image/logo.png").toString());
+                            stage.getIcons().add(icon);
+
+                            stage.setTitle("My application");
+
+                            Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+                            stage.setX((screen.getWidth() - 1000) / 2);
+                            stage.setY((screen.getHeight() - 800) / 2);
+
+                            stage.setResizable(false);
+                            stage.setScene(scene);
+                            stage.show();
+
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(null, "Wrong Username of Password. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } catch(Exception ev) {
+                        ev.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
 

@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.Login">
+<AnchorPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.Login">
    <children>
       <ImageView fitHeight="848.0" fitWidth="1272.0" layoutX="-168.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -41,7 +41,7 @@
                   <Glow />
                </effect>
             </ImageView>
-            <TextField fx:id="username" layoutX="43.0" layoutY="223.0" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
+            <TextField fx:id="username" layoutX="43.0" layoutY="223.0" onKeyPressed="#login_enter" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -49,12 +49,12 @@
                   <Font name="Segoe UI Light" size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" layoutX="43.0" layoutY="332.0" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
+            <PasswordField fx:id="password" layoutX="43.0" layoutY="332.0" onKeyPressed="#login_enter" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
                <font>
                   <Font name="Segoe UI Light" size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="149.0" layoutY="435.0" mnemonicParsing="false" onAction="#login" onKeyPressed="#login" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign In" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="149.0" layoutY="435.0" mnemonicParsing="false" onAction="#login" onKeyPressed="#login_enter" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign In" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
