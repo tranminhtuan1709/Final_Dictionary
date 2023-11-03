@@ -48,7 +48,6 @@ public class HomeController implements Initializable {
 
     private void handleListWord() {
         try {
-            ListView<String> listWord = new ListView<>();
             DataLite d = new DataLite();
             ArrayList<String> list = d.getListWord();
             for (String s : list) {
@@ -56,7 +55,7 @@ public class HomeController implements Initializable {
             }
 
             listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
-                String word = listWord.getSelectionModel().getSelectedItem();
+                String word = listWord.getSelectionModel().getSelectedItem().toString();
                 handleSearchButton(word);
             }));
         } catch (SQLException e) {
