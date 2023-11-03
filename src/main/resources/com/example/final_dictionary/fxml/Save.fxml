@@ -51,7 +51,7 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
-                  <Image url="@../image/search.png" />
+                  <Image url="@../image/kinhlup.png" />
                </image>
             </ImageView>
          </graphic></Button>

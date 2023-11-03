@@ -1,5 +1,7 @@
 package com.example.final_dictionary;
 
+import Database.DataLite;
+import Speech.TextToSpeechOnline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,13 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebView;
+
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.*;
-
-import javafx.scene.web.WebView;
-import Database.*;
-import Speech.*;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     @FXML
     public WebView webView;
@@ -27,15 +28,23 @@ public class HomeController implements Initializable {
     public Button searchButton;
     @FXML
     public ListView listWord;
+    @FXML
+    private AnchorPane scrollpane;
 
-    private void handleSearchButton(String word) {
+    private boolean handleSearchButton(String word) {
+        boolean check = true;
         try {
             DataLite d = new DataLite();
             String w = d.searchWord(word);
+            scrollpane.setVisible(true);
+
             webView.getEngine().loadContent(w);
+            if (w == null) check = false;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return check;
     }
 
     private void handleSpeech(String word) {
@@ -48,7 +57,7 @@ public class HomeController implements Initializable {
 
     private void handleListWord() {
         try {
-            ListView<String> listWord = new ListView<>();
+            //ListView<String> listWord = new ListView<>();
             DataLite d = new DataLite();
             ArrayList<String> list = d.getListWord();
             for (String s : list) {
@@ -56,8 +65,11 @@ public class HomeController implements Initializable {
             }
 
             listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
-                String word = listWord.getSelectionModel().getSelectedItem();
-                handleSearchButton(word);
+                String word = listWord.getSelectionModel().getSelectedItem().toString();
+                if (!handleSearchButton(word)) {
+                    scrollpane.setVisible(false);
+                }
+
             }));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -70,7 +82,9 @@ public class HomeController implements Initializable {
 
         searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = searchBar.getText();
-            handleSearchButton(word);
+            if (!handleSearchButton(word)) {
+                scrollpane.setVisible(false);
+            }
         }));
 
         speech.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {

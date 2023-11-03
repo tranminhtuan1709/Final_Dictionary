@@ -14,8 +14,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
+<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
    <children>
+      <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="507.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/searchNone.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="562.0" layoutY="510.0" text="Search something">
+         <font>
+            <Font name="Segoe UI Bold" size="36.0" />
+         </font>
+      </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0b4a97" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0" />
       <TextField fx:id="searchBar" layoutX="283.0" layoutY="5.0" prefHeight="40.0" prefWidth="625.0" promptText="Search words" styleClass="text-field" stylesheets="@Style.css">
          <font>
@@ -34,17 +44,24 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="229.0" layoutY="80.0" prefHeight="567.0" prefWidth="968.0" vbarPolicy="ALWAYS">
-        <content>
-          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="950.0">
-               <children>
-                  <WebView fx:id="webView" prefHeight="557.0" prefWidth="950.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></WebView>
-               </children></AnchorPane>
-        </content>
-      </ScrollPane>
+    <AnchorPane fx:id="scrollpane" layoutX="229.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="950.0" visible="false">
+         <children>
+            <WebView fx:id="webView" prefHeight="557.0" prefWidth="950.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </WebView>
+            <Button fx:id="speech" layoutX="887.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="menuIconButton" stylesheets="@Style.css">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Speaker.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
       <Line endX="213.0" endY="64.26667022705078" fill="#1143b7" startX="213.0" startY="638.1333618164062" stroke="#1123c4" />
       <AnchorPane fx:id="usernameAP" disable="true" layoutX="930.0" prefHeight="197.0" prefWidth="270.0" styleClass="menuBackground" stylesheets="@Style.css" visible="false">
          <children>
@@ -75,6 +92,5 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="speech" layoutX="1135.0" layoutY="51.0" mnemonicParsing="false" text="Sủa" />
    </children>
 </AnchorPane>
