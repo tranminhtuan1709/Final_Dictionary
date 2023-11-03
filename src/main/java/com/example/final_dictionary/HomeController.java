@@ -9,16 +9,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.SortedSet;
+import java.util.*;
 
 import javafx.scene.web.WebView;
 import Database.*;
 import Speech.*;
 public class HomeController implements Initializable {
     @FXML
-    public WebView wedView;
+    public WebView webView;
     @FXML
     public Button speech;
     @FXML
@@ -32,9 +30,9 @@ public class HomeController implements Initializable {
 
     private void handleSearchButton(String word) {
         try {
-            Database d = new Database();
+            DataLite d = new DataLite();
             String w = d.searchWord(word);
-            wedView.getEngine().loadContent(w);
+            webView.getEngine().loadContent(w);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -50,17 +48,17 @@ public class HomeController implements Initializable {
 
     private void handleListWord() {
         try {
-            Database d = new Database();
-            SortedSet<String> list = (SortedSet<String>) d.getListWord();
+            ListView<String> listWord = new ListView<>();
+            DataLite d = new DataLite();
+            ArrayList<String> list = d.getListWord();
             for (String s : list) {
                 listWord.getItems().add(s);
             }
-            listWord.setOnMouseClicked(mouseEvent -> {
-                Platform.runLater(() -> {
-                    String word = listWord.getSelectionModel().getSelectedItem().toString();
-                    handleSearchButton(word);
-                });
-            });
+
+            listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+                String word = listWord.getSelectionModel().getSelectedItem();
+                handleSearchButton(word);
+            }));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -70,23 +68,19 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         handleListWord();
 
-        searchButton.setOnMouseClicked(mouseEvent -> {
-            Platform.runLater(() -> {
-                String word = searchBar.getText();
-                handleSearchButton(word);
-            });
-        });
+        searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+            String word = searchBar.getText();
+            handleSearchButton(word);
+        }));
 
-        speech.setOnMouseClicked(mouseEvent -> {
-            Platform.runLater(() -> {
-                if(searchBar.getText().isEmpty()){
-                    String word1 = listWord.getSelectionModel().getSelectedItem().toString();
-                    handleSpeech(word1);
-                } else {
-                    String word2 = searchBar.getText();
-                    handleSpeech(word2);
-                }
-            });
-        });
+        speech.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+            if(searchBar.getText().isEmpty()){
+                String word1 = listWord.getSelectionModel().getSelectedItem().toString();
+                handleSpeech(word1);
+            } else {
+                String word2 = searchBar.getText();
+                handleSpeech(word2);
+            }
+        }));
     }
 }
