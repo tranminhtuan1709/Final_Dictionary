@@ -44,7 +44,7 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            AnchorPane defaultAP = FXMLLoader.load(getClass().getResource("fxml/Home.fxml"));
+            AnchorPane defaultAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Home.fxml")));
             switchAP.getChildren().add(defaultAP);
             switchAP.toFront();
             switchAP.setVisible(true);
@@ -84,7 +84,6 @@ public class MenuController implements Initializable {
                     quitUsernameAP();
                 }
             });
-
             savedWordButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
@@ -102,6 +101,28 @@ public class MenuController implements Initializable {
                     try {
                         quitMenu();
                         switchToHomeAP();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+            translateButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    quitMenu();
+                    try {
+                        switchToTranslateAP();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+            addWordButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    quitMenu();
+                    try {
+                        switchToAddWordAP();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -155,8 +176,6 @@ public class MenuController implements Initializable {
         usernameButton.setDisable(false);
     }
 
-
-
     @FXML
     public void switchToSavedWordAP() throws IOException {
         switchAP.getChildren().clear();
@@ -174,15 +193,29 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void signout(ActionEvent e) {
+    public void switchToTranslateAP() throws IOException {
+        switchAP.getChildren().clear();
+        AnchorPane anchorPane = FXMLLoader.load(
+                Objects.requireNonNull(getClass().getResource("fxml/Translate.fxml")));
+        switchAP.getChildren().add(anchorPane);
+    }
+
+    @FXML
+    public void switchToAddWordAP() throws IOException {
+        switchAP.getChildren().clear();
+        AnchorPane anchorPane = FXMLLoader.load(
+                Objects.requireNonNull(getClass().getResource("fxml/AddWords.fxml")));
+        switchAP.getChildren().add(anchorPane);
+    }
+
+    @FXML
+    public void signOut(ActionEvent e) {
         try {
-            Parent borderPane = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
+            Parent borderPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Login.fxml")));
             Stage stage = new Stage();
             Scene scene = new Scene(borderPane);
-            Image icon = new Image(getClass().getResource("image/logo.png").toString());
+            Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-
-
             stage.getIcons().add(icon);
             stage.setTitle("My application");
             stage.setScene(scene);
