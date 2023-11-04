@@ -17,6 +17,7 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -63,13 +64,13 @@ public class HomeController implements Initializable {
 
     private void handleListWord() {
         try {
-
-            //ListView<String> listWord = new ListView<>();
-
             DataLite d = new DataLite();
             ArrayList<String> list = d.getListWord();
-            for (String s : list) {
-                listWord.getItems().add(s);
+
+            for (int i = 0; i < list.size(); i += 234) {
+                int endIndex = Math.min(i + 234, list.size());
+                List<String> sublist = list.subList(i, endIndex);
+                Platform.runLater(() -> listWord.getItems().addAll(sublist));
             }
 
             listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
@@ -97,17 +98,12 @@ public class HomeController implements Initializable {
             }
         }));
 
-
-
-        searchBar.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ENTER) {
-                    String word = searchBar.getText();
-                    currentWord.set(word);
-                    if (!handleSearchButton(word)) {
-                        scrollpane.setVisible(false);
-                    }
+        searchBar.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                String word = searchBar.getText();
+                currentWord.set(word);
+                if (!handleSearchButton(word)) {
+                    scrollpane.setVisible(false);
                 }
             }
         });
