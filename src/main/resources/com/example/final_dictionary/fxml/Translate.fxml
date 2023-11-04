@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.web.WebView?>
 
 <AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.TranslateController">
    <children>
@@ -35,18 +36,34 @@
             <Font name="Segoe UI Semibold" size="18.0" />
          </font>
       </Label>
-      <TextField alignment="TOP_LEFT" layoutX="50.0" layoutY="236.0" prefHeight="283.0" prefWidth="497.0" promptText="Enter your text here" styleClass="translate-field" stylesheets="@Style.css">
+      <TextArea layoutX="50.0" layoutY="235.0" prefHeight="285.0" prefWidth="497.0" promptText="Enter your text here" styleClass="translate-area" stylesheets="@Style.css" wrapText="true">
          <font>
-            <Font name="Segoe UI Semilight" size="18.0" />
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </TextArea>
+      <TextField layoutX="654.0" layoutY="235.0" prefHeight="285.0" prefWidth="497.0" styleClass="translate-field" stylesheets="@Style.css">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
          </font>
       </TextField>
-      <WebView layoutX="644.0" layoutY="236.0" prefHeight="284.0" prefWidth="497.0" />
-      <MenuButton layoutX="50.0" layoutY="198.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="105.0" styleClass="selectLanguageButton" stylesheets="@Style.css" text="Select" textFill="#fffcfc">
+      <MenuButton layoutX="50.0" layoutY="186.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="209.0" styleClass="selectLanguageButton" stylesheets="@Style.css" text="Select" textFill="WHITE">
         <items>
-          <MenuItem mnemonicParsing="false" text="English" />
-          <MenuItem mnemonicParsing="false" text="Vietnamese" />
+          <MenuItem mnemonicParsing="false" text="English - Vietnamese" />
+          <MenuItem mnemonicParsing="false" text="Vietnamese - English" />
         </items>
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
       </MenuButton>
+      <Button layoutX="562.0" layoutY="345.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="60.0" styleClass="menuIconButton" stylesheets="@Style.css">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/trranfer.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />
