@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -41,12 +42,12 @@
             <Font name="Segoe UI" size="18.0" />
          </font>
       </TextArea>
-      <TextField layoutX="654.0" layoutY="235.0" prefHeight="285.0" prefWidth="497.0" styleClass="translate-field" stylesheets="@Style.css">
+      <TextField editable="false" layoutX="654.0" layoutY="235.0" prefHeight="285.0" prefWidth="497.0" styleClass="translate-field" stylesheets="@Style.css">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </TextField>
-      <MenuButton layoutX="50.0" layoutY="186.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="209.0" styleClass="selectLanguageButton" stylesheets="@Style.css" text="Select" textFill="WHITE">
+      <MenuButton layoutX="670.0" layoutY="77.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="209.0" styleClass="selectLanguageButton" stylesheets="@Style.css" text="Select" textFill="WHITE">
         <items>
           <MenuItem mnemonicParsing="false" text="English - Vietnamese" />
           <MenuItem mnemonicParsing="false" text="Vietnamese - English" />
@@ -64,6 +65,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <ChoiceBox layoutX="472.0" layoutY="170.0" prefWidth="150.0" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />
