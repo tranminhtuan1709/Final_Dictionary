@@ -32,7 +32,7 @@ public class Splash implements Initializable {
         new Thread() {
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(0);
                 } catch (Exception e) {
                     //System.out.println(e);
                 }

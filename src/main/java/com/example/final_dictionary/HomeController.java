@@ -61,8 +61,8 @@ public class HomeController implements Initializable {
 
     private void handleSpeech(String word) {
         try {
-            //TextToSpeechOnline.textToSpeech(word);
-            TextToSpeech.Speech(word);
+            TextToSpeechOnline.textToSpeech(word);
+            //TextToSpeech.Speech(word);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -82,16 +82,9 @@ public class HomeController implements Initializable {
             listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
                 String word = listWord.getSelectionModel().getSelectedItem().toString();
 
-
-                if (handleSearchButton(word)) {
-                    handleSpeech(word);
-                } else {
-                    scrollpane.setVisible(false);
-                }
-
-
                 handleSearchButton(word);
 
+                scrollpane.setVisible(true);
             }));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -104,11 +97,9 @@ public class HomeController implements Initializable {
 
         searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = searchBar.getText();
-            if (handleSearchButton(word)) {
-                handleSpeech(word);
-            } else {
-                scrollpane.setVisible(false);
-            }
+            handleSearchButton(word);
+
+            scrollpane.setVisible(true);
         }));
 
 
