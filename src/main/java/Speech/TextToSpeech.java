@@ -5,7 +5,7 @@ import com.sun.speech.freetts.VoiceManager;
 public class TextToSpeech {
     private static final String VOICES_KEY = "freetts.voices";
     private static final String VOICE_VALUE = "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory";
-    public void Speech(String text) throws Exception{
+    public static void Speech(String text) throws Exception{
         try {
             System.setProperty(VOICES_KEY,VOICE_VALUE);
 
