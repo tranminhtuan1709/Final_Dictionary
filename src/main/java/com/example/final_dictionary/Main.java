@@ -21,10 +21,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent pane = FXMLLoader.load(getClass().getResource("fxml/splashScreen.fxml"));
+        Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/splashScreen.fxml")));
         Scene scene = new Scene(pane);
 
-        Image icon = new Image(getClass().getResource("image/logo.png").toString());
+        Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
         stage.getIcons().add(icon);
 
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
