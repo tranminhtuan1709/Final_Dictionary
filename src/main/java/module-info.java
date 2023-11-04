@@ -9,7 +9,7 @@ module com.mydictionaryfx {
     requires voicerss.tts;
     requires freetts;
     requires javafx.web;
-    requires javafx.autocomplete.field;
+    //requires javafx.autocomplete.field;
 
     opens com.example.final_dictionary to javafx.fxml;
     exports com.example.final_dictionary;

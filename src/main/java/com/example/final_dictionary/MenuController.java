@@ -41,6 +41,7 @@ public class MenuController implements Initializable {
     @FXML
     private Button usernameButton2;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -128,6 +129,17 @@ public class MenuController implements Initializable {
                     }
                 }
             });
+            infoButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    quitMenu();
+                    try {
+                        switchToInfoAP();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -205,6 +217,14 @@ public class MenuController implements Initializable {
         switchAP.getChildren().clear();
         AnchorPane anchorPane = FXMLLoader.load(
                 Objects.requireNonNull(getClass().getResource("fxml/AddWords.fxml")));
+        switchAP.getChildren().add(anchorPane);
+    }
+
+    @FXML
+    public void switchToInfoAP() throws IOException {
+        switchAP.getChildren().clear();
+        AnchorPane anchorPane = FXMLLoader.load(
+                Objects.requireNonNull(getClass().getResource("fxml/Info.fxml")));
         switchAP.getChildren().add(anchorPane);
     }
 
