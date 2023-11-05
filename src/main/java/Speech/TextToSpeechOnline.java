@@ -39,6 +39,7 @@ public class TextToSpeechOnline {
             e.printStackTrace();
         }
     }
+
     public static void textToSpeech(String text) throws Exception{
         VoiceProvider tts = new VoiceProvider("4f17198eb22e43a9bf77e5ee3bf2e5a7");
 
@@ -66,7 +67,4 @@ public class TextToSpeechOnline {
         byte [] voice = tts.speech(params);
         startPlaying(voice);
     }
-//    public static void main (String args[]) throws Exception {
-//        textToSpeech("Hello, My name is Nam");
-//    }
 }

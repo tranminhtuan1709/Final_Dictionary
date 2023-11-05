@@ -1,5 +1,7 @@
 package com.example.final_dictionary;
 
+import Database.DataLite;
+import com.example.final_dictionary.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -9,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ChangePasswordController implements Initializable {
@@ -24,7 +27,11 @@ public class ChangePasswordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         change.setOnAction(actionEvent -> {
-            checkPass();
+            try {
+                checkPass();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             showNotification();
         });
         okay.setOnAction(actionEvent -> {
@@ -33,8 +40,10 @@ public class ChangePasswordController implements Initializable {
     }
 
     @FXML
-    public void checkPass() {
+    public void checkPass() throws SQLException {
         notificationText.setStyle("-fx-text-fill: red");
+        DataLite dataLite = new DataLite();
+        String user = Login.userName;
         if (currentPass.getText().isEmpty()) {
             notificationText.setText("Current password field is empty!");
         } else if (newPass.getText().isEmpty()) {
@@ -46,8 +55,13 @@ public class ChangePasswordController implements Initializable {
         } else if (!newPass.getText().equals(confirmPass.getText())) {
             notificationText.setText("Confirm new password is not match the new password!");
         } else {
-            notificationText.setText("Your password is updated successfully!");
-            notificationText.setStyle("-fx-text-fill: green");
+            if(dataLite.checkPassword(user, currentPass.getText())) {
+                dataLite.changePassword(user, currentPass.getText(), newPass.getText());
+                notificationText.setText("Your password is updated successfully!");
+                notificationText.setStyle("-fx-text-fill: green");
+            } else {
+                notificationText.setText("User name or password is incorrect!");
+            }
         }
     }
 

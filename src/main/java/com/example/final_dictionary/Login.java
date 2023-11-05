@@ -16,14 +16,26 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class Login implements Initializable {
 
-
+    @FXML
+    public Button leak;
+    @FXML
+    public PasswordField su_pass;
+    @FXML
+    public Button signUpButton;
+    @FXML
+    public TextField su_email;
+    @FXML
+    public TextField su_username;
     @FXML
     private Hyperlink createAcc;
 
@@ -45,7 +57,7 @@ public class Login implements Initializable {
     @FXML
     private AnchorPane login_form;
 
-
+    public static String userName;
     public void login(ActionEvent e) throws SQLException {
         //connect = connectDB();
         DataLite dataLite = new DataLite();
@@ -53,6 +65,7 @@ public class Login implements Initializable {
             String user = username.getText();
             String pass = password.getText();
             if (dataLite.checkLogin(user, pass)) {
+                userName = user;
                 //Show the dictionary after successful login
                 //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 loginButton.getScene().getWindow().hide();
@@ -81,11 +94,10 @@ public class Login implements Initializable {
                 javax.swing.JOptionPane.showMessageDialog(null, "Wrong Username of Password. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
 
-        } catch(Exception event) {
+        } catch (Exception event) {
             event.printStackTrace();
         }
     }
-
 
 
     public void login_enter(KeyEvent e) throws SQLException {
@@ -127,7 +139,7 @@ public class Login implements Initializable {
                             javax.swing.JOptionPane.showMessageDialog(null, "Wrong Username of Password. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
                         }
 
-                    } catch(Exception ev) {
+                    } catch (Exception ev) {
                         ev.printStackTrace();
                     }
                 }
@@ -170,28 +182,37 @@ public class Login implements Initializable {
                             javax.swing.JOptionPane.showMessageDialog(null, "Wrong Username of Password. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
                         }
 
-                    } catch(Exception ev) {
+                    } catch (Exception ev) {
                         ev.printStackTrace();
                     }
                 }
             }
         });
     }
-
-
+/*
+**********************************************************************************************************************
+* SIGN UP
+ */
+    public boolean patternMatches(String emailAddress) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
+    }
     public void signup(ActionEvent e) {
         //connect = connectDB();
         try {
-
-//            String sql = "INSERT INTO userinformation VALUES (?, ?, ?)";
-//            statement = connect.prepareStatement(sql);
-//            statement.setString(1, su_username.getText());
-//            statement.setString(2, su_pass.getText());
-//            statement.setString(3, su_email.getText());
-//            statement.execute();
-
-            javax.swing.JOptionPane.showMessageDialog(null, "Sign up successfully, please sign in now!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
+            DataLite dataLite = new DataLite();
+            String user = su_username.getText();
+            String pass = su_pass.getText();
+            String email = su_email.getText();
+            if(patternMatches(email)) {
+                dataLite.signUp(user, pass, email);
+                javax.swing.JOptionPane.showMessageDialog(null, "Sign up successfully, please sign in now!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(null, "Wrong email format. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
             signup_form.setVisible(false);
             login_form.setVisible(true);
 
@@ -213,6 +234,32 @@ public class Login implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        leak.setOnMouseClicked(mouseEvent -> {
+            try {
+                loginButton.getScene().getWindow().hide();
 
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
+
+                //Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+
+
+                Image icon = new Image(getClass().getResource("image/logo.png").toString());
+                stage.getIcons().add(icon);
+
+                stage.setTitle("English - Vietnamese Learner's Dictionary");
+
+                Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+                stage.setX((screen.getWidth() - 1200) / 2);
+                stage.setY((screen.getHeight() - 700) / 2);
+
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

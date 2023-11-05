@@ -45,6 +45,8 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            usernameButton.setText(Login.userName);
+            usernameButton2.setText(Login.userName);
             loadAP();
             switchAP.getChildren().add(homeAP);
             switchAP.toFront();

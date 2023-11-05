@@ -38,6 +38,7 @@ public class TranslateController implements Initializable {
         setUp();
     }
 
+    @FXML
     private void setUp() {
         translate.setValue("English");
         translate.setTooltip(new Tooltip("Select the input language"));
@@ -47,26 +48,32 @@ public class TranslateController implements Initializable {
         meaning.getItems().addAll(items);
     }
 
+    @FXML
     public void handleTransferButton(ActionEvent e) {
         transfer.setOnMouseClicked(mouseEvent -> {
             String tmp = translate.getValue();
             translate.setValue(meaning.getValue());
             meaning.setValue(tmp);
-            //nếu chưa bấm nút translate thì ở ô meaning chưa có chữ, khi bấm transfer thì không làm gì cả
-            if(showmeaning.getText().isEmpty()) {
 
-            } else if (!showmeaning.getText().equals(inputfieldtranslate.getText())) {
-                String tmp2 = inputfieldtranslate.getText();
+            if(showmeaning.getText().isEmpty()) {
+                inputfieldtranslate.clear();
+            }
+
+            if(inputfieldtranslate.getText().isEmpty()) {
+                showmeaning.clear();
+            }
+
+            if(!showmeaning.getText().equals(inputfieldtranslate.getText())) {
+                String tmp1 = inputfieldtranslate.getText();
                 inputfieldtranslate.setText(showmeaning.getText());
-                showmeaning.setText(tmp2);
-            //ví dụ như nhập xin chào khi đang để eng to vie thì ô showmeaning cũng hiện xin chào
-            //thì mình chỉ cần xóa cái ô showmeaning, để lại text ở ô input khi bấm transfer button
+                showmeaning.setText(tmp1);
             } else {
                 showmeaning.clear();
             }
         });
     }
 
+    @FXML
     public void handleTranslateButton(ActionEvent e) {
         translateButton.setOnMouseClicked(mouseEvent -> {
             String input = inputfieldtranslate.getText();
@@ -90,9 +97,7 @@ public class TranslateController implements Initializable {
             }
         });
     }
-
-
-
+    @FXML
     public void handleSoundButton(ActionEvent e) {
         String meaningText = showmeaning.getText();
         String language = meaning.getValue();
@@ -111,6 +116,5 @@ public class TranslateController implements Initializable {
                 throw new RuntimeException(ex);
             }
         }
-
     }
 }
