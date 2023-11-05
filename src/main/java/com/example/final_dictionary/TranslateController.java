@@ -51,6 +51,10 @@ public class TranslateController implements Initializable {
             String tmp = translate.getValue();
             translate.setValue(meaning.getValue());
             meaning.setValue(tmp);
+
+            String tmp2 = inputfieldtranslate.getText();
+            inputfieldtranslate.setText(showmeaning.getText());
+            showmeaning.setText(tmp2);
         });
     }
 
