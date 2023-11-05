@@ -10,12 +10,14 @@
     -fx-background-radius: 20;
     -fx-border-radius: 20;
     -fx-border-width: 1;
+    -fx-font-size: 14;
     -fx-border-color: black;
 }
 
 .usernameButton:hover {
     -fx-text-fill: brown;
     -fx-font-weight: bold;
+    -fx-font-size: 14;
     -fx-background-color: rgb(240, 240, 240);
 }
 
@@ -70,11 +72,13 @@
 .signOutButton {
     -fx-background-color: rgb(0, 102, 204);
     -fx-text-fill: white;
+    -fx-font-size: 16;
 }
 
 .signOutButton:hover {
     -fx-background-color: #F54949;
     -fx-font-weight: bold;
+    -fx-font-size: 16;
 }
 
 .deleteSavedWordButton {

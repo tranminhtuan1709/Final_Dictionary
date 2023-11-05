@@ -52,6 +52,20 @@ public class TextToSpeechOnline {
         byte [] voice = tts.speech(params);
         startPlaying(voice);
     }
+
+    public static void textToSpeechVie(String text) throws Exception{
+        VoiceProvider tts = new VoiceProvider("4f17198eb22e43a9bf77e5ee3bf2e5a7");
+
+        VoiceParameters params = new VoiceParameters(text, Languages.Vietnamese);
+        params.setVoice("Mary");
+        params.setCodec(AudioCodec.WAV);
+        params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
+        params.setBase64(false);
+        params.setSSML(false);
+        params.setRate(0);
+        byte [] voice = tts.speech(params);
+        startPlaying(voice);
+    }
 //    public static void main (String args[]) throws Exception {
 //        textToSpeech("Hello, My name is Nam");
 //    }

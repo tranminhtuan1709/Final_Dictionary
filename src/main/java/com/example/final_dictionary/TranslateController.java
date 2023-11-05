@@ -1,5 +1,6 @@
 package com.example.final_dictionary;
 
+import Speech.TextToSpeechOnline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,5 +81,26 @@ public class TranslateController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+    }
+
+    public void handleSoundButton(ActionEvent e) {
+        String meaningText = showmeaning.getText();
+        String language = meaning.getValue();
+        if (language.equals("Vietnamese")) {
+            try {
+                TextToSpeechOnline.textToSpeechVie(meaningText);
+                //TextToSpeech.Speech(word);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        } else {
+            try {
+                TextToSpeechOnline.textToSpeech(meaningText);
+                //TextToSpeech.Speech(word);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
     }
 }
