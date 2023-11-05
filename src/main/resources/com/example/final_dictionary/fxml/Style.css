@@ -167,11 +167,13 @@
     -fx-background-color: #0070C0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-font-size: 14;
     -fx-cursor: hand;
 }
 
 .savebutton:hover{
     -fx-background-color: #008AF2;
+    -fx-font-size: 14;
 }
 
 .discardbutton{
@@ -179,10 +181,12 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+    -fx-font-size: 14;
 }
 
 .discardbutton:hover{
     -fx-background-color: #F20000;
+    -fx-font-size: 14;
 }
 
 .choice-box{
