@@ -52,10 +52,11 @@ public class TranslateController implements Initializable {
             String tmp = translate.getValue();
             translate.setValue(meaning.getValue());
             meaning.setValue(tmp);
+            showmeaning.clear();
 
-            String tmp2 = inputfieldtranslate.getText();
-            inputfieldtranslate.setText(showmeaning.getText());
-            showmeaning.setText(tmp2);
+//            String tmp2 = inputfieldtranslate.getText();
+//            inputfieldtranslate.setText(showmeaning.getText());
+//            showmeaning.setText(tmp2);
         });
     }
 
@@ -82,6 +83,8 @@ public class TranslateController implements Initializable {
             }
         });
     }
+
+
 
     public void handleSoundButton(ActionEvent e) {
         String meaningText = showmeaning.getText();

@@ -50,7 +50,7 @@ public class Splash implements Initializable {
 
 
                             stage.getIcons().add(icon);
-                            stage.setTitle("My application");
+                            stage.setTitle("Login");
                             stage.setScene(scene);
                             stage.setX((screen.getWidth() - 1000) / 2);
                             stage.setY((screen.getHeight() - 800) / 2);

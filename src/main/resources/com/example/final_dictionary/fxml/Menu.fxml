@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="container" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.MenuController">
+<AnchorPane fx:id="container" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.MenuController">
    <children>
       <Label layoutX="90.0" layoutY="2.0" prefHeight="45.0" prefWidth="454.0" text="English – Vietnamese Learner’s Dictionary">
          <font>
@@ -107,7 +107,7 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button fx:id="infoButton" alignment="TOP_LEFT" graphicTextGap="30.0" layoutY="560.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Information">
+            <Button fx:id="infoButton" alignment="TOP_LEFT" graphicTextGap="30.0" layoutY="650.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Information">
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -131,7 +131,7 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button fx:id="settingButton" alignment="TOP_LEFT" graphicTextGap="30.0" layoutY="640.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Setting">
+            <Button fx:id="settingButton" alignment="TOP_LEFT" graphicTextGap="30.0" layoutY="560.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Setting">
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -147,7 +147,7 @@
       </AnchorPane>
       <AnchorPane fx:id="usernameAP" disable="true" layoutX="1000.0" prefHeight="150.0" prefWidth="200.0" styleClass="usernameAP" stylesheets="@Style.css" visible="false">
          <children>
-            <Button layoutX="40.0" layoutY="105.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="signOutButton" stylesheets="@Style.css" text="Sign out">
+            <Button fx:id="signOutButton" layoutX="40.0" layoutY="105.0" mnemonicParsing="false" onAction="#handleSignOutButton" prefHeight="40.0" prefWidth="130.0" styleClass="signOutButton" stylesheets="@Style.css" text="Sign out">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>

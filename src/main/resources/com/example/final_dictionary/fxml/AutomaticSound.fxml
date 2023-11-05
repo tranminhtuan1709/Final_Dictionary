@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.AutomaticSoundController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.AutomaticSoundController">
    <children>
       <Label alignment="CENTER" layoutX="50.0" layoutY="36.0" prefHeight="57.0" prefWidth="243.0" text="Automatic sound">
          <font>

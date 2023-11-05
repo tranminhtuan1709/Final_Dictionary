@@ -38,6 +38,8 @@ public class MenuController implements Initializable {
     @FXML
     private Button usernameButton2;
     @FXML
+    private Button signOutButton;
+    @FXML
     private AnchorPane homeAP, savedWordAP, translateAP, addWordAP, gameAP, infoAP, settingAP;
 
     @Override
@@ -194,15 +196,16 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void signOut(ActionEvent e) {
+    public void handleSignOutButton(ActionEvent e) {
         try {
+            signOutButton.getScene().getWindow().hide();
             Parent borderPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Login.fxml")));
             Stage stage = new Stage();
             Scene scene = new Scene(borderPane);
             Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
             stage.getIcons().add(icon);
-            stage.setTitle("My application");
+            stage.setTitle("Login");
             stage.setScene(scene);
             stage.setX((screen.getWidth() - 1000) / 2);
             stage.setY((screen.getHeight() - 800) / 2);

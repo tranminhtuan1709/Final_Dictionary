@@ -231,3 +231,16 @@
     -fx-font-weight: bold;
     -fx-cursor: hand;
 }
+
+.deleteusernameButton {
+    -fx-background-color: transparent;
+    -fx-font-size: 18;
+    -fx-text-fill: red;
+}
+
+.deleteusernameButton:hover {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-background-color: #FFAFAF;
+}

@@ -1,10 +1,6 @@
 package com.example.final_dictionary;
 
-
 import Database.DataLite;
-import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,29 +12,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.animation.PauseTransition;
-import javafx.util.Duration;
-import javafx.scene.input.KeyEvent;
-
-//import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.sql.*;
-
 import java.net.URL;
-
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
-
 public class Login implements Initializable {
 
-    @FXML
-    private AnchorPane borderPane;
 
     @FXML
     private Hyperlink createAcc;
@@ -53,18 +37,6 @@ public class Login implements Initializable {
     private Hyperlink signIn;
 
     @FXML
-    private Button signUpButton;
-
-    @FXML
-    private TextField su_email;
-
-    @FXML
-    private PasswordField su_pass;
-
-    @FXML
-    private TextField su_username;
-
-    @FXML
     private TextField username;
 
     @FXML
@@ -73,14 +45,6 @@ public class Login implements Initializable {
     @FXML
     private AnchorPane login_form;
 
-    @FXML
-    private Rectangle waiting;
-
-    @FXML
-    private ProgressIndicator waiting1;
-
-    @FXML
-    private Label waiting2;
 
     public void login(ActionEvent e) throws SQLException {
         //connect = connectDB();
@@ -103,7 +67,7 @@ public class Login implements Initializable {
                 Image icon = new Image(getClass().getResource("image/logo.png").toString());
                 stage.getIcons().add(icon);
 
-                stage.setTitle("My application");
+                stage.setTitle("English - Vietnamese Learner's Dictionary");
 
                 Rectangle2D screen = Screen.getPrimary().getVisualBounds();
                 stage.setX((screen.getWidth() - 1200) / 2);
@@ -149,7 +113,7 @@ public class Login implements Initializable {
                             Image icon = new Image(getClass().getResource("image/logo.png").toString());
                             stage.getIcons().add(icon);
 
-                            stage.setTitle("My application");
+                            stage.setTitle("English - Vietnamese Learner's Dictionary");
 
                             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
                             stage.setX((screen.getWidth() - 1200) / 2);
@@ -192,7 +156,7 @@ public class Login implements Initializable {
                             Image icon = new Image(getClass().getResource("image/logo.png").toString());
                             stage.getIcons().add(icon);
 
-                            stage.setTitle("My application");
+                            stage.setTitle("English - Vietnamese Learner's Dictionary");
 
                             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
                             stage.setX((screen.getWidth() - 1200) / 2);
@@ -238,27 +202,12 @@ public class Login implements Initializable {
 
     public void changeForm(ActionEvent event) throws InterruptedException {
         if (event.getSource() == createAcc) {
-//            waiting.setVisible(true);
-//            waiting1.setVisible(true);
-//            waiting2.setVisible(true);
-            //Thread.sleep(2000);
-
-
             signup_form.setVisible(true);
             login_form.setVisible(false);
-//            waiting.setVisible(false);
-//            waiting1.setVisible(false);
-//            waiting2.setVisible(false);
+
         } else if (event.getSource() == signIn) {
-//            waiting.setVisible(true);
-//            waiting1.setVisible(true);
-//            waiting2.setVisible(true);
             signup_form.setVisible(false);
             login_form.setVisible(true);
-
-//            waiting.setVisible(false);
-//            waiting1.setVisible(false);
-//            waiting2.setVisible(false);
         }
     }
 
@@ -266,6 +215,4 @@ public class Login implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-
-
 }

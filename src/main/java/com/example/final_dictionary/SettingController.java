@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -18,6 +20,18 @@ public class SettingController implements Initializable {
     @FXML
     private AnchorPane switchOptionAP;
 
+    @FXML
+    private Rectangle option1;
+
+    @FXML
+    private Rectangle option2;
+
+    @FXML
+    private Rectangle option3;
+
+    @FXML
+    private Rectangle option4;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -27,15 +41,31 @@ public class SettingController implements Initializable {
         }
         automaticSoundButton.setOnAction(actionEvent -> {
             switchToAutomaticSoundAP();
+            option1.setVisible(true);
+            option2.setVisible(false);
+            option3.setVisible(false);
+            option4.setVisible(false);
         });
         themeButton.setOnAction(actionEvent -> {
             switchToThemeAP();
+            option2.setVisible(true);
+            option1.setVisible(false);
+            option3.setVisible(false);
+            option4.setVisible(false);
         });
         changePasswordButton.setOnAction(actionEvent -> {
             switchToChangePasswordAP();
+            option3.setVisible(true);
+            option2.setVisible(false);
+            option1.setVisible(false);
+            option4.setVisible(false);
         });
         deleteAccountButton.setOnAction(actionEvent -> {
             switchToDeleteAccountAP();
+            option4.setVisible(true);
+            option2.setVisible(false);
+            option3.setVisible(false);
+            option1.setVisible(false);
         });
     }
 
