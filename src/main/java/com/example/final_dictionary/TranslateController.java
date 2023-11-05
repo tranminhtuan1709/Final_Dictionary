@@ -52,11 +52,18 @@ public class TranslateController implements Initializable {
             String tmp = translate.getValue();
             translate.setValue(meaning.getValue());
             meaning.setValue(tmp);
-            showmeaning.clear();
+            //nếu chưa bấm nút translate thì ở ô meaning chưa có chữ, khi bấm transfer thì không làm gì cả
+            if(showmeaning.getText().isEmpty()) {
 
-//            String tmp2 = inputfieldtranslate.getText();
-//            inputfieldtranslate.setText(showmeaning.getText());
-//            showmeaning.setText(tmp2);
+            } else if (!showmeaning.getText().equals(inputfieldtranslate.getText())) {
+                String tmp2 = inputfieldtranslate.getText();
+                inputfieldtranslate.setText(showmeaning.getText());
+                showmeaning.setText(tmp2);
+            //ví dụ như nhập xin chào khi đang để eng to vie thì ô showmeaning cũng hiện xin chào
+            //thì mình chỉ cần xóa cái ô showmeaning, để lại text ở ô input khi bấm transfer button
+            } else {
+                showmeaning.clear();
+            }
         });
     }
 
