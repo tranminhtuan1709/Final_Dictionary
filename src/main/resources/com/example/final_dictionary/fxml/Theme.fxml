@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.final_dictionary.ThemeController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.ThemeController">
+   <children>
+      <Label layoutX="69.0" layoutY="28.0" prefHeight="47.0" prefWidth="85.0" text="Theme">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="200.0" layoutY="116.0" prefHeight="26.0" prefWidth="90.0" text="Light">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="200.0" layoutY="157.0" prefHeight="26.0" prefWidth="90.0" text="Dark">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="light" layoutX="130.0" layoutY="120.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="circleTickButton" stylesheets="@Style.css">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button fx:id="dark" layoutX="130.0" layoutY="160.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="circleTickButton" stylesheets="@Style.css">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

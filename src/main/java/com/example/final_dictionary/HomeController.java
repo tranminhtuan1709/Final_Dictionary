@@ -65,14 +65,30 @@ public class HomeController implements Initializable {
     private void handleListWord() {
         try {
             DataLite d = new DataLite();
-            ArrayList<String> list = d.getListWord();
 
+            ArrayList<String> list = d.getListWord();
             for (int i = 0; i < list.size(); i += 234) {
                 int endIndex = Math.min(i + 234, list.size());
                 List<String> sublist = list.subList(i, endIndex);
                 Platform.runLater(() -> listWord.getItems().addAll(sublist));
             }
 
+            searchBar.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                listWord.getItems().clear();
+                String in1 = searchBar.getText();
+                ArrayList<String> list1 = null;
+                try {
+                    list1 = d.suggestWords(in1);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                for (int i = 0; i < list1.size(); i += 234) {
+                    int endIndex = Math.min(i + 234, list1.size());
+                    List<String> sublist = list1.subList(i, endIndex);
+                    Platform.runLater(() -> listWord.getItems().addAll(sublist));
+                }
+            });
             listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
                 String word = listWord.getSelectionModel().getSelectedItem().toString();
 

@@ -1,6 +1,7 @@
 package com.example.final_dictionary;
 
 
+import Database.DataLite;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
@@ -81,40 +82,15 @@ public class Login implements Initializable {
     @FXML
     private Label waiting2;
 
-
-    //DATABASE
-    private Connection connect;
-    private PreparedStatement statement;
-    private ResultSet result;
-
-
-//    public Connection connectDB() {
-//        connect = null;
-//        try {
-//            //Class.forName("com.mysql.cj.jdbc.Driver");
-//            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdb?characterEncoding=utf8", "root", "22028238vnu");
-//
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//        return connect;
-//    }
-
-    public void login(ActionEvent e) {
+    public void login(ActionEvent e) throws SQLException {
         //connect = connectDB();
-
+        DataLite dataLite = new DataLite();
         try {
-
-            String sql = "SELECT * FROM userinformation WHERE username = ? AND pass = ?";
-//
-//            statement = connect.prepareStatement(sql);
-//            statement.setString(1, username.getText());
-//            statement.setString(2, password.getText());
-//            result = statement.executeQuery();
-
-            if (username.getText().equals("")  && password.getText().equals("")) {
+            String user = username.getText();
+            String pass = password.getText();
+            if (dataLite.checkLogin(user, pass)) {
                 //Show the dictionary after successful login
-                // javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 loginButton.getScene().getWindow().hide();
 
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
@@ -148,24 +124,19 @@ public class Login implements Initializable {
 
 
 
-    public void login_enter(KeyEvent e) {
+    public void login_enter(KeyEvent e) throws SQLException {
         //connect = connectDB();
         password.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
                     try {
-
-                        String sql = "SELECT * FROM userinformation WHERE username = ? AND pass = ?";
-            //
-            //            statement = connect.prepareStatement(sql);
-            //            statement.setString(1, username.getText());
-            //            statement.setString(2, password.getText());
-            //            result = statement.executeQuery();
-
-                        if (username.getText().equals("")  && password.getText().equals("")) {
+                        DataLite dataLite = new DataLite();
+                        String user = username.getText();
+                        String pass = password.getText();
+                        if (dataLite.checkLogin(user, pass)) {
                             //Show the dictionary after successful login
-                            javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             loginButton.getScene().getWindow().hide();
 
                             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
@@ -203,17 +174,12 @@ public class Login implements Initializable {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
                     try {
-
-                        String sql = "SELECT * FROM userinformation WHERE username = ? AND pass = ?";
-                        //
-                        //            statement = connect.prepareStatement(sql);
-                        //            statement.setString(1, username.getText());
-                        //            statement.setString(2, password.getText());
-                        //            result = statement.executeQuery();
-
-                        if (username.getText().equals("")  && password.getText().equals("")) {
+                        DataLite dataLite = new DataLite();
+                        String user = username.getText();
+                        String pass = password.getText();
+                        if (dataLite.checkLogin(user, pass)) {
                             //Show the dictionary after successful login
-                            javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             loginButton.getScene().getWindow().hide();
 
                             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));

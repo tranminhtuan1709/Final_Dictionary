@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
     @FXML
-    private Button homeButton, savedWordButton, translateButton, addWordButton, gameButton, infoButton;
+    private Button homeButton, savedWordButton, translateButton, addWordButton, gameButton, infoButton, settingButton;
     @FXML
     private Button usernameButton;
     @FXML
@@ -37,12 +37,14 @@ public class MenuController implements Initializable {
     private AnchorPane usernameAP;
     @FXML
     private Button usernameButton2;
+    @FXML
+    private AnchorPane homeAP, savedWordAP, translateAP, addWordAP, gameAP, infoAP, settingAP;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            AnchorPane defaultAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Home.fxml")));
-            switchAP.getChildren().add(defaultAP);
+            loadAP();
+            switchAP.getChildren().add(homeAP);
             switchAP.toFront();
             switchAP.setVisible(true);
             switchAP.setDisable(false);
@@ -59,44 +61,28 @@ public class MenuController implements Initializable {
             usernameButton.setOnAction(actionEvent -> showUsernameAP());
             usernameButton2.setOnAction(actionEvent -> quitUsernameAP());
             savedWordButton.setOnAction(actionEvent -> {
-                try {
-                    quitMenu();
-                    switchToSavedWordAP();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                quitMenu();
+                switchToSavedWordAP();
             });
             homeButton.setOnAction(actionEvent -> {
-                try {
-                    quitMenu();
-                    switchToHomeAP();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                quitMenu();
+                switchToHomeAP();
             });
             translateButton.setOnAction(actionEvent -> {
                 quitMenu();
-                try {
-                    switchToTranslateAP();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                switchToTranslateAP();
             });
             addWordButton.setOnAction(actionEvent -> {
                 quitMenu();
-                try {
-                    switchToAddWordAP();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                switchToAddWordAP();
             });
             infoButton.setOnAction(actionEvent -> {
                 quitMenu();
-                try {
-                    switchToInfoAP();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                switchToInfoAP();
+            });
+            settingButton.setOnAction(actionEvent -> {
+                quitMenu();
+                switchToSettingAP();
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -147,43 +133,64 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void switchToSavedWordAP() throws IOException {
+    public void switchToSavedWordAP() {
         switchAP.getChildren().clear();
-        AnchorPane anchorPane = FXMLLoader.load(
-                Objects.requireNonNull(getClass().getResource("fxml/Save.fxml")));
-        switchAP.getChildren().add(anchorPane);
+        switchAP.getChildren().add(savedWordAP);
     }
 
     @FXML
-    public void switchToHomeAP() throws IOException {
+    public void switchToHomeAP() {
         switchAP.getChildren().clear();
-        AnchorPane anchorPane = FXMLLoader.load(
-                Objects.requireNonNull(getClass().getResource("fxml/Home.fxml")));
-        switchAP.getChildren().add(anchorPane);
+        switchAP.getChildren().add(homeAP);
     }
 
     @FXML
-    public void switchToTranslateAP() throws IOException {
+    public void switchToTranslateAP() {
         switchAP.getChildren().clear();
-        AnchorPane anchorPane = FXMLLoader.load(
-                Objects.requireNonNull(getClass().getResource("fxml/Translate.fxml")));
-        switchAP.getChildren().add(anchorPane);
+        switchAP.getChildren().add(translateAP);
     }
 
     @FXML
-    public void switchToAddWordAP() throws IOException {
+    public void switchToAddWordAP() {
         switchAP.getChildren().clear();
-        AnchorPane anchorPane = FXMLLoader.load(
-                Objects.requireNonNull(getClass().getResource("fxml/AddWords.fxml")));
-        switchAP.getChildren().add(anchorPane);
+        switchAP.getChildren().add(addWordAP);
     }
 
     @FXML
-    public void switchToInfoAP() throws IOException {
+    public void switchToInfoAP() {
         switchAP.getChildren().clear();
-        AnchorPane anchorPane = FXMLLoader.load(
-                Objects.requireNonNull(getClass().getResource("fxml/Info.fxml")));
-        switchAP.getChildren().add(anchorPane);
+        switchAP.getChildren().add(infoAP);
+    }
+
+    @FXML
+    public void switchToSettingAP() {
+        switchAP.getChildren().clear();
+        switchAP.getChildren().add(settingAP);
+    }
+
+    @FXML
+    public void loadAP() throws IOException {
+        if (homeAP == null) {
+            homeAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Home.fxml")));
+        }
+        if (savedWordAP == null) {
+            savedWordAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Save.fxml")));
+        }
+        if (translateAP == null) {
+            translateAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Translate.fxml")));
+        }
+        if (addWordAP == null) {
+            addWordAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/AddWords.fxml")));
+        }
+        if (gameAP == null) {
+            gameAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Game.fxml")));
+        }
+        if (infoAP == null) {
+            infoAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Info.fxml")));
+        }
+        if (settingAP == null) {
+            settingAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Setting.fxml")));
+        }
     }
 
     @FXML
