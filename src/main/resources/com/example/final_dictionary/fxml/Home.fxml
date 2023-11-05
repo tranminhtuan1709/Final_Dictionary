@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
+<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
    <children>
       <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="507.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
