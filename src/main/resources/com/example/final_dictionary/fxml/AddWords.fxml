@@ -175,7 +175,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <TextArea layoutX="291.0" layoutY="444.0" prefHeight="109.0" prefWidth="616.0" styleClass="text-area" stylesheets="@Style.css" wrapText="true">
+      <TextArea fx:id="addwordmeaning" layoutX="291.0" layoutY="444.0" prefHeight="109.0" prefWidth="616.0" styleClass="addwordmeaning" stylesheets="@Style.css" wrapText="true">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
