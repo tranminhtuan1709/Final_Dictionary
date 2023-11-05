@@ -16,7 +16,7 @@
 .usernameButton:hover {
     -fx-text-fill: brown;
     -fx-font-weight: bold;
-    -fx-background-color: rgb(240, 240, 240); // 0 102 204
+    -fx-background-color: rgb(240, 240, 240);
 }
 
 .usernameAP {
@@ -94,29 +94,31 @@
     -fx-background-color: lightgrey;
 }
 
-.text-field{
+
+
+.searchsaveword.text-field{
     -fx-background-color: white;
     -fx-border-color: #000000;
     -fx-border-width: 0px 0px 0px 0px;
 }
 
-.text-field:hover{
+.searchsaveword.text-field:hover{
     -fx-background-color: #F2F2F2;
-}
-
-.translate-field{
-    -fx-background-color: white;
-    -fx-border-color: #F5F5F5;
     -fx-border-width: 1px 1px 1px 1px;
 }
 
-.translate-field:hover{
+.inputfieldtranslate.text-area .content{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #000000;
+    -fx-border-width: 0px 0px 0px 0px;
+}
+
+.inputfieldtranslate.text-area .content:hover{
     -fx-background-color: #F2F2F2;
 }
 
 .selectLanguageButton {
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
+
     -fx-background-color: #1D2A57;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
@@ -149,15 +151,29 @@
     -fx-border-width: 1px 1px 1px 1px;
 }
 
+.addwordmeaning.text-area .content {
+    -fx-background-color: transparent;
+    -fx-border-color: #000000;
+    -fx-border-width: 0.5px 0.5px 0.5px 0.5px;
+}
+
+.addwordmeaning.text-area .content:hover {
+    -fx-background-color: #F2F2F2;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px 1px 1px 1px;
+}
+
 .savebutton{
     -fx-background-color: #0070C0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-font-size: 14;
     -fx-cursor: hand;
 }
 
 .savebutton:hover{
     -fx-background-color: #008AF2;
+    -fx-font-size: 14;
 }
 
 .discardbutton{
@@ -165,8 +181,50 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+    -fx-font-size: 14;
 }
 
 .discardbutton:hover{
     -fx-background-color: #F20000;
+    -fx-font-size: 14;
 }
+
+.choice-box{
+    -fx-background-color: #1D2A57;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-faint-focus-color: #2B2D30;
+    -fx-control-inner-background: #2B2D30;
+    -fx-tick-label-fill: white;
+    -fx-text-fill: white;
+}
+.choice-box:hover{
+    -fx-background-color: #334999;
+}
+.choice-box .label {
+    -fx-text-fill: white;
+}
+
+.translatebutton{
+    -fx-background-color: #FDC600;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
+    -fx-font-size: 17;
+    -fx-text-fill: #12225B;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.translatebutton:hover{
+    -fx-background-color: #F2BE00;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
+    -fx-font-size: 17;
+    -fx-text-fill: #12225B;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+

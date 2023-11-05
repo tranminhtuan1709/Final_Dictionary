@@ -1,7 +1,6 @@
 package com.example.final_dictionary;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,11 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -49,83 +46,56 @@ public class MenuController implements Initializable {
             switchAP.toFront();
             switchAP.setVisible(true);
             switchAP.setDisable(false);
-            showMenu.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    showMenu();
-                }
-            });
-            quitMenu.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
+            showMenu.setOnAction(actionEvent -> showMenu());
+            quitMenu.setOnAction(actionEvent -> quitMenu());
+            container.setOnMouseClicked(mouseEvent -> {
+                if (!menuAP.isHover() && !menuAP.isDisable()) {
                     quitMenu();
                 }
-            });
-            container.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (!menuAP.isHover() && !menuAP.isDisable()) {
-                        quitMenu();
-                    }
-                    if (!usernameAP.isHover() && !usernameAP.isDisable()) {
-                        quitUsernameAP();
-                    }
-                }
-            });
-            usernameButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    showUsernameAP();
-                }
-            });
-            usernameButton2.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
+                if (!usernameAP.isHover() && !usernameAP.isDisable()) {
                     quitUsernameAP();
                 }
             });
-            savedWordButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    try {
-                        quitMenu();
-                        switchToSavedWordAP();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-            homeButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    try {
-                        quitMenu();
-                        switchToHomeAP();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-            translateButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
+            usernameButton.setOnAction(actionEvent -> showUsernameAP());
+            usernameButton2.setOnAction(actionEvent -> quitUsernameAP());
+            savedWordButton.setOnAction(actionEvent -> {
+                try {
                     quitMenu();
-                    try {
-                        switchToTranslateAP();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    switchToSavedWordAP();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             });
-            addWordButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
+            homeButton.setOnAction(actionEvent -> {
+                try {
                     quitMenu();
-                    try {
-                        switchToAddWordAP();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    switchToHomeAP();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            translateButton.setOnAction(actionEvent -> {
+                quitMenu();
+                try {
+                    switchToTranslateAP();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            addWordButton.setOnAction(actionEvent -> {
+                quitMenu();
+                try {
+                    switchToAddWordAP();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            infoButton.setOnAction(actionEvent -> {
+                quitMenu();
+                try {
+                    switchToInfoAP();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             });
         } catch (IOException e) {
@@ -209,6 +179,14 @@ public class MenuController implements Initializable {
     }
 
     @FXML
+    public void switchToInfoAP() throws IOException {
+        switchAP.getChildren().clear();
+        AnchorPane anchorPane = FXMLLoader.load(
+                Objects.requireNonNull(getClass().getResource("fxml/Info.fxml")));
+        switchAP.getChildren().add(anchorPane);
+    }
+
+    @FXML
     public void signOut(ActionEvent e) {
         try {
             Parent borderPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Login.fxml")));
@@ -225,6 +203,7 @@ public class MenuController implements Initializable {
 
             stage.show();
         } catch (IOException ev) {
+            throw new RuntimeException(ev);
         }
     }
 }

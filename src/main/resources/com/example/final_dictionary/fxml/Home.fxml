@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -31,15 +30,8 @@
          <font>
             <Font name="Segoe UI Light Italic" size="14.0" />
          </font></TextField>
-      <ScrollPane layoutY="80.0" prefHeight="567.0" prefWidth="200.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="82.0">
-        <content>
-          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="185.0">
-               <children>
-                  <ListView fx:id="listWord" prefHeight="551.0" prefWidth="184.0" />
-               </children></AnchorPane>
-        </content>
-      </ScrollPane>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="50.0" prefHeight="30.0" prefWidth="48.0" styleClass="indexLabel" stylesheets="@Style.css" text="Index">
+      <ListView fx:id="listWord" layoutX="6.0" layoutY="73.0" prefHeight="570.0" prefWidth="200.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="48.0" prefHeight="30.0" prefWidth="48.0" styleClass="indexLabel" stylesheets="@Style.css" text="Index">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
@@ -59,10 +51,13 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
-      <Line endX="213.0" endY="64.26667022705078" fill="#1143b7" startX="213.0" startY="638.1333618164062" stroke="#1123c4" />
+      <Line endX="213.0" endY="64.26667022705078" fill="#1143b7" startX="212.99998474121094" startY="645.6000366210938" stroke="#1123c4" />
       <AnchorPane fx:id="usernameAP" disable="true" layoutX="930.0" prefHeight="197.0" prefWidth="270.0" styleClass="menuBackground" stylesheets="@Style.css" visible="false">
          <children>
             <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="35.0" layoutY="65.0" prefHeight="48.0" prefWidth="193.0" text="Welcome Username!">

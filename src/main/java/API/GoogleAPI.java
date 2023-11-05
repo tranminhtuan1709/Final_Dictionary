@@ -8,12 +8,14 @@ import java.nio.charset.StandardCharsets;
 
 public class GoogleAPI {
 
-/*    public static void main(String[] args) throws IOException {
+/*   public static void main(String[] args) throws IOException, URISyntaxException {
 //        String text = "Hello world!";
 //        //Translated text: Xin chao the gioi!
-//        System.out.println("Translated text: " + translateEnToVi(text));  }
-*/
-    private static String translate(String langFrom, String langTo, String text) throws IOException, URISyntaxException {
+//        System.out.println("Translated text: " + translateEnToVi(text));
+//   }
+ */
+
+    public static String translate(String langFrom, String langTo, String text) throws IOException, URISyntaxException {
         // INSERT YOU URL HERE
         String urlStr = "https://script.google.com/macros/s/AKfycbw1qSfs1Hvfnoi3FzGuoDWijwQW69eGcMM_iGDF7p5vu1oN_CaFqIDFmCGzBuuGCk_N/exec" +
                 "?q=" + URLEncoder.encode(text, StandardCharsets.UTF_8) +
