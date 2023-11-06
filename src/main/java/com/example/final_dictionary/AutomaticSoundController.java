@@ -12,12 +12,6 @@ public class AutomaticSoundController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (man.getStyle().equals("-fx-background-color: green")) {
-            changeVoiceToMan();
-        }
-        if (woman.getStyle().equals("-fx-background-color: green")) {
-            changeVoiceToWoman();
-        }
         man.setOnAction(actionEvent -> {
             changeVoiceToMan();
         });
