@@ -65,7 +65,9 @@ public class DeleteAccountController implements Initializable {
         String pass = password.getText();
         String mail = email.getText();
 
-        if (email.getText().isEmpty()) {
+        if (email.getText().isEmpty() && username.getText().isEmpty() && password.getText().isEmpty()) {
+            notificationText.setText("All fields are empty!");
+        } else if (email.getText().isEmpty()) {
             notificationText.setText("Email field is empty!");
         } else if (username.getText().isEmpty()) {
             notificationText.setText("Username field is empty!");

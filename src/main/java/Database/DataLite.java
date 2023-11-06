@@ -17,11 +17,7 @@ public class DataLite {
         config.setMaximumPoolSize(20);
         dataSource = new HikariDataSource(config);
     }
-
-    public void close() {
-        dataSource.close();
-    }
-
+    
     /*
     ********************************************************************************************************************
      author: anh tuan
@@ -68,6 +64,63 @@ public class DataLite {
                 list.add(resultSet.getString("word"));
             }
             return list;
+        }
+    }
+
+    /*
+     ********************************************************************************************************************
+     *Add Word, DeleteWord, Update Word
+     */
+    public boolean isExist(String word) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM av WHERE word = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, word.toLowerCase());
+            ResultSet rs = ps.executeQuery();
+            return rs.next() && rs.getInt(1) > 0;
+        }
+    }
+    public String convertToHTML(String addWord, String addPronounce, String addDescription) {
+        return "<h1 style= \"color:#951D05; font-family : Segoe UI\">" + addWord + "</h1>" +
+                "<h3><i>/" + addPronounce + "/</i></h3>" +
+                "<h2>" + addDescription + "</h2>";
+    }
+
+    public void addWord(String word, String pos, String breIpa, String nameIpa, String meaning) throws SQLException {
+        word = word.toLowerCase();
+        String sql = "INSERT INTO av(word, description, html, pronounce) VALUES(?, ?, ?, ?)";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, word);
+            ps.setString(2, pos + "; " + meaning);
+            ps.setString(3, convertToHTML(word + "<br>"+ breIpa, pos, meaning));
+            ps.setString(4, nameIpa);
+            ps.executeUpdate();
+        }
+    }
+
+    public void deleteWord(String s) throws SQLException {
+        s = s.toLowerCase();
+        String sql = "DELETE FROM av WHERE word = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, s.toLowerCase());
+            ps.executeUpdate();
+        }
+    }
+
+    public void updateWord(String word, String pos, String breIpa, String nameIpa, String meaning, String old_word) throws SQLException {
+        String html = convertToHTML(word + "<br>" +breIpa, pos, meaning);
+        word = word.toLowerCase();
+        String sql = "UPDATE av SET word = ?, html = ?, description = ?, pronounce = ? WHERE word = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, word);
+            ps.setString(2, html);
+            ps.setString(3, nameIpa);
+            ps.setString(4, pos + "; " +meaning);
+            ps.setString(5, old_word);
+            ps.executeUpdate();
         }
     }
 
@@ -187,13 +240,10 @@ public class DataLite {
     }
     /*
      ********************************************************************************************************************
-     *Add Word
+     *Favorite Word
      */
-    public void addWord(String word, String pos, String breIpa, String nameIpa, String meaning) throws SQLException {
-    }
-
-    public boolean isExist(String word) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM av WHERE word = ?";
+    public boolean isExistFavorite(String word) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM avfavorite WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word.toLowerCase());
@@ -202,9 +252,63 @@ public class DataLite {
         }
     }
 
-    public void deleteWord(String s) throws SQLException {
+    public void addFavorite(String word) throws SQLException {
+        word = word.toLowerCase();
+        String sql = "INSERT INTO avfavorite(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, word);
+            ps.executeUpdate();
+        }
+    }
+
+    public String searchWordFa(String s) throws SQLException {
+        String sql = "SELECT * FROM avfavorite WHERE word = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, s.toLowerCase());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("html");
+                }
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<String> getFavorite() throws SQLException {
+        String querySql = "SELECT word FROM avfavorite group by word";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(querySql);
+             ResultSet resultSet = ps.executeQuery()) {
+            ArrayList<String> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("word"));
+            }
+            return list;
+        }
+    }
+
+    public ArrayList<String> suggestWordsFa(String input) throws SQLException {
+        input = input.toLowerCase();
+        String sql = "SELECT word FROM avfavorite WHERE word LIKE ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, input + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                ArrayList<String> wordList = new ArrayList<>();
+                while (rs.next()) {
+                    wordList.add(rs.getString("word"));
+                }
+                return wordList;
+            }
+        }
+    }
+
+    public void deleteWordFa(String s) throws SQLException {
         s = s.toLowerCase();
-        String sql = "DELETE FROM av WHERE word = ?";
+        String sql = "DELETE FROM avfavorite WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, s.toLowerCase());
@@ -212,14 +316,57 @@ public class DataLite {
         }
     }
 
-    public void updateWord(String s, String s1) throws SQLException {
-        s = s.toLowerCase();
-        String sql = "UPDATE av SET description = ? WHERE word = ?";
+    public ArrayList<String> deleteFavorite() throws SQLException {
+        String deleteSql = "DELETE FROM avfavorite where true";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(deleteSql)) {
+            ps.executeUpdate();
+            return new ArrayList<>();
+        }
+    }
+    /*
+     ********************************************************************************************************************
+     *History Word
+     */
+    public boolean isExistHistory(String word) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM avhistory WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, s1.toLowerCase());
-            ps.setString(2, s.toLowerCase());
+            ps.setString(1, word.toLowerCase());
+            ResultSet rs = ps.executeQuery();
+            return rs.next() && rs.getInt(1) > 0;
+        }
+    }
+
+    public void addHistory(String word) throws SQLException {
+        word = word.toLowerCase();
+        String sql = "INSERT INTO avhistory(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, word);
             ps.executeUpdate();
+        }
+    }
+
+    public ArrayList<String> getHistory() throws SQLException {
+        String querySql = "SELECT word FROM avhistory";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(querySql);
+             ResultSet resultSet = ps.executeQuery()) {
+            ArrayList<String> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("word"));
+            }
+            return list;
+        }
+    }
+
+    public ArrayList<String> deleteHistory() throws SQLException {
+        String deleteSql = "DELETE FROM avhistory where true";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(deleteSql)) {
+            ps.executeUpdate();
+            return new ArrayList<>();
         }
     }
 }

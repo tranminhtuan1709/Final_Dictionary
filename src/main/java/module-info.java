@@ -10,6 +10,7 @@ module com.mydictionaryfx {
     requires freetts;
     requires javafx.web;
     requires com.zaxxer.hikari;
+    requires jlayer;
     //requires javafx.autocomplete.field;
 
     opens com.example.final_dictionary to javafx.fxml;

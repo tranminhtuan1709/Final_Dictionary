@@ -84,9 +84,9 @@ public class TranslateController implements Initializable {
                 if (from.equals(to)) {
                     output = input;
                 } else if ("English".equals(from) && "Vietnamese".equals(to)) {
-                    output = GoogleAPI.translateEnToVi(input);
+                    output = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "");
                 } else {
-                    output = GoogleAPI.translateViToEn(input);
+                    output = GoogleAPI.translateViToEn(input).trim().replace("[", "").replace("]", "");
                 }
 
                 showmeaning.setText(output);
