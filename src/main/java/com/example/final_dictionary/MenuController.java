@@ -1,6 +1,5 @@
 package com.example.final_dictionary;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,7 +20,9 @@ import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
     @FXML
-    private Button homeButton, savedWordButton, translateButton, addWordButton, gameButton, infoButton, settingButton;
+    public Label welcome;
+    @FXML
+    private Button homeButton, savedWordButton, translateButton, addWordButton, infoButton, settingButton;//,gameButton
     @FXML
     private Button usernameButton;
     @FXML
@@ -42,15 +43,13 @@ public class MenuController implements Initializable {
     private Button signOutButton;
     @FXML
     private AnchorPane homeAP, savedWordAP, translateAP, addWordAP, gameAP, infoAP, settingAP;
-    @FXML
-    private Label usernamelabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             usernameButton.setText(Login.userName);
             usernameButton2.setText(Login.userName);
-            usernamelabel.setText("Welcome " + Login.userName + "!");
+            welcome.setText("Welcome " + Login.userName + "!");
             loadAP();
             switchAP.getChildren().add(homeAP);
             switchAP.toFront();
@@ -202,7 +201,7 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void handleSignOutButton(ActionEvent e) {
+    public void handleSignOutButton() {
         try {
             signOutButton.getScene().getWindow().hide();
             Parent borderPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Login.fxml")));

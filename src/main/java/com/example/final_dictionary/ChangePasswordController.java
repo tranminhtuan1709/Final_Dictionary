@@ -1,7 +1,6 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
-import com.example.final_dictionary.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;

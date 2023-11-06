@@ -18,6 +18,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -60,7 +61,7 @@ public class Login implements Initializable {
 
 
     public static String userName;
-    public void login(ActionEvent e) throws SQLException {
+    public void login() throws SQLException {
         //connect = connectDB();
         DataLite dataLite = new DataLite();
         try {
@@ -79,7 +80,7 @@ public class Login implements Initializable {
                 Stage stage = new Stage();
 
 
-                Image icon = new Image(getClass().getResource("image/logo.png").toString());
+                Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
                 stage.getIcons().add(icon);
 
                 stage.setTitle("English - Vietnamese Learner's Dictionary");
@@ -97,12 +98,12 @@ public class Login implements Initializable {
             }
 
         } catch (Exception event) {
-            event.printStackTrace();
+            event.printStackTrace(new PrintStream(System.out));
         }
     }
 
 
-    public void login_enter(KeyEvent e) throws SQLException {
+    public void login_enter() {
         //connect = connectDB();
         password.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -124,7 +125,7 @@ public class Login implements Initializable {
                             Stage stage = new Stage();
 
 
-                            Image icon = new Image(getClass().getResource("image/logo.png").toString());
+                            Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
                             stage.getIcons().add(icon);
 
                             stage.setTitle("English - Vietnamese Learner's Dictionary");
@@ -142,7 +143,7 @@ public class Login implements Initializable {
                         }
 
                     } catch (Exception ev) {
-                        ev.printStackTrace();
+                        ev.printStackTrace(new PrintStream(System.out));
                     }
                 }
             }
@@ -167,7 +168,7 @@ public class Login implements Initializable {
                             Stage stage = new Stage();
 
 
-                            Image icon = new Image(getClass().getResource("image/logo.png").toString());
+                            Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
                             stage.getIcons().add(icon);
 
                             stage.setTitle("English - Vietnamese Learner's Dictionary");
@@ -185,7 +186,7 @@ public class Login implements Initializable {
                         }
 
                     } catch (Exception ev) {
-                        ev.printStackTrace();
+                        ev.printStackTrace(new PrintStream(System.out));
                     }
                 }
             }
@@ -202,7 +203,8 @@ public class Login implements Initializable {
                 .matcher(emailAddress)
                 .matches();
     }
-    public void signup(ActionEvent e) {
+    @FXML
+    public void signup() {
         //connect = connectDB();
         try {
             DataLite dataLite = new DataLite();
@@ -219,11 +221,12 @@ public class Login implements Initializable {
             login_form.setVisible(true);
 
         } catch (Exception event) {
-            event.printStackTrace();
+            event.printStackTrace(new PrintStream(System.out));
         }
     }
 
-    public void changeForm(ActionEvent event) throws InterruptedException {
+    @FXML
+    public void changeForm(ActionEvent event) {
         if (event.getSource() == createAcc) {
             signup_form.setVisible(true);
             login_form.setVisible(false);
@@ -234,20 +237,17 @@ public class Login implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void quickStart() {
         leak.setOnMouseClicked(mouseEvent -> {
             try {
+                userName = "guest";
                 loginButton.getScene().getWindow().hide();
-
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
-
-                //Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
 
-
-                Image icon = new Image(getClass().getResource("image/logo.png").toString());
+                Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
                 stage.getIcons().add(icon);
 
                 stage.setTitle("English - Vietnamese Learner's Dictionary");
@@ -263,5 +263,11 @@ public class Login implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        quickStart();
     }
 }
