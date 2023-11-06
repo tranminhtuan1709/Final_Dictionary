@@ -83,11 +83,11 @@
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Button>
-            <Rectangle fx:id="option4" arcHeight="5.0" arcWidth="5.0" fill="#ec8b8b4f" height="40.0" layoutY="426.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="309.0">
+            <Rectangle fx:id="option4" arcHeight="5.0" arcWidth="5.0" fill="#ff00003c" height="40.0" layoutY="426.0" stroke="TRANSPARENT" strokeType="INSIDE" width="309.0">
                <effect>
                   <DropShadow offsetX="3.0" offsetY="5.0">
                      <color>
-                        <Color red="1.0" green="0.6899999976158142" blue="0.6899999976158142" />
+                        <Color red="1.0" opacity="0.49000000953674316" />
                      </color>
                   </DropShadow>
                </effect>

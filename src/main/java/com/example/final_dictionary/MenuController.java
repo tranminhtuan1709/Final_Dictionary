@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
@@ -41,12 +42,15 @@ public class MenuController implements Initializable {
     private Button signOutButton;
     @FXML
     private AnchorPane homeAP, savedWordAP, translateAP, addWordAP, gameAP, infoAP, settingAP;
+    @FXML
+    private Label usernamelabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             usernameButton.setText(Login.userName);
             usernameButton2.setText(Login.userName);
+            usernamelabel.setText("Welcome " + Login.userName + "!");
             loadAP();
             switchAP.getChildren().add(homeAP);
             switchAP.toFront();
