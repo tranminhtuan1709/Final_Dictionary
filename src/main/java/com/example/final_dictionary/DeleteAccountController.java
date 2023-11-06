@@ -54,7 +54,6 @@ public class DeleteAccountController implements Initializable {
         });
         okay.setOnAction(actionEvent -> {
             quitNotificationAP();
-            quit();
         });
     }
 
@@ -80,6 +79,7 @@ public class DeleteAccountController implements Initializable {
             dataLite.deleteAccount(user, pass, mail);
             notificationText.setText("Your account is deleted successfully!");
             notificationText.setStyle("-fx-text-fill: green");
+            quit();
         }
     }
 

@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
@@ -212,8 +213,12 @@ public class Login implements Initializable {
             String pass = su_pass.getText();
             String email = su_email.getText();
             if(patternMatches(email)) {
-                dataLite.signUp(user, pass, email);
-                javax.swing.JOptionPane.showMessageDialog(null, "Sign up successfully, please sign in now!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if(dataLite.isExistAccount(email, user, pass)) {
+                    javax.swing.JOptionPane.showMessageDialog(null, "Account is exist!", "System Alert", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    dataLite.signUp(user, pass, email);
+                    javax.swing.JOptionPane.showMessageDialog(null, "Sign up successfully, please sign in now!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
                 javax.swing.JOptionPane.showMessageDialog(null, "Wrong email format. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
             }

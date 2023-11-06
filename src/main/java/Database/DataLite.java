@@ -1,6 +1,7 @@
 package Database;
 
 
+import java.io.PrintStream;
 import java.sql.*;
 import java.util.ArrayList;
 import com.zaxxer.hikari.HikariConfig;
@@ -89,6 +90,24 @@ public class DataLite {
      ********************************************************************************************************************
      *SignUp
      */
+    public boolean isExistAccount(String email,String username, String password) {
+        String sql = "SELECT COUNT(*) FROM account WHERE email = ? AND username = ? AND password = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ps.setString(2, username);
+            ps.setString(3, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(new PrintStream(System.out));
+        }
+        return false;
+    }
 
     public void signUp(String username, String password, String email) throws SQLException {
         String sql = "INSERT INTO account(username, password, email) VALUES(?, ?, ?)";
@@ -143,6 +162,7 @@ public class DataLite {
      ********************************************************************************************************************
      *Change Password
      */
+
     public boolean checkPassword(String username, String password) throws SQLException {
         String sql = "SELECT * FROM account WHERE username = ? AND password = ?";
         try (Connection connection = dataSource.getConnection();
