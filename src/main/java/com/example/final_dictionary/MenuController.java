@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -44,6 +45,27 @@ public class MenuController implements Initializable {
     @FXML
     private AnchorPane homeAP, savedWordAP, translateAP, addWordAP, gameAP, infoAP, settingAP;
 
+    @FXML
+    private Rectangle section1;
+
+    @FXML
+    private Rectangle section2;
+
+    @FXML
+    private Rectangle section3;
+
+    @FXML
+    private Rectangle section4;
+
+    @FXML
+    private Rectangle section5;
+
+    @FXML
+    private Rectangle section6;
+
+    @FXML
+    private Rectangle section7;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -55,6 +77,15 @@ public class MenuController implements Initializable {
             switchAP.toFront();
             switchAP.setVisible(true);
             switchAP.setDisable(false);
+
+            section1.setVisible(true);
+            section2.setVisible(false);
+            section3.setVisible(false);
+            section4.setVisible(false);
+            section5.setVisible(false);
+            section6.setVisible(false);
+            section7.setVisible(false);
+
             showMenu.setOnAction(actionEvent -> showMenu());
             quitMenu.setOnAction(actionEvent -> quitMenu());
             container.setOnMouseClicked(mouseEvent -> {
@@ -70,26 +101,76 @@ public class MenuController implements Initializable {
             savedWordButton.setOnAction(actionEvent -> {
                 quitMenu();
                 switchToSavedWordAP();
+
+                section1.setVisible(false);
+                section2.setVisible(true);
+                section3.setVisible(false);
+                section4.setVisible(false);
+                section5.setVisible(false);
+                section6.setVisible(false);
+                section7.setVisible(false);
             });
             homeButton.setOnAction(actionEvent -> {
                 quitMenu();
                 switchToHomeAP();
+
+                section1.setVisible(true);
+                section2.setVisible(false);
+                section3.setVisible(false);
+                section4.setVisible(false);
+                section5.setVisible(false);
+                section6.setVisible(false);
+                section7.setVisible(false);
             });
             translateButton.setOnAction(actionEvent -> {
                 quitMenu();
                 switchToTranslateAP();
+
+                section1.setVisible(false);
+                section2.setVisible(false);
+                section3.setVisible(true);
+                section4.setVisible(false);
+                section5.setVisible(false);
+                section6.setVisible(false);
+                section7.setVisible(false);
             });
             addWordButton.setOnAction(actionEvent -> {
                 quitMenu();
                 switchToAddWordAP();
+
+                section1.setVisible(false);
+                section2.setVisible(false);
+                section3.setVisible(false);
+                section4.setVisible(true);
+                section5.setVisible(false);
+                section6.setVisible(false);
+                section7.setVisible(false);
             });
-            infoButton.setOnAction(actionEvent -> {
-                quitMenu();
-                switchToInfoAP();
-            });
+
             settingButton.setOnAction(actionEvent -> {
                 quitMenu();
                 switchToSettingAP();
+
+                section1.setVisible(false);
+                section2.setVisible(false);
+                section3.setVisible(false);
+                section4.setVisible(false);
+                section5.setVisible(false);
+                section6.setVisible(true);
+                section7.setVisible(false);
+            });
+
+            infoButton.setOnAction(actionEvent -> {
+                quitMenu();
+                switchToInfoAP();
+
+                section1.setVisible(false);
+                section2.setVisible(false);
+                section3.setVisible(false);
+                section4.setVisible(false);
+                section5.setVisible(false);
+                section6.setVisible(false);
+                section7.setVisible(true);
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
