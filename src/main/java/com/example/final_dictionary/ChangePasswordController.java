@@ -23,6 +23,11 @@ public class ChangePasswordController implements Initializable {
     @FXML
     private AnchorPane notificationAP;
 
+    private final DataLite dataLite = new DataLite();
+
+    public ChangePasswordController() throws SQLException {
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         change.setOnAction(actionEvent -> {
@@ -41,7 +46,6 @@ public class ChangePasswordController implements Initializable {
     @FXML
     public void checkPass() throws SQLException {
         notificationText.setStyle("-fx-text-fill: red");
-        DataLite dataLite = new DataLite();
         String user = Login.userName;
         if (currentPass.getText().isEmpty()) {
             notificationText.setText("Current password field is empty!");

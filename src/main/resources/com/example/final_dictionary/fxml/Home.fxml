@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
+<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
    <children>
       <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="507.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,7 +30,6 @@
          <font>
             <Font name="Segoe UI Light Italic" size="14.0" />
          </font></TextField>
-      <ListView fx:id="suggestList" fixedCellSize="10.0" layoutX="283.0" layoutY="45.0" mouseTransparent="true" prefHeight="170.0" prefWidth="626.0" visible="false" />
       <ListView fx:id="listWord" layoutX="6.0" layoutY="73.0" prefHeight="570.0" prefWidth="200.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="48.0" prefHeight="30.0" prefWidth="48.0" styleClass="indexLabel" stylesheets="@Style.css" text="Index">
          <font>
@@ -88,5 +87,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="star" layoutX="1039.0" layoutY="66.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>

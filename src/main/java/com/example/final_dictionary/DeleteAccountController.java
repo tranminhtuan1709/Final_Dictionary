@@ -35,6 +35,11 @@ public class DeleteAccountController implements Initializable {
     @FXML
     private AnchorPane notificationAP, warningAP;
 
+    private final DataLite dataLite = new DataLite();
+
+    public DeleteAccountController() throws SQLException {
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         next.setOnAction(actionEvent -> {
@@ -60,7 +65,6 @@ public class DeleteAccountController implements Initializable {
     @FXML
     public void checkAccountInformation() throws SQLException {
         notificationText.setStyle("-fx-text-fill: red");
-        DataLite dataLite = new DataLite();
         String user = username.getText();
         String pass = password.getText();
         String mail = email.getText();

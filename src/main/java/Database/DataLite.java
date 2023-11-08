@@ -253,7 +253,6 @@ public class DataLite {
     }
 
     public void addFavorite(String word) throws SQLException {
-        word = word.toLowerCase();
         String sql = "INSERT INTO avfavorite(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {

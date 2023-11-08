@@ -59,12 +59,14 @@ public class Login implements Initializable {
     @FXML
     private AnchorPane login_form;
 
-
-
+    private final DataLite dataLite = new DataLite();
     public static String userName;
+
+    public Login() throws SQLException {
+    }
+
     public void login() throws SQLException {
         //connect = connectDB();
-        DataLite dataLite = new DataLite();
         try {
             String user = username.getText();
             String pass = password.getText();
@@ -111,7 +113,6 @@ public class Login implements Initializable {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
                     try {
-                        DataLite dataLite = new DataLite();
                         String user = username.getText();
                         String pass = password.getText();
                         if (dataLite.checkLogin(user, pass)) {
@@ -154,7 +155,6 @@ public class Login implements Initializable {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
                     try {
-                        DataLite dataLite = new DataLite();
                         String user = username.getText();
                         String pass = password.getText();
                         if (dataLite.checkLogin(user, pass)) {
@@ -208,7 +208,6 @@ public class Login implements Initializable {
     public void signup() {
         //connect = connectDB();
         try {
-            DataLite dataLite = new DataLite();
             String user = su_username.getText();
             String pass = su_pass.getText();
             String email = su_email.getText();
