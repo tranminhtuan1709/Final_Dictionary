@@ -36,7 +36,7 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Label>
-    <AnchorPane fx:id="scrollpane" layoutX="229.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="950.0" visible="false">
+      <AnchorPane fx:id="scrollpane" layoutX="229.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="950.0" visible="false">
          <children>
             <WebView fx:id="webView" prefHeight="557.0" prefWidth="950.0">
                <cursor>

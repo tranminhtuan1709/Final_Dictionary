@@ -262,7 +262,7 @@ public class DataLite {
     }
 
     /**
-     * Delete a favourite word from avfavourite table.
+     * Delete a favourite word from favourite table.
      * @param word the word to be excluded from the table
      * @throws SQLException SQL Exception
      */
@@ -316,16 +316,6 @@ public class DataLite {
                 }
                 return wordList;
             }
-        }
-    }
-
-    public void deleteWordFa(String s) throws SQLException {
-        s = s.toLowerCase();
-        String sql = "DELETE FROM avfavorite WHERE word = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, s.toLowerCase());
-            ps.executeUpdate();
         }
     }
 
