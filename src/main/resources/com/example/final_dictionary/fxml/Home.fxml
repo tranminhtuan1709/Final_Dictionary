@@ -43,6 +43,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </WebView>
+            <Button fx:id="saveButton" contentDisplay="GRAPHIC_ONLY" layoutX="826.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/greyStarIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Button fx:id="speech" layoutX="887.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="menuIconButton" stylesheets="@Style.css">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
@@ -54,6 +63,15 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+            </Button>
+            <Button fx:id="unsaveButton" contentDisplay="GRAPHIC_ONLY" layoutX="826.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css" visible="false">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/yellowStarIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </AnchorPane>
@@ -87,6 +105,5 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="star" layoutX="1039.0" layoutY="66.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>

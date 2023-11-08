@@ -261,6 +261,20 @@ public class DataLite {
         }
     }
 
+    /**
+     * Delete a favourite word from avfavourite table.
+     * @param word the word to be excluded from the table
+     * @throws SQLException SQL Exception
+     */
+    public void deleteFavorite(String word) throws SQLException {
+        String sql = "DELETE FROM avfavorite WHERE word=?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, word);
+            ps.executeUpdate();
+        }
+    }
+
     public String searchWordFa(String s) throws SQLException {
         String sql = "SELECT * FROM avfavorite WHERE word = ?";
         try (Connection connection = dataSource.getConnection();

@@ -38,9 +38,14 @@ public class HomeController implements Initializable {
     public AnchorPane scrollpane;
 
     @FXML
-    public Button star;
+    private Button saveButton;
+
+    @FXML
+    private Button unsaveButton;
 
     private final DataLite d = new DataLite();
+
+    public AtomicReference<String> currentWord = new AtomicReference<>("");
 
     public HomeController() throws SQLException {
     }
@@ -53,6 +58,22 @@ public class HomeController implements Initializable {
 
             webView.getEngine().loadContent(w);
             if (w == null) check = false;
+
+            try {
+                if(d.isExistFavorite(currentWord.get())) {
+                    saveButton.setVisible(false);
+                    saveButton.setDisable(true);
+                    unsaveButton.setVisible(true);
+                    unsaveButton.setDisable(false);
+                } else {
+                    saveButton.setVisible(true);
+                    saveButton.setDisable(false);
+                    unsaveButton.setVisible(false);
+                    unsaveButton.setDisable(true);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -108,8 +129,10 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        AtomicReference<String> currentWord = new AtomicReference<>("");
+
         handleListWord();
+
+
 
         searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = searchBar.getText();
@@ -146,11 +169,32 @@ public class HomeController implements Initializable {
             }
         }));
 
-        star.setOnAction(actionEvent -> {
+        saveButton.setOnAction(actionEvent -> {
             try {
                 if(!d.isExistFavorite(currentWord.get())) {
                     d.addFavorite(currentWord.get());
                 }
+                //when clicking save word, the star will be brightened
+                //it means that the unsaveButton appears, and the saveButton disappears.
+                saveButton.setVisible(false);
+                saveButton.setDisable(true);
+                unsaveButton.setVisible(true);
+                unsaveButton.setDisable(false);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        unsaveButton.setOnAction(actionEvent -> {
+            try {
+                if(d.isExistFavorite(currentWord.get())) {
+                    d.deleteFavorite(currentWord.get());
+                }
+
+                saveButton.setVisible(true);
+                saveButton.setDisable(false);
+                unsaveButton.setVisible(false);
+                unsaveButton.setDisable(true);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
