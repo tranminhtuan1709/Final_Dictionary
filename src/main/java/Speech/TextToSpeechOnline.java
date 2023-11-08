@@ -1,8 +1,7 @@
 package Speech;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.PrintStream;
 
 import com.voicerss.tts.AudioCodec;
 import com.voicerss.tts.AudioFormat;
@@ -16,7 +15,6 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
 public class TextToSpeechOnline {
-    private static SourceDataLine speaker;
     public static void startPlaying(byte[] audio) {
         try {
             AudioInputStream ais = new AudioInputStream(
@@ -26,7 +24,7 @@ public class TextToSpeechOnline {
             );
             javax.sound.sampled.AudioFormat format = ais.getFormat();
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-            speaker = (SourceDataLine) AudioSystem.getLine(info);
+            SourceDataLine speaker = (SourceDataLine) AudioSystem.getLine(info);
             speaker.open(format);
             speaker.start();
             int buffer;
@@ -36,9 +34,10 @@ public class TextToSpeechOnline {
             speaker.close();
             ais.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(new PrintStream(System.out));
         }
     }
+
     public static void textToSpeech(String text) throws Exception{
         VoiceProvider tts = new VoiceProvider("4f17198eb22e43a9bf77e5ee3bf2e5a7");
 
@@ -52,7 +51,18 @@ public class TextToSpeechOnline {
         byte [] voice = tts.speech(params);
         startPlaying(voice);
     }
-//    public static void main (String args[]) throws Exception {
-//        textToSpeech("Hello, My name is Nam");
-//    }
+
+    public static void textToSpeechVie(String text) throws Exception{
+        VoiceProvider tts = new VoiceProvider("4f17198eb22e43a9bf77e5ee3bf2e5a7");
+
+        VoiceParameters params = new VoiceParameters(text, Languages.Vietnamese);
+        params.setVoice("Mary");
+        params.setCodec(AudioCodec.WAV);
+        params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
+        params.setBase64(false);
+        params.setSSML(false);
+        params.setRate(0);
+        byte [] voice = tts.speech(params);
+        startPlaying(voice);
+    }
 }

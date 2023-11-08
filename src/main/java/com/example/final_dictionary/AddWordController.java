@@ -71,7 +71,7 @@ public class AddWordController implements Initializable {
         String name = nameIPA.getText();
         String meaning = addwordmeaning.getText();
         if (!word.isEmpty() && !pos.isEmpty() && !meaning.isEmpty()) {
-            if (false/*word not in the dictionary*/) {
+            if (true/*word not in the dictionary*/) {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);
                 }

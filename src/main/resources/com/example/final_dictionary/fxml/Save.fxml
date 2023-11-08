@@ -47,7 +47,7 @@
             <Font name="Segoe UI" size="16.0" />
          </font>
       </TextField>
-      <Button contentDisplay="GRAPHIC_ONLY" layoutX="787.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="menuIconButton" stylesheets="@Style.css" text="searchIcon">
+      <Button fx:id="ssw" contentDisplay="GRAPHIC_ONLY" layoutX="787.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="menuIconButton" stylesheets="@Style.css" text="searchIcon">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>

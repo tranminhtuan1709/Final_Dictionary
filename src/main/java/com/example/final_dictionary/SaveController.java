@@ -9,8 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SaveController implements Initializable {
-    @FXML
-    private AnchorPane savedWord;
+    public Button ssw;
     @FXML
     private Button deleteSavedWordButton;
 

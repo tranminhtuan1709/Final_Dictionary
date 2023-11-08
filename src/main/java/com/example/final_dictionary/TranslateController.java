@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import javafx.event.ActionEvent;
+import Speech.TextToSpeechOnline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,7 +8,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import API.GoogleAPI;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -37,6 +36,7 @@ public class TranslateController implements Initializable {
         setUp();
     }
 
+    @FXML
     private void setUp() {
         translate.setValue("English");
         translate.setTooltip(new Tooltip("Select the input language"));
@@ -46,15 +46,33 @@ public class TranslateController implements Initializable {
         meaning.getItems().addAll(items);
     }
 
-    public void handleTransferButton(ActionEvent e) {
+    @FXML
+    public void handleTransferButton() {
         transfer.setOnMouseClicked(mouseEvent -> {
             String tmp = translate.getValue();
             translate.setValue(meaning.getValue());
             meaning.setValue(tmp);
+
+            if(showmeaning.getText().isEmpty()) {
+                inputfieldtranslate.clear();
+            }
+
+            if(inputfieldtranslate.getText().isEmpty()) {
+                showmeaning.clear();
+            }
+
+            if(!showmeaning.getText().equals(inputfieldtranslate.getText())) {
+                String tmp1 = inputfieldtranslate.getText();
+                inputfieldtranslate.setText(showmeaning.getText());
+                showmeaning.setText(tmp1);
+            } else {
+                showmeaning.clear();
+            }
         });
     }
 
-    public void handleTranslateButton(ActionEvent e) {
+    @FXML
+    public void handleTranslateButton() {
         translateButton.setOnMouseClicked(mouseEvent -> {
             String input = inputfieldtranslate.getText();
             String from = translate.getValue();
@@ -66,9 +84,9 @@ public class TranslateController implements Initializable {
                 if (from.equals(to)) {
                     output = input;
                 } else if ("English".equals(from) && "Vietnamese".equals(to)) {
-                    output = GoogleAPI.translateEnToVi(input);
+                    output = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "");
                 } else {
-                    output = GoogleAPI.translateViToEn(input);
+                    output = GoogleAPI.translateViToEn(input).trim().replace("[", "").replace("]", "");
                 }
 
                 showmeaning.setText(output);
@@ -76,5 +94,25 @@ public class TranslateController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+    }
+    @FXML
+    public void handleSoundButton() {
+        String meaningText = showmeaning.getText();
+        String language = meaning.getValue();
+        if (language.equals("Vietnamese")) {
+            try {
+                TextToSpeechOnline.textToSpeechVie(meaningText);
+                //TextToSpeech.Speech(word);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        } else {
+            try {
+                TextToSpeechOnline.textToSpeech(meaningText);
+                //TextToSpeech.Speech(word);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 }

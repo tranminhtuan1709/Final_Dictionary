@@ -9,6 +9,8 @@ module com.mydictionaryfx {
     requires voicerss.tts;
     requires freetts;
     requires javafx.web;
+    requires com.zaxxer.hikari;
+    requires jlayer;
     //requires javafx.autocomplete.field;
 
     opens com.example.final_dictionary to javafx.fxml;
