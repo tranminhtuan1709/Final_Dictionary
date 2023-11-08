@@ -9,7 +9,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 
 public class DataLite {
-    private static final String DB_URL_Lite = "jdbc:sqlite:src/main/java/Database/dict_hh.db";
+    private static final String DB_URL_Lite = "jdbc:sqlite:src/main/java/Database/dict_t.db";
     private final HikariDataSource dataSource;
     public DataLite() throws SQLException {
         HikariConfig config = new HikariConfig();
