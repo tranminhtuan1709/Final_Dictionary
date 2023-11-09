@@ -7,37 +7,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.DeleteAccountController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.DeleteAccountController">
    <children>
-      <Label layoutX="50.0" layoutY="36.0" prefHeight="54.0" prefWidth="172.0" text="Delete account">
+      <Label layoutX="44.0" layoutY="14.0" prefHeight="54.0" prefWidth="172.0" text="Delete account">
          <font>
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="86.0" prefHeight="34.0" prefWidth="435.0" text="Please enter your account information to continue:">
+      <Label layoutX="44.0" layoutY="60.0" prefHeight="34.0" prefWidth="435.0" text="Please enter your account information to continue:">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="193.0" prefHeight="35.0" prefWidth="115.0" text="Email">
+      <Label layoutX="200.0" layoutY="180.0" prefHeight="35.0" prefWidth="115.0" text="Email">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="263.0" prefHeight="35.0" prefWidth="115.0" text="Username">
+      <Label layoutX="200.0" layoutY="250.0" prefHeight="35.0" prefWidth="115.0" text="Username">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="333.0" prefHeight="35.0" prefWidth="115.0" text="Password">
+      <Label layoutX="200.0" layoutY="319.0" prefHeight="35.0" prefWidth="115.0" text="Password">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="email" layoutX="340.0" layoutY="188.0" prefHeight="40.0" prefWidth="460.0" styleClass="searchsaveword" stylesheets="@Style.css" />
-      <TextField fx:id="username" layoutX="340.0" layoutY="258.0" prefHeight="40.0" prefWidth="460.0" styleClass="searchsaveword" stylesheets="@Style.css" />
-      <PasswordField fx:id="password" layoutX="340.0" layoutY="328.0" prefHeight="40.0" prefWidth="460.0" styleClass="searchsaveword" stylesheets="@Style.css" />
-      <Button fx:id="next" layoutX="669.0" layoutY="460.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="133.0" styleClass="savebutton" stylesheets="@Style.css" text="Next" />
+      <TextField fx:id="email" layoutX="350.0" layoutY="180.0" prefHeight="35.0" prefWidth="465.0" />
+      <TextField fx:id="username" layoutX="350.0" layoutY="250.0" prefHeight="35.0" prefWidth="465.0" />
+      <PasswordField fx:id="password" layoutX="350.0" layoutY="319.0" prefHeight="35.0" prefWidth="465.0" />
+      <Button fx:id="next" layoutX="680.0" layoutY="449.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="savebutton" stylesheets="@Style.css" text="Next" />
       <AnchorPane fx:id="notificationAP" disable="true" layoutX="180.0" layoutY="175.0" prefHeight="250.0" prefWidth="538.0" styleClass="whiteBackground" stylesheets="@Style.css" visible="false">
          <children>
             <Label layoutX="183.0" layoutY="5.0" prefHeight="54.0" prefWidth="172.0" text="Notification">
