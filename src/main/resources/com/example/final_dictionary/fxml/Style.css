@@ -361,3 +361,25 @@
     -fx-font-size: 14;
     -fx-cursor: hand;
 }
+
+.launchButton{
+    -fx-background-color: #12225B;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
+    -fx-font-size: 14;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.launchButton:hover{
+    -fx-background-color: #12225B;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
+    -fx-font-size: 14;
+    -fx-text-fill: #F2BE00;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}

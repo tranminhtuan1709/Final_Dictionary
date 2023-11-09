@@ -100,7 +100,14 @@ public class MenuController implements Initializable {
             usernameButton2.setOnAction(actionEvent -> quitUsernameAP());
             savedWordButton.setOnAction(actionEvent -> {
                 quitMenu();
+                //put loading saved word here so that the saved word list will be automatically update when adding or eliminating favourite
+                try {
+                    savedWordAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Save.fxml")));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 switchToSavedWordAP();
+
 
                 section1.setVisible(false);
                 section2.setVisible(true);
@@ -224,6 +231,7 @@ public class MenuController implements Initializable {
     public void switchToSavedWordAP() {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(savedWordAP);
+
     }
 
     @FXML
