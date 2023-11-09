@@ -132,8 +132,6 @@ public class HomeController implements Initializable {
 
         handleListWord();
 
-
-
         searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = searchBar.getText();
             currentWord.set(word);
