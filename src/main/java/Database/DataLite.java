@@ -4,7 +4,6 @@ package Database;
 import java.io.PrintStream;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -255,7 +254,10 @@ public class DataLite {
     }
 
     public void addFavorite(String word) throws SQLException {
-        String sql = "INSERT INTO avfavorite(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
+        String sql = "INSERT INTO avFavorite(word_id, account_id, word, html, description, pronounce)\n" +
+                "SELECT id, active_id, word, html, description, pronounce\n" +
+                "FROM av, activeAccount\n" +
+                "WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
@@ -405,6 +407,31 @@ public class DataLite {
                 list.add(resultSet.getString("true_case"));
             }
             return list;
+        }
+    }
+
+    public void insertActiveAccount(String username, String password) throws SQLException {
+        deleteActiveAccount();
+        String sql = "INSERT INTO activeAccount(active_id, username, password, email)\n" +
+                "SELECT id, username, password, email\n" +
+                "FROM account\n" +
+                "WHERE username = ? AND password = ?;";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ps.setString(2, password);
+//            try (ResultSet rs = ps.executeQuery()) {
+//
+//            }
+            ps.executeUpdate();
+        }
+    }
+
+    public void deleteActiveAccount() throws SQLException {
+        String sql = "DELETE FROM activeAccount";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.executeUpdate();
         }
     }
 }
