@@ -400,4 +400,37 @@ public class DataLite {
             return new ArrayList<>();
         }
     }
+    /*
+     ********************************************************************************************************************
+     *Learning
+     */
+    public ArrayList<String> getFlashcardWord() throws SQLException {
+        String querySql = "SELECT word, description FROM avfavorite";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(querySql);
+             ResultSet resultSet = ps.executeQuery()) {
+            ArrayList<String> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("word"));
+            }
+            return list;
+        }
+    }
+
+    public ArrayList<String> getMultipleChoice() throws SQLException {
+        String querySql = "SELECT * FROM practice";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(querySql);
+             ResultSet resultSet = ps.executeQuery()) {
+            ArrayList<String> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("question"));
+                list.add(resultSet.getString("caseA"));
+                list.add(resultSet.getString("caseB"));
+                list.add(resultSet.getString("caseC"));
+                list.add(resultSet.getString("true_case"));
+            }
+            return list;
+        }
+    }
 }
