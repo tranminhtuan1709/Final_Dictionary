@@ -74,7 +74,7 @@ public class DataLite {
  * Word of the day
  */
     public String searchWordbyID(int num) throws SQLException {
-        String sql = "SELECT * FROM av WHERE id = ?";
+        String sql = "SELECT word FROM av WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, String.valueOf(num));
@@ -88,7 +88,7 @@ public class DataLite {
     }
 
     public String searchPOSbyID(int num) throws SQLException {
-        String sql = "SELECT * FROM av WHERE id = ?";
+        String sql = "SELECT html FROM av WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, String.valueOf(num));
@@ -307,11 +307,20 @@ public class DataLite {
         }
     }
 
+//    public void addFavorite(String word) throws SQLException {
+//        String sql = "INSERT INTO avFavorite(word_id, account_id, word, html, description, pronounce)\n" +
+//                "SELECT id, active_id, word, html, description, pronounce\n" +
+//                "FROM av, activeAccount\n" +
+//                "WHERE word = ?";
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ps.setString(1, word);
+//            ps.executeUpdate();
+//        }
+//    }
+
     public void addFavorite(String word) throws SQLException {
-        String sql = "INSERT INTO avFavorite(word_id, account_id, word, html, description, pronounce)\n" +
-                "SELECT id, active_id, word, html, description, pronounce\n" +
-                "FROM av, activeAccount\n" +
-                "WHERE word = ?";
+        String sql = "INSERT INTO avfavorite(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
@@ -403,7 +412,7 @@ public class DataLite {
         }
     }
 
-    public ArrayList<String> deleteFavorite() throws SQLException {
+    public ArrayList<String> deleteAllFavorite() throws SQLException {
         String deleteSql = "DELETE FROM avfavorite where true";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(deleteSql)) {
@@ -415,19 +424,8 @@ public class DataLite {
      ********************************************************************************************************************
      *History Word
      */
-    public boolean isExistHistory(String word) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM avhistory WHERE word = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, word.toLowerCase());
-            ResultSet rs = ps.executeQuery();
-            return rs.next() && rs.getInt(1) > 0;
-        }
-    }
-
     public void addHistory(String word) throws SQLException {
-        word = word.toLowerCase();
-        String sql = "INSERT INTO avhistory(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
+        String sql = "INSERT INTO avhistory(word) VALUES (?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
@@ -436,7 +434,7 @@ public class DataLite {
     }
 
     public ArrayList<String> getHistory() throws SQLException {
-        String querySql = "SELECT word FROM avhistory";
+        String querySql = "SELECT word FROM avhistory order by id desc limit 20";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
@@ -448,12 +446,11 @@ public class DataLite {
         }
     }
 
-    public ArrayList<String> deleteHistory() throws SQLException {
+    public void deleteHistory() throws SQLException {
         String deleteSql = "DELETE FROM avhistory where true";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(deleteSql)) {
             ps.executeUpdate();
-            return new ArrayList<>();
         }
     }
     /*

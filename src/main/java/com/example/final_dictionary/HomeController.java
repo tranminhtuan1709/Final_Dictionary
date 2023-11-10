@@ -115,6 +115,7 @@ public class HomeController implements Initializable {
 
     private void handleListWord() {
         try {
+            listWord.setStyle("-fx-font-size: 14px;");
             ArrayList<String> list = d.getListWord();
             for (int i = 0; i < list.size(); i += 234) {
                 int endIndex = Math.min(i + 234, list.size());
@@ -150,6 +151,20 @@ public class HomeController implements Initializable {
         }
     }
 
+    private void handleHistory() {
+        try {
+            historyList.setStyle("-fx-font-size: 14px;");
+            ArrayList<String> list = d.getHistory();
+            for (int i = 0; i < list.size(); i += 234) {
+                int endIndex = Math.min(i + 234, list.size());
+                List<String> sublist = list.subList(i, endIndex);
+                Platform.runLater(() -> historyList.getItems().addAll(sublist));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -159,8 +174,8 @@ public class HomeController implements Initializable {
         String monthString = month.toString();
         int year = today.getYear();
 
-        String date = Integer.toString(dayOfMonth) + ", "
-                + monthString + " " + Integer.toString(year);
+        String date = dayOfMonth + ", "
+                + monthString + " " + year;
 
 
         // Use the day as a seed for the random number generator
@@ -178,10 +193,16 @@ public class HomeController implements Initializable {
         }
 
         handleListWord();
+        handleHistory();
 
         searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = searchBar.getText();
             currentWord.set(word);
+            try {
+                d.addHistory(word);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             if (!handleSearchButton(word)) {
                 scrollpane.setVisible(false);
             }
@@ -191,6 +212,11 @@ public class HomeController implements Initializable {
             if (event.getCode() == KeyCode.ENTER) {
                 String word = searchBar.getText();
                 currentWord.set(word);
+                try {
+                    d.addHistory(word);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 if (!handleSearchButton(word)) {
                     scrollpane.setVisible(false);
                 }
@@ -199,6 +225,11 @@ public class HomeController implements Initializable {
 
         listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = listWord.getSelectionModel().getSelectedItem().toString();
+            try {
+                d.addHistory(word);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             currentWord.set(word);
             if (!handleSearchButton(word)) {
                 scrollpane.setVisible(false);
