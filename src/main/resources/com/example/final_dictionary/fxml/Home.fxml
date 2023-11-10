@@ -15,12 +15,13 @@
 
 <AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
    <children>
-      <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="390.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="607.0" layoutY="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1202.0" />
+      <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="361.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/searchNone.png" />
          </image>
       </ImageView>
-      <Label layoutX="445.0" layoutY="510.0" text="Search something">
+      <Label layoutX="416.0" layoutY="510.0" text="Search something">
          <font>
             <Font name="Segoe UI Bold" size="36.0" />
          </font>
@@ -30,7 +31,7 @@
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font></TextField>
-      <ListView fx:id="listWord" layoutX="6.0" layoutY="73.0" prefHeight="570.0" prefWidth="200.0" styleClass="index" stylesheets="@Style.css" />
+      <ListView fx:id="listWord" layoutX="6.0" layoutY="73.0" prefHeight="570.0" prefWidth="200.0" stylesheets="@Style.css" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="48.0" prefHeight="30.0" prefWidth="48.0" styleClass="indexLabel" stylesheets="@Style.css" text="Index">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
@@ -145,7 +146,7 @@
       </AnchorPane>
       <AnchorPane layoutX="923.0" layoutY="73.0" prefHeight="257.0" prefWidth="271.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7dd94bf" height="264.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="271.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7dd94bf" height="264.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" visible="false" width="271.0" />
             <Label layoutX="58.0" layoutY="2.0" text="Recently Searched">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />

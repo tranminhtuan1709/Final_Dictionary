@@ -307,11 +307,20 @@ public class DataLite {
         }
     }
 
+//    public void addFavorite(String word) throws SQLException {
+//        String sql = "INSERT INTO avFavorite(word_id, account_id, word, html, description, pronounce)\n" +
+//                "SELECT id, active_id, word, html, description, pronounce\n" +
+//                "FROM av, activeAccount\n" +
+//                "WHERE word = ?";
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ps.setString(1, word);
+//            ps.executeUpdate();
+//        }
+//    }
+
     public void addFavorite(String word) throws SQLException {
-        String sql = "INSERT INTO avFavorite(word_id, account_id, word, html, description, pronounce)\n" +
-                "SELECT id, active_id, word, html, description, pronounce\n" +
-                "FROM av, activeAccount\n" +
-                "WHERE word = ?";
+        String sql = "INSERT INTO avfavorite(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);

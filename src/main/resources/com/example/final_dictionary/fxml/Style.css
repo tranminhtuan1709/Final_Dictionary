@@ -395,17 +395,18 @@
 
 /*List view in home section*/
 
-.index.list-view {
+.list-view {
     -fx-background-color: #ffffff; /* Set background color */
+    -fx-border-width: 1;
 }
 
-.index.list-cell {
+.list-cell {
     -fx-background-color: #ffffff; /* Set background color for each cell */
     -fx-text-fill: #000000; /* Set text color */
     -fx-font-size: 15px; /* Set font size */
 }
 
-.index.list-cell:hover {
+.list-cell:hover {
     -fx-background-color: #c0c0c0; /* Set background color on hover */
 }
 
@@ -442,16 +443,3 @@
 
 /*History List view in home section*/
 
-.history.list-view {
-    -fx-background-color: transparent; /* Set background color */
-}
-
-.history.list-cell {
-    -fx-background-color: transparent; /* Set background color for each cell */
-    -fx-text-fill: #000000; /* Set text color */
-    -fx-font-size: 15px; /* Set font size */
-}
-
-.history.list-cell:hover {
-    -fx-background-color: #c0c0c0; /* Set background color on hover */
-}
