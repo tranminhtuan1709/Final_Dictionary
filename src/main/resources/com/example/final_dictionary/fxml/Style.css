@@ -155,7 +155,7 @@
 }
 
 .addwordmeaning.text-area .content {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-border-color: #000000;
     -fx-border-width: 0.5px 0.5px 0.5px 0.5px;
 }
@@ -167,7 +167,10 @@
 }
 
 .savebutton{
-    -fx-background-color: #0070C0;
+    -fx-background-color: #1D2A57;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14;
@@ -175,20 +178,29 @@
 }
 
 .savebutton:hover{
-    -fx-background-color: #008AF2;
+    -fx-background-color: #334999;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
     -fx-font-size: 14;
 }
 
 .savebutton:pressed {
-    -fx-background-color: #0070C0;
+    -fx-background-color: #1D2A57;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-cursor: hand;
-    -fx-font-size: 16;
+    -fx-font-size: 14;
 }
 
 .discardbutton{
     -fx-background-color: #C00000;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-cursor: hand;
@@ -197,14 +209,20 @@
 
 .discardbutton:hover{
     -fx-background-color: #F20000;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
     -fx-font-size: 14;
 }
 
 .discardbutton:pressed {
     -fx-background-color: #C00000;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 16;
+    -fx-font-size: 14;
     -fx-cursor: hand;
 }
 
@@ -395,17 +413,18 @@
 
 /*List view in home section*/
 
-.index.list-view {
+.list-view {
     -fx-background-color: #ffffff; /* Set background color */
+    -fx-border-width: 1;
 }
 
-.index.list-cell {
+.list-cell {
     -fx-background-color: #ffffff; /* Set background color for each cell */
     -fx-text-fill: #000000; /* Set text color */
     -fx-font-size: 15px; /* Set font size */
 }
 
-.index.list-cell:hover {
+.list-cell:hover {
     -fx-background-color: #c0c0c0; /* Set background color on hover */
 }
 
@@ -440,18 +459,32 @@
     -fx-cursor: hand;
 }
 
-/*History List view in home section*/
-
-.history.list-view {
-    -fx-background-color: transparent; /* Set background color */
+/* Customize the TabPane */
+.tab-pane {
+    -fx-background-color: #FFFFFF; /* Set background color */
 }
 
-.history.list-cell {
-    -fx-background-color: transparent; /* Set background color for each cell */
-    -fx-text-fill: #000000; /* Set text color */
-    -fx-font-size: 15px; /* Set font size */
+/* Customize the Tab */
+.tab {
+    -fx-background-color: #A0A0A0;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
 }
 
-.history.list-cell:hover {
-    -fx-background-color: #c0c0c0; /* Set background color on hover */
+/* Customize the selected Tab */
+.tab:selected {
+    -fx-background-color: #FFFFFF;
 }
+
+/* Customize the content of each tab */
+.tab-pane .tab-content {
+    -fx-background-color: #FFFFFF;
+}
+
+
+
+
+
+
+

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -49,6 +50,9 @@ public class AddWordController implements Initializable {
 
     @FXML
     private AnchorPane alertPane;
+
+    @FXML
+    private TabPane tabPane;
 
 
     @Override
@@ -131,6 +135,7 @@ public class AddWordController implements Initializable {
         alertPane.toBack();
 
         //Change meaning in the database
+
 
         changeNotiPane.setDisable(false);
         changeNotiPane.setVisible(true);
