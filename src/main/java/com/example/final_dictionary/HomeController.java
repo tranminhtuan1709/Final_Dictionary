@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -16,8 +17,11 @@ import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -34,6 +38,9 @@ public class HomeController implements Initializable {
     public Button searchButton;
     @FXML
     public ListView listWord;
+
+    @FXML
+    private ListView historyList;
     @FXML
     public AnchorPane scrollpane;
 
@@ -42,6 +49,22 @@ public class HomeController implements Initializable {
 
     @FXML
     private Button unsaveButton;
+
+    @FXML
+    private Button speech2;
+
+
+    @FXML
+    private Button seeDetail;
+
+    @FXML
+    private Label posLabel;
+
+    @FXML
+    private Label dateLabel;
+
+    @FXML
+    private Label wordLabel;
 
     private final DataLite d = new DataLite();
 
@@ -130,6 +153,30 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        LocalDate today = LocalDate.now();
+        int dayOfMonth = today.getDayOfMonth();
+        Month month = today.getMonth();
+        String monthString = month.toString();
+        int year = today.getYear();
+
+        String date = Integer.toString(dayOfMonth) + ", "
+                + monthString + " " + Integer.toString(year);
+
+
+        // Use the day as a seed for the random number generator
+        Random random = new Random(dayOfMonth);
+
+        // Generate a random number
+        int randomNumber = random.nextInt(100000);
+
+        try {
+            wordLabel.setText(d.searchWordbyID(randomNumber));
+            posLabel.setText(d.searchPOSbyID(randomNumber));
+            dateLabel.setText(date);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         handleListWord();
 
 
@@ -165,6 +212,21 @@ public class HomeController implements Initializable {
             if (word != null) {
                 handleSpeech(word);
             } else {
+                scrollpane.setVisible(false);
+            }
+        }));
+
+        speech2.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+            String word = wordLabel.getText();
+            if (word != null) {
+                handleSpeech(word);
+            }
+        }));
+
+        seeDetail.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+            String word = wordLabel.getText();
+            currentWord.set(word);
+            if (!handleSearchButton(word)) {
                 scrollpane.setVisible(false);
             }
         }));

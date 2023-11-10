@@ -63,6 +63,17 @@ public class SavedItemController implements Initializable {
         SaveController.handleNoteButton(e);
     }
 
+    public void handleDeleteButton(ActionEvent e) {
+        try {
+            if(d.isExistFavorite(wordLabel.getText())) {
+                d.deleteFavorite(wordLabel.getText());
+            }
+        } catch (SQLException ev) {
+            throw new RuntimeException(ev);
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItem();

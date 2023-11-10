@@ -116,6 +116,7 @@ public class Login implements Initializable {
                         String user = username.getText();
                         String pass = password.getText();
                         if (dataLite.checkLogin(user, pass)) {
+                            userName = user;
                             //Show the dictionary after successful login
                             //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             loginButton.getScene().getWindow().hide();
@@ -158,6 +159,7 @@ public class Login implements Initializable {
                         String user = username.getText();
                         String pass = password.getText();
                         if (dataLite.checkLogin(user, pass)) {
+                            userName = user;
                             //Show the dictionary after successful login
                             //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             loginButton.getScene().getWindow().hide();

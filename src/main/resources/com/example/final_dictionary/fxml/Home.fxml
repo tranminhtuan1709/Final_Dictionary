@@ -15,35 +15,35 @@
 
 <AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
    <children>
-      <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="507.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="390.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/searchNone.png" />
          </image>
       </ImageView>
-      <Label layoutX="562.0" layoutY="510.0" text="Search something">
+      <Label layoutX="445.0" layoutY="510.0" text="Search something">
          <font>
             <Font name="Segoe UI Bold" size="36.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0b4a97" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0" />
-      <TextField fx:id="searchBar" layoutX="283.0" layoutY="5.0" prefHeight="40.0" prefWidth="625.0" promptText="Search words" styleClass="text-field" stylesheets="@Style.css">
+      <TextField fx:id="searchBar" layoutX="225.0" layoutY="5.0" prefHeight="40.0" prefWidth="684.0" promptText="Search words" styleClass="text-field" stylesheets="@Style.css">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font></TextField>
-      <ListView fx:id="listWord" layoutX="6.0" layoutY="73.0" prefHeight="570.0" prefWidth="200.0" />
+      <ListView fx:id="listWord" layoutX="6.0" layoutY="73.0" prefHeight="570.0" prefWidth="200.0" styleClass="index" stylesheets="@Style.css" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="48.0" prefHeight="30.0" prefWidth="48.0" styleClass="indexLabel" stylesheets="@Style.css" text="Index">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="scrollpane" layoutX="229.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="950.0" visible="false">
+      <AnchorPane fx:id="scrollpane" layoutX="229.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="684.0" visible="false">
          <children>
-            <WebView fx:id="webView" prefHeight="557.0" prefWidth="950.0">
+            <WebView fx:id="webView" layoutY="6.0" prefHeight="571.0" prefWidth="684.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </WebView>
-            <Button fx:id="saveButton" contentDisplay="GRAPHIC_ONLY" layoutX="826.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css">
+            <Button fx:id="saveButton" contentDisplay="GRAPHIC_ONLY" layoutX="560.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="speech" layoutX="887.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="menuIconButton" stylesheets="@Style.css">
+            <Button fx:id="speech" layoutX="621.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="menuIconButton" stylesheets="@Style.css">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,7 +64,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="unsaveButton" contentDisplay="GRAPHIC_ONLY" layoutX="826.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css" visible="false">
+            <Button fx:id="unsaveButton" contentDisplay="GRAPHIC_ONLY" layoutX="560.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css" visible="false">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -105,5 +105,55 @@
             </ImageView>
          </graphic>
       </Button>
+      <AnchorPane layoutX="923.0" layoutY="343.0" prefHeight="301.0" prefWidth="271.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfece9" height="301.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="271.0" />
+            <Label fx:id="dateLabel" alignment="CENTER" layoutX="24.0" layoutY="9.0" prefHeight="24.0" prefWidth="230.0" text="10/11/2023">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="wordLabel" alignment="CENTER" layoutX="41.0" layoutY="93.0" prefHeight="31.0" prefWidth="187.0" text="Word" textAlignment="CENTER" textFill="#2e4f71">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="posLabel" alignment="CENTER" layoutX="41.0" layoutY="69.0" prefHeight="24.0" prefWidth="187.0" text="noun">
+               <font>
+                  <Font name="Segoe UI Italic" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="seeDetail" layoutX="46.0" layoutY="213.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="186.0" styleClass="seeDetailButton" stylesheets="@Style.css" text="See Detail" />
+            <Label layoutX="5.0" layoutY="280.0" text="English - Vietnamese Learner's Dictionaries Word of the Day" textFill="#5a5858">
+               <font>
+                  <Font name="Segoe UI Italic" size="10.0" />
+               </font>
+            </Label>
+            <Button fx:id="speech2" contentDisplay="GRAPHIC_ONLY" layoutX="116.0" layoutY="142.0" mnemonicParsing="false" styleClass="menuIconButton" stylesheets="@Style.css" text="Button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@../image/Speaker.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="923.0" layoutY="73.0" prefHeight="257.0" prefWidth="271.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7dd94bf" height="264.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="271.0" />
+            <Label layoutX="58.0" layoutY="2.0" text="Recently Searched">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Label>
+            <Line endX="124.6181640625" endY="7.62939453125E-6" layoutX="135.0" layoutY="33.0" startX="-125.85455322265625" startY="7.62939453125E-6" />
+            <ListView fx:id="historyList" layoutX="10.0" layoutY="42.0" prefHeight="209.0" prefWidth="251.0" styleClass="history" stylesheets="@Style.css" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

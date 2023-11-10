@@ -56,7 +56,7 @@
       </ImageView>
       <ScrollPane fx:id="SavedList" layoutX="6.0" layoutY="166.0" prefHeight="472.0" prefWidth="829.0" visible="false">
          <content>
-            <VBox fx:id="savedWordsContainer" prefHeight="472.0" prefWidth="829.0" />
+            <VBox fx:id="savedWordsContainer" prefHeight="472.0" prefWidth="829.0" styleClass="container" stylesheets="@Style.css" />
          </content>
       </ScrollPane>
       <AnchorPane layoutX="859.0" layoutY="166.0" prefHeight="200.0" prefWidth="200.0">

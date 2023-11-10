@@ -10,13 +10,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <HBox fx:id="savedItem" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="804.0" style="-fx-background-color: #EAEAEA; -fx-border-radius: 30;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.SavedItemController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="154.0" stroke="TRANSPARENT" strokeType="INSIDE" width="16.0" />
       <VBox prefHeight="150.0" prefWidth="722.0">
          <children>
-            <Label fx:id="wordLabel" prefHeight="53.0" prefWidth="338.0" text="[Word]" textFill="#951d05">
+            <Label fx:id="wordLabel" prefHeight="53.0" prefWidth="333.0" text="[Word]" textFill="#951d05">
                <font>
                   <Font name="Segoe UI Semibold" size="36.0" />
                </font>

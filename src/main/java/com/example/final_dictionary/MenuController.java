@@ -119,6 +119,12 @@ public class MenuController implements Initializable {
             });
             homeButton.setOnAction(actionEvent -> {
                 quitMenu();
+                try {
+                    homeAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Home.fxml")));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
                 switchToHomeAP();
 
                 section1.setVisible(true);

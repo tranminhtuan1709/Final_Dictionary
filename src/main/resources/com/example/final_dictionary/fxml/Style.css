@@ -207,6 +207,9 @@
     -fx-font-size: 16;
     -fx-cursor: hand;
 }
+
+/*choice box in translate section*/
+
 .choice-box{
     -fx-background-color: #1D2A57;
     -fx-background-radius: 20;
@@ -216,14 +219,18 @@
     -fx-control-inner-background: #2B2D30;
     -fx-tick-label-fill: white;
     -fx-text-fill: white;
+    -fx-font-size: 16px;
 }
 .choice-box:hover{
     -fx-background-color: #334999;
 }
 .choice-box .label {
     -fx-text-fill: white;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
 }
 
+/*translate button in online translate section*/
 .translatebutton{
     -fx-background-color: #FDC600;
     -fx-background-radius: 40;
@@ -362,6 +369,8 @@
     -fx-cursor: hand;
 }
 
+/*launch button in saved word section*/
+
 .launchButton{
     -fx-background-color: #12225B;
     -fx-background-radius: 40;
@@ -382,4 +391,67 @@
     -fx-text-fill: #F2BE00;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+}
+
+/*List view in home section*/
+
+.index.list-view {
+    -fx-background-color: #ffffff; /* Set background color */
+}
+
+.index.list-cell {
+    -fx-background-color: #ffffff; /* Set background color for each cell */
+    -fx-text-fill: #000000; /* Set text color */
+    -fx-font-size: 15px; /* Set font size */
+}
+
+.index.list-cell:hover {
+    -fx-background-color: #c0c0c0; /* Set background color on hover */
+}
+
+/*vbox in saved word section*/
+
+.container.vbox {
+    -fx-background-color: #f0f0f0; /* Set background color */
+    -fx-padding: 10px; /* Set padding */
+}
+
+/*See detail button in home section*/
+
+.seeDetailButton{
+    -fx-background-color: #27A1B0;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
+    -fx-font-size: 16;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.seeDetailButton:hover{
+    -fx-background-color: #1C727D;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/*History List view in home section*/
+
+.history.list-view {
+    -fx-background-color: transparent; /* Set background color */
+}
+
+.history.list-cell {
+    -fx-background-color: transparent; /* Set background color for each cell */
+    -fx-text-fill: #000000; /* Set text color */
+    -fx-font-size: 15px; /* Set font size */
+}
+
+.history.list-cell:hover {
+    -fx-background-color: #c0c0c0; /* Set background color on hover */
 }

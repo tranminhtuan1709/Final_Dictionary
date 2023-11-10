@@ -70,6 +70,60 @@ public class DataLite {
     }
 
     /*
+********************************************************************************************************************
+ author: anh tu
+ * Word of the day
+ */
+    public String searchWordbyID(int num) throws SQLException {
+        String sql = "SELECT * FROM av WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, String.valueOf(num));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("word");
+                }
+            }
+        }
+        return null;
+    }
+
+    public String searchPOSbyID(int num) throws SQLException {
+        String sql = "SELECT * FROM av WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, String.valueOf(num));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String s = rs.getString("html");
+                    if (s.contains("danh từ")) return "noun";
+                    else if (s.contains("động từ")) return "verb";
+                    else if (s.contains("tính từ")) return "adjective";
+                    else if (s.contains("giới từ")) return "preposition";
+                    else if (s.contains("trạng từ") || s.contains("phó từ")) return "adverb";
+                    else if (s.contains("đại từ")) return "pronoun";
+                    else return "";
+                }
+            }
+        }
+        return null;
+    }
+
+    public String searchIPAbyID(int num) throws SQLException {
+        String sql = "SELECT * FROM av WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, String.valueOf(num));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("pronounce");
+                }
+            }
+        }
+        return null;
+    }
+
+    /*
      ********************************************************************************************************************
      *Add Word, DeleteWord, Update Word
      */

@@ -29,7 +29,7 @@ public class TranslateController implements Initializable {
     @FXML
     private TextArea showmeaning;
 
-    private final String[] items = {"English", "Vietnamese"};
+    private final String[] items = {"   English", "   Vietnamese"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,10 +38,10 @@ public class TranslateController implements Initializable {
 
     @FXML
     private void setUp() {
-        translate.setValue("English");
+        translate.setValue("   English");
         translate.setTooltip(new Tooltip("Select the input language"));
         meaning.setTooltip(new Tooltip("Select the output language"));
-        meaning.setValue("Vietnamese");
+        meaning.setValue("   Vietnamese");
         translate.getItems().addAll(items);
         meaning.getItems().addAll(items);
     }
@@ -83,7 +83,7 @@ public class TranslateController implements Initializable {
 
                 if (from.equals(to)) {
                     output = input;
-                } else if ("English".equals(from) && "Vietnamese".equals(to)) {
+                } else if ("   English".equals(from) && "   Vietnamese".equals(to)) {
                     output = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "");
                 } else {
                     output = GoogleAPI.translateViToEn(input).trim().replace("[", "").replace("]", "");
@@ -99,7 +99,7 @@ public class TranslateController implements Initializable {
     public void handleSoundButton() {
         String meaningText = showmeaning.getText();
         String language = meaning.getValue();
-        if (language.equals("Vietnamese")) {
+        if (language.equals("   Vietnamese")) {
             try {
                 TextToSpeechOnline.textToSpeechVie(meaningText);
                 //TextToSpeech.Speech(word);
