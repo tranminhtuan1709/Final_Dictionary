@@ -23,7 +23,7 @@ public class MenuController implements Initializable {
     @FXML
     public Label welcome;
     @FXML
-    private Button homeButton, savedWordButton, translateButton, addWordButton, infoButton, settingButton;//,gameButton
+    private Button homeButton, savedWordButton, translateButton, addWordButton, infoButton, settingButton ,gameButton;
     @FXML
     private Button usernameButton;
     @FXML
@@ -87,7 +87,9 @@ public class MenuController implements Initializable {
             section7.setVisible(false);
 
             showMenu.setOnAction(actionEvent -> showMenu());
+
             quitMenu.setOnAction(actionEvent -> quitMenu());
+
             container.setOnMouseClicked(mouseEvent -> {
                 if (!menuAP.isHover() && !menuAP.isDisable()) {
                     quitMenu();
@@ -96,8 +98,11 @@ public class MenuController implements Initializable {
                     quitUsernameAP();
                 }
             });
+
             usernameButton.setOnAction(actionEvent -> showUsernameAP());
+
             usernameButton2.setOnAction(actionEvent -> quitUsernameAP());
+
             savedWordButton.setOnAction(actionEvent -> {
                 quitMenu();
                 //put loading saved word here so that the saved word list will be automatically update when adding or eliminating favourite
@@ -117,8 +122,14 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(false);
             });
+
             homeButton.setOnAction(actionEvent -> {
                 quitMenu();
+                try {
+                    homeAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Home.fxml")));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 switchToHomeAP();
 
                 section1.setVisible(true);
@@ -129,6 +140,7 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(false);
             });
+
             translateButton.setOnAction(actionEvent -> {
                 quitMenu();
                 switchToTranslateAP();
@@ -141,6 +153,7 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(false);
             });
+
             addWordButton.setOnAction(actionEvent -> {
                 quitMenu();
                 switchToAddWordAP();
@@ -178,6 +191,19 @@ public class MenuController implements Initializable {
                 section5.setVisible(false);
                 section6.setVisible(false);
                 section7.setVisible(true);
+            });
+
+            gameButton.setOnAction(actionEvent -> {
+                quitMenu();
+                switchToGameAP();
+
+                section1.setVisible(false);
+                section2.setVisible(false);
+                section3.setVisible(false);
+                section4.setVisible(false);
+                section5.setVisible(false);
+                section6.setVisible(true);
+                section7.setVisible(false);
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -262,6 +288,12 @@ public class MenuController implements Initializable {
     public void switchToSettingAP() {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(settingAP);
+    }
+
+    @FXML
+    public void switchToGameAP() {
+        switchAP.getChildren().clear();
+        switchAP.getChildren().add(gameAP);
     }
 
     @FXML
