@@ -87,8 +87,7 @@ public class SaveController implements Initializable {
         loadListSavedWords();
     }
 
-    public void handleNoteButton(ActionEvent e) {
-
+    public static void handleNoteButton(ActionEvent e) {
     }
 
     @Override

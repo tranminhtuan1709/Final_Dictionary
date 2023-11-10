@@ -305,7 +305,7 @@ public class DataLite {
     }
 
     public ArrayList<String> getFavoritePOS() throws SQLException {
-        String querySql = "SELECT pronounce FROM avfavorite group by pronounce";
+        String querySql = "SELECT pronounce FROM avfavorite group by word";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
@@ -318,7 +318,7 @@ public class DataLite {
     }
 
     public ArrayList<String> getFavoriteDetail() throws SQLException {
-        String querySql = "SELECT description FROM avfavorite group by description";
+        String querySql = "SELECT description FROM avfavorite group by word";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {

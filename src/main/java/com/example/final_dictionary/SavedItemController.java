@@ -2,6 +2,7 @@ package com.example.final_dictionary;
 
 import Database.DataLite;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -56,6 +57,10 @@ public class SavedItemController implements Initializable {
         wordLabel.setText(wordList.get(index));
         ipaLabel.setText(pronounceList.get(index));
         detailLabel.setText(detailList.get(index));
+    }
+
+    public void handleNoteButton(ActionEvent e) {
+        SaveController.handleNoteButton(e);
     }
 
     @Override
