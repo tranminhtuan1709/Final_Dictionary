@@ -29,13 +29,11 @@ public class ChallengingController implements Initializable {
                 choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                 resultText.setStyle("-fx-text-fill: #385723");
                 resultText.setText("Well done! + 10pt");
-                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFDB93, 30, 0.5, 0, 0);");
                 resultAP.setVisible(true);
             } else {
                 choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                 resultText.setStyle("-fx-text-fill: #C00000");
                 resultText.setText("That’s incorrect! - 5pt");
-                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFDB93, 30, 0.5, 0, 0);");
                 resultAP.setVisible(true);
             }
             rectangle.toFront();
@@ -46,13 +44,11 @@ public class ChallengingController implements Initializable {
                 choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                 resultText.setStyle("-fx-text-fill: #385723");
                 resultText.setText("Well done! + 10pt");
-                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFDB93, 30, 0.5, 0, 0);");
                 resultAP.setVisible(true);
             } else {
                 choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                 resultText.setStyle("-fx-text-fill: #C00000");
                 resultText.setText("That’s incorrect! - 5pt");
-                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFDB93, 30, 0.5, 0, 0);");
                 resultAP.setVisible(true);
             }
             rectangle.toFront();
@@ -63,13 +59,11 @@ public class ChallengingController implements Initializable {
                 choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                 resultText.setStyle("-fx-text-fill: #385723");
                 resultText.setText("Well done! + 10pt");
-                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFDB93, 30, 0.5, 0, 0);");
                 resultAP.setVisible(true);
             } else {
                 choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                 resultText.setStyle("-fx-text-fill: #C00000");
                 resultText.setText("That’s incorrect! - 5pt");
-                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFDB93, 30, 0.5, 0, 0);");
                 resultAP.setVisible(true);
             }
             rectangle.toFront();

@@ -23,7 +23,7 @@ public class MenuController implements Initializable {
     @FXML
     public Label welcome;
     @FXML
-    private Button homeButton, savedWordButton, translateButton, addWordButton, infoButton, settingButton;//,gameButton
+    private Button homeButton, savedWordButton, translateButton, addWordButton, infoButton, settingButton, gameButton;
     @FXML
     private Button usernameButton;
     @FXML
@@ -185,6 +185,19 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(true);
             });
+
+            gameButton.setOnAction(actionEvent -> {
+                quitMenu();
+                switchToGameAP();
+
+                section1.setVisible(false);
+                section2.setVisible(false);
+                section3.setVisible(false);
+                section4.setVisible(false);
+                section5.setVisible(false);
+                section6.setVisible(true);
+                section7.setVisible(false);
+            });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -268,6 +281,12 @@ public class MenuController implements Initializable {
     public void switchToSettingAP() {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(settingAP);
+    }
+
+    @FXML
+    public void switchToGameAP() {
+        switchAP.getChildren().clear();
+        switchAP.getChildren().add(gameAP);
     }
 
     @FXML
