@@ -87,7 +87,7 @@
             <Button fx:id="launchQuiz2Button" layoutX="231.0" layoutY="128.0" mnemonicParsing="false" styleClass="launchButton" stylesheets="@Style.css" text="Launch" />
          </children>
       </AnchorPane>
-      <Button contentDisplay="GRAPHIC_ONLY" layoutX="15.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleReloadButton" prefHeight="18.0" prefWidth="25.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Button">
+      <Button contentDisplay="GRAPHIC_ONLY" layoutX="15.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleReloadButton" prefHeight="18.0" prefWidth="25.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Button" visible="false">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                <image>

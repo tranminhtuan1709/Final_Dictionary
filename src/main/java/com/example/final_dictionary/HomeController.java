@@ -152,6 +152,7 @@ public class HomeController implements Initializable {
     }
 
     private void handleHistory() {
+        historyList.getItems().clear();
         try {
             historyList.setStyle("-fx-font-size: 14px;");
             ArrayList<String> list = d.getHistory();
@@ -203,6 +204,7 @@ public class HomeController implements Initializable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            handleHistory();
             if (!handleSearchButton(word)) {
                 scrollpane.setVisible(false);
             }
@@ -217,6 +219,7 @@ public class HomeController implements Initializable {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+                handleHistory();
                 if (!handleSearchButton(word)) {
                     scrollpane.setVisible(false);
                 }
@@ -230,6 +233,7 @@ public class HomeController implements Initializable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            handleHistory();
             currentWord.set(word);
             if (!handleSearchButton(word)) {
                 scrollpane.setVisible(false);
@@ -254,6 +258,14 @@ public class HomeController implements Initializable {
 
         seeDetail.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = wordLabel.getText();
+
+            try {
+                d.addHistory(word);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            handleHistory();
+
             currentWord.set(word);
             if (!handleSearchButton(word)) {
                 scrollpane.setVisible(false);

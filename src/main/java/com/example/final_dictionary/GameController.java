@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +28,8 @@ public class GameController implements Initializable {
                     Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Flashcard.fxml")));
                     Stage stage = new Stage();
                     Scene scene = new Scene(parent);
+                    PerspectiveCamera camera = new PerspectiveCamera();
+                    scene.setCamera(camera);
                     stage.setScene(scene);
                     stage.setTitle("Flashcard");
                     stage.setResizable(false);
@@ -57,6 +60,20 @@ public class GameController implements Initializable {
                     Scene scene = new Scene(parent);
                     stage.setScene(scene);
                     stage.setTitle("Challenging");
+                    stage.setResizable(false);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            launchMatching.setOnAction(actionEvent -> {
+                try {
+                    Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Matching.fxml")));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(parent);
+                    stage.setScene(scene);
+                    stage.setTitle("Matching");
                     stage.setResizable(false);
                     stage.show();
                 } catch (IOException e) {

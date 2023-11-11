@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 
 public class SavedItemController implements Initializable {
 
+    private EventBus eventBus = new EventBus();
+
     @FXML
     private Label detailLabel;
 
@@ -71,22 +73,23 @@ public class SavedItemController implements Initializable {
         } catch (SQLException ev) {
             throw new RuntimeException(ev);
         }
-
+        EventBus.publish(new ActionEvent());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItem();
 
-        trashButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
-            try {
-                if(d.isExistFavorite(wordLabel.getText())) {
-                    d.deleteFavorite(wordLabel.getText());
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            savedItem.setDisable(true);
-        }));
+//        trashButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+//            try {
+//                if(d.isExistFavorite(wordLabel.getText())) {
+//                    d.deleteFavorite(wordLabel.getText());
+//                }
+//            } catch (SQLException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//            savedItem.setDisable(true);
+//        }));
     }
 }
