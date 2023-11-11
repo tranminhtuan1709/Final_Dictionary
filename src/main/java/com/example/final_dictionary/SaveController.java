@@ -1,6 +1,7 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SaveController implements Initializable {
+
+    private EventBus eventBus = new EventBus();
 
     public Button ssw;
 
@@ -62,6 +65,7 @@ public class SaveController implements Initializable {
                 image.setVisible(false);
                 nothingLabel.setVisible(false);
                 savedWordsContainer.getChildren().clear();
+                savedWordsContainer.setSpacing(10);
                 Node[] nodes = new Node[list.size()];
 
                 for (int i = 0; i < nodes.length; i++) {
@@ -94,6 +98,7 @@ public class SaveController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadListSavedWords();
+        EventBus.subscribe(this::handleReloadButton);
     }
 
 }
