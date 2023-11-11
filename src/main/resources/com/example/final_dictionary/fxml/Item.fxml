@@ -37,7 +37,7 @@
       </VBox>
       <AnchorPane prefHeight="150.0" prefWidth="98.0">
          <children>
-            <Button fx:id="trashButton" contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Button">
+            <Button fx:id="trashButton" contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="24.0" prefWidth="24.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
