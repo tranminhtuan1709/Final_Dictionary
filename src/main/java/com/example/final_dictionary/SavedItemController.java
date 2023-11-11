@@ -4,14 +4,24 @@ import Database.DataLite;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.PerspectiveCamera;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SavedItemController implements Initializable {
@@ -40,11 +50,22 @@ public class SavedItemController implements Initializable {
 
     public static int index = 0;
 
+    public static int option = 0;
+
+    public static String input = "";
+
     private ArrayList<String> wordList = d.getFavorite();
 
     private ArrayList<String> pronounceList = d.getFavoritePOS();
 
     private ArrayList<String> detailList = d.getFavoriteDetail();
+
+
+    private ArrayList<String> suggestWordList = d.suggestWordsFa(input);
+
+    private ArrayList<String> suggestPronounceList = d.suggestPronounceFa(input);
+
+    private ArrayList<String> suggestDetailList = d.suggestDetailFa(input);
 
     private SaveController sv = new SaveController();
 
@@ -56,13 +77,37 @@ public class SavedItemController implements Initializable {
      * Update the label of word, IPA, and detail of each card in the list.
      */
     public void updateItem() {
-        wordLabel.setText(wordList.get(index));
-        ipaLabel.setText(pronounceList.get(index));
-        detailLabel.setText(detailList.get(index));
+        if (option == 0) {
+            wordLabel.setText(wordList.get(index));
+            ipaLabel.setText(pronounceList.get(index));
+            detailLabel.setText(detailList.get(index));
+        } else if (option == 1) {
+            wordLabel.setText(suggestWordList.get(index));
+            ipaLabel.setText(suggestPronounceList.get(index));
+            detailLabel.setText(suggestDetailList.get(index));
+        }
+
     }
 
     public void handleNoteButton(ActionEvent e) {
-        SaveController.handleNoteButton(e);
+        try {
+            SavedWordNoteController.word = wordLabel.getText();
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/SavedWordNote.fxml")));
+            Stage stage = new Stage();
+            Scene scene = new Scene(parent);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+            stage.setScene(scene);
+            stage.setResizable(false);
+
+            Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+            stage.setX((screen.getWidth() - 600) / 2);
+            stage.setY((screen.getHeight() - 400) / 2);
+
+            stage.show();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     public void handleDeleteButton(ActionEvent e) {
@@ -79,17 +124,5 @@ public class SavedItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItem();
-
-//        trashButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
-//            try {
-//                if(d.isExistFavorite(wordLabel.getText())) {
-//                    d.deleteFavorite(wordLabel.getText());
-//                }
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//            savedItem.setDisable(true);
-//        }));
     }
 }
