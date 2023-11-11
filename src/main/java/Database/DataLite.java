@@ -412,6 +412,40 @@ public class DataLite {
         }
     }
 
+    public ArrayList<String> suggestPronounceFa(String input) throws SQLException {
+        input = input.toLowerCase();
+        String sql = "SELECT pronounce FROM avfavorite WHERE word LIKE ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, input + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                ArrayList<String> wordList = new ArrayList<>();
+                while (rs.next()) {
+                    wordList.add(rs.getString("pronounce"));
+                }
+                return wordList;
+            }
+        }
+    }
+
+    public ArrayList<String> suggestDetailFa(String input) throws SQLException {
+        input = input.toLowerCase();
+        String sql = "SELECT description FROM avfavorite WHERE word LIKE ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, input + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                ArrayList<String> wordList = new ArrayList<>();
+                while (rs.next()) {
+                    wordList.add(rs.getString("description"));
+                }
+                return wordList;
+            }
+        }
+    }
+
     public ArrayList<String> deleteAllFavorite() throws SQLException {
         String deleteSql = "DELETE FROM avfavorite where true";
         try (Connection connection = dataSource.getConnection();
