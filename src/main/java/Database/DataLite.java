@@ -500,33 +500,73 @@ public class DataLite {
         }
     }
 
-    public ArrayList<String> getFlashcardWord() throws SQLException {
-        String querySql = "SELECT word, description FROM avfavorite";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(querySql);
-             ResultSet resultSet = ps.executeQuery()) {
-            ArrayList<String> list = new ArrayList<>();
-            while (resultSet.next()) {
-                list.add(resultSet.getString("word"));
-            }
-            return list;
-        }
-    }
-
-    public ArrayList<String> getMultipleChoice() throws SQLException {
-        String querySql = "SELECT * FROM practice";
+    /*
+    ********************************************************************************************************************
+    * Challenging
+    * 11/11
+    */
+    public ArrayList<String> getQuestion() throws SQLException {
+        String querySql = "SELECT question FROM practice";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
             ArrayList<String> list = new ArrayList<>();
             while (resultSet.next()) {
                 list.add(resultSet.getString("question"));
-                list.add(resultSet.getString("caseA"));
-                list.add(resultSet.getString("caseB"));
-                list.add(resultSet.getString("caseC"));
-                list.add(resultSet.getString("true_case"));
             }
             return list;
         }
+    }
+    public ArrayList<String> getChoice(String question) throws SQLException {
+        String sql = "SELECT caseA, caseB, caseC FROM practice WHERE question = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, question);
+            try (ResultSet rs = ps.executeQuery()) {
+                ArrayList<String> choiceList = new ArrayList<>();
+                while (rs.next()) {
+                    choiceList.add(rs.getString("caseA"));
+                    choiceList.add(rs.getString("caseB"));
+                    choiceList.add(rs.getString("caseC"));
+                }
+                return choiceList;
+            }
+        }
+    }
+
+    public int getTrueCase(String question) throws SQLException {
+        String sql = "SELECT true_case FROM practice WHERE question = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, question);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("true_case");
+                }
+            }
+        }
+        return 0;
+    }
+    public String getAnswer(String question) throws SQLException {
+        int ans = getTrueCase(question);
+        String columnName;
+        if (ans == 1) {
+            columnName = "caseA";
+        } else if (ans == 2) {
+            columnName = "caseB";
+        } else {
+            columnName = "caseC";
+        }
+        String sql = "SELECT " + columnName + " as key FROM practice WHERE question = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, question);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("key");
+                }
+            }
+        }
+        return null;
     }
 }
