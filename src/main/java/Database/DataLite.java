@@ -141,15 +141,15 @@ public class DataLite {
                 "<h2>" + addDescription + "</h2>";
     }
 
-    public void addWord(String word, String pos, String breIpa, String nameIpa, String meaning) throws SQLException {
-        word = word.toLowerCase();
+    public void addWord(String word, String pos, String breIpa, String meaning) throws SQLException {
+        String html = convertToHTML(word + "<br>" +breIpa, pos, meaning);
         String sql = "INSERT INTO av(word, description, html, pronounce) VALUES(?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
             ps.setString(2, pos + "; " + meaning);
-            ps.setString(3, convertToHTML(word + "<br>"+ breIpa, pos, meaning));
-            ps.setString(4, nameIpa);
+            ps.setString(3, html);
+            ps.setString(4, breIpa);
             ps.executeUpdate();
         }
     }
@@ -457,6 +457,49 @@ public class DataLite {
      ********************************************************************************************************************
      *Learning
      */
+
+    public void insertActiveAccount(String username, String password) throws SQLException {
+        deleteActiveAccount();
+        String sql = "INSERT INTO activeAccount(active_id, username, password, email)\n" +
+                "SELECT id, username, password, email\n" +
+                "FROM account\n" +
+                "WHERE username = ? AND password = ?;";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ps.setString(2, password);
+//            try (ResultSet rs = ps.executeQuery()) {
+//
+//            }
+            ps.executeUpdate();
+        }
+    }
+
+    public void deleteActiveAccount() throws SQLException {
+        String sql = "DELETE FROM activeAccount";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.executeUpdate();
+        }
+    }
+    /*
+        ********************************************************************************************************************
+        * Flashcard
+        */
+    public ArrayList<String> getFlashcard() throws SQLException {
+        String querySql = "SELECT word, description FROM av where id = (select id_av from practice)";;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(querySql);
+             ResultSet resultSet = ps.executeQuery()) {
+            ArrayList<String> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("word"));
+                list.add(resultSet.getString("description"));
+            }
+            return list;
+        }
+    }
+
     public ArrayList<String> getFlashcardWord() throws SQLException {
         String querySql = "SELECT word, description FROM avfavorite";
         try (Connection connection = dataSource.getConnection();
@@ -484,31 +527,6 @@ public class DataLite {
                 list.add(resultSet.getString("true_case"));
             }
             return list;
-        }
-    }
-
-    public void insertActiveAccount(String username, String password) throws SQLException {
-        deleteActiveAccount();
-        String sql = "INSERT INTO activeAccount(active_id, username, password, email)\n" +
-                "SELECT id, username, password, email\n" +
-                "FROM account\n" +
-                "WHERE username = ? AND password = ?;";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, username);
-            ps.setString(2, password);
-//            try (ResultSet rs = ps.executeQuery()) {
-//
-//            }
-            ps.executeUpdate();
-        }
-    }
-
-    public void deleteActiveAccount() throws SQLException {
-        String sql = "DELETE FROM activeAccount";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.executeUpdate();
         }
     }
 }
