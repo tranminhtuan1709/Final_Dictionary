@@ -72,7 +72,8 @@ public class ChallengingController implements Initializable {
 
     private void loadQuestion() throws SQLException {
         ArrayList<String> questionList = d.getQuestion();
-        if (questionList.isEmpty()) {return;
+        if (questionList.isEmpty()) {
+            return;
         }
         int randomIndex = random.nextInt(questionList.size());
         // Lấy câu hỏi tại chỉ số ngẫu nhiên

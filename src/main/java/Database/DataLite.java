@@ -519,21 +519,36 @@ public class DataLite {
     /*
         ********************************************************************************************************************
         * Flashcard
+        * 12/11
         */
-    public ArrayList<String> getFlashcard() throws SQLException {
-        String querySql = "SELECT word, description FROM av where id = (select id_av from practice)";;
+    public ArrayList<String> getFlashcardFront() throws SQLException {
+        String querySql = "SELECT word FROM av where id = (select id_av from practice)";;
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
             ArrayList<String> list = new ArrayList<>();
             while (resultSet.next()) {
                 list.add(resultSet.getString("word"));
-                list.add(resultSet.getString("description"));
             }
             return list;
         }
     }
 
+    public ArrayList<String> getFlashcardBack(String front) throws SQLException {
+        String sql = "SELECT description, pronounce FROM av where word = ?";;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, front);
+            try (ResultSet rs = ps.executeQuery()) {
+                ArrayList<String> back = new ArrayList<>();
+                while (rs.next()) {
+                    back.add(rs.getString("pronounce"));
+                    back.add(rs.getString("description"));
+                }
+                return back;
+            }
+        }
+    }
     /*
     ********************************************************************************************************************
     * Challenging

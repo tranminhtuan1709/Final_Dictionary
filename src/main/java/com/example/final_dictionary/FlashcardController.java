@@ -1,5 +1,6 @@
 package com.example.final_dictionary;
 
+import Database.DataLite;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,8 +15,12 @@ import javafx.util.Duration;
 
 import java.net.URL;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FlashcardController implements Initializable {
     @FXML
@@ -27,8 +32,39 @@ public class FlashcardController implements Initializable {
     @FXML
     private Label quantity, ipa, meaning, word;
 
+    private final DataLite d = new DataLite();
+
+    public FlashcardController() throws SQLException {
+    }
+    private final Random random = new Random();
+    public AtomicReference<String> f = new AtomicReference<>("");
+
+    private void loadFlashcardFront() throws SQLException {
+        ArrayList<String> front = d.getFlashcardFront();
+        if (front.isEmpty()) {
+            return;
+        }
+        int randomIndex = random.nextInt(front.size());
+        word.setText(front.get(randomIndex));
+        f.set(front.get(randomIndex));
+    }
+
+    private void loadFlashcardBack() throws SQLException {
+        ArrayList<String> back = d.getFlashcardBack(f.get());
+        if (back.isEmpty()) {
+            return;
+        }
+        ipa.setText(back.get(0));
+        meaning.setText(back.get(1));
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            loadFlashcardFront();
+            loadFlashcardBack();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         stackPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
