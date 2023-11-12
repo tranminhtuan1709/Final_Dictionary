@@ -17,6 +17,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -113,11 +114,24 @@ public class SavedItemController implements Initializable {
     public void handleDeleteButton(ActionEvent e) {
         try {
             if(d.isExistFavorite(wordLabel.getText())) {
+                //delete word from database
                 d.deleteFavorite(wordLabel.getText());
+                //delete file .txt
+                try {
+                    File file = new File("src/main/Note/" + Login.userName + "_" + wordLabel.getText() + ".txt");
+                    if (file.delete()) {
+                        //System.out.println(file.getName() + " is deleted!");
+                    } else {
+                        System.out.println("Delete operation is failed.");
+                    }
+                } catch (Exception ee) {
+                    ee.printStackTrace();
+                }
             }
         } catch (SQLException ev) {
             throw new RuntimeException(ev);
         }
+        //throw an action event to call reload page in save controller
         EventBus.publish(new ActionEvent());
     }
 
