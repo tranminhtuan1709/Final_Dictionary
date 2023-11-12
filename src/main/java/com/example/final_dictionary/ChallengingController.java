@@ -1,6 +1,10 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,6 +34,8 @@ public class ChallengingController implements Initializable {
     @FXML
     Rectangle rectangle;
 
+    private int timeSeconds = 10;
+    private Timeline timeline;
     private int attemptCount = 0;
     private static final int MAX_ATTEMPTS = 10;
     private int score_player = 0;
@@ -38,6 +45,30 @@ public class ChallengingController implements Initializable {
     }
     public AtomicReference<String> question = new AtomicReference<>("");
     private final Random random = new Random();
+
+    private void startCountdown() {
+        timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                timeSeconds--;
+                time.setText("Time: " + timeSeconds);
+
+                if (timeSeconds <= 0) {
+                    timeline.stop();
+                    handleTimeout();
+                }
+            }
+        });
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+    }
+    private void handleTimeout() {
+        // Thực hiện khi thời gian hết
+        // Ví dụ: Hiển thị thông báo,  kết thúc trò chơi
+    }
 
     private void loadQuestion() throws SQLException {
         ArrayList<String> questionList = d.getQuestion();
@@ -72,6 +103,12 @@ public class ChallengingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            if (timeline != null) {
+                timeline.stop();
+            }
+            timeSeconds = 10;
+            time.setText("Time: " + timeSeconds);
+            startCountdown();
             loadQuestion();
             loadChoices();
         } catch (SQLException e) {
@@ -150,6 +187,12 @@ public class ChallengingController implements Initializable {
                 choiceB.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
                 choiceC.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
                 try {
+                    if (timeline != null) {
+                        timeline.stop();
+                    }
+                    timeSeconds = 10;
+                    time.setText("Time: " + timeSeconds);
+                    startCountdown();
                     loadQuestion();
                     loadChoices();
                 } catch (SQLException e) {
