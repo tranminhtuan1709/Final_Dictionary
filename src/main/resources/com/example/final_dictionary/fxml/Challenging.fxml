@@ -24,9 +24,9 @@
       </Label>
       <AnchorPane fx:id="questionAP" layoutX="75.0" layoutY="80.0" prefHeight="500.0" prefWidth="1050.0" styleClass="challenging" stylesheets="@Style.css">
          <children>
-            <Label fx:id="word" alignment="CENTER" layoutX="120.0" layoutY="360.0" prefHeight="100.0" prefWidth="300.0" text="Word">
+            <Label fx:id="word" alignment="CENTER" layoutX="70.0" layoutY="329.0" prefHeight="131.0" prefWidth="443.0" text="Word" wrapText="true">
                <font>
-                  <Font name="Segoe UI Bold" size="48.0" />
+                  <Font name="Segoe UI Bold" size="36.0" />
                </font>
             </Label>
             <ImageView fx:id="imageView" fitHeight="306.0" fitWidth="300.0" layoutX="120.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">

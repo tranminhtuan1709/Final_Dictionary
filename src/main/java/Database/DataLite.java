@@ -568,36 +568,14 @@ public class DataLite {
         }
     }
 
-    public int getTrueCase(String question) throws SQLException {
-        String sql = "SELECT true_case FROM practice WHERE question = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, question);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt("true_case");
-                }
-            }
-        }
-        return 0;
-    }
     public String getAnswer(String question) throws SQLException {
-        int ans = getTrueCase(question);
-        String columnName;
-        if (ans == 1) {
-            columnName = "caseA";
-        } else if (ans == 2) {
-            columnName = "caseB";
-        } else {
-            columnName = "caseC";
-        }
-        String sql = "SELECT " + columnName + " as key FROM practice WHERE question = ?";
+        String sql = "SELECT word FROM av where id = (select id_av from practice WHERE question = ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, question);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getString("key");
+                    return rs.getString("word");
                 }
             }
         }

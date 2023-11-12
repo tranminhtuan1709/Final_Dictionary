@@ -1,9 +1,6 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,11 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
@@ -32,50 +29,43 @@ public class ChallengingController implements Initializable {
     @FXML
     Rectangle rectangle;
 
-    private final int score_player = 0;
+    private int score_player = 0;
     private final DataLite d = new DataLite();
 
     public ChallengingController() throws SQLException {
     }
+    public AtomicReference<String> question = new AtomicReference<>("");
+    private final Random random = new Random();
 
-    public AtomicReference<String> currentWord = new AtomicReference<>("");
     private void loadQuestion() throws SQLException {
         ArrayList<String> questionList = d.getQuestion();
-        if (questionList.isEmpty()) {
-            // Handle the case when the question list is empty
-            return;
+        if (questionList.isEmpty()) {return;
         }
-        Random random = new Random();
-        // Generate a random index within the range of the question list
         int randomIndex = random.nextInt(questionList.size());
-        // Retrieve the question at the random index
-        String ques =  questionList.get(randomIndex);
-        currentWord.set(ques);
+        // Lấy câu hỏi tại chỉ số ngẫu nhiên
+        String ques = questionList.get(randomIndex);
         word.setText(ques);
+        question.set(ques);
     }
 
     private void loadChoices() throws SQLException {
-        ArrayList<String> choiceList = d.getChoice(currentWord.get());
+        ArrayList<String> choiceList = d.getChoice(String.valueOf(question));
         if (choiceList.isEmpty()) {
             return;
         }
-        Random random = new Random();
-        int randomIndex = random.nextInt(choiceList.size());
 
-        choiceA.setText(choiceList.get(randomIndex));
-        choiceList.remove(randomIndex);
+        // Trộn choiceList để ngẫu nhiên
+        Collections.shuffle(choiceList);
 
-        randomIndex = random.nextInt(choiceList.size());
-        choiceB.setText(choiceList.get(randomIndex));
-        choiceList.remove(randomIndex);
-
-        choiceC.setText(choiceList.get(0));
+        choiceA.setText(choiceList.get(0));
+        choiceB.setText(choiceList.get(1));
+        choiceC.setText(choiceList.get(2));
     }
 
-    private boolean checkAnswer() throws SQLException {
-        String key = d.getAnswer(currentWord.get());
-        return choiceA.getText().equals(key) || choiceB.getText().equals(key) || choiceC.getText().equals(key);
+    private String checkAnswer() throws SQLException {
+        return d.getAnswer(String.valueOf(question));
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -85,22 +75,22 @@ public class ChallengingController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         choiceA.setOnAction(actionEvent -> {
             try {
-                if (checkAnswer()) { // thêm điều kiện vào đây
+                String key = checkAnswer();
+                if (choiceA.getText().equals(key)) { // thêm điều kiện vào đây
                     choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
-                    resultAP.setVisible(true);
-                    score.setText("Score: " + (score_player - 5));
+                    score_player +=10;
                 } else {
                     choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
-                    score.setText("Score: " + (score_player - 5));
-                    resultAP.setVisible(true);
+                    score_player -=5;
                 }
+                score.setText("Score: " + (score_player));
+                resultAP.setVisible(true);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -109,19 +99,20 @@ public class ChallengingController implements Initializable {
 
         choiceB.setOnAction(actionEvent -> {
             try {
-                if (checkAnswer()) {
+                String key = checkAnswer();
+                if (choiceB.getText().equals(key)) {
                     choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
-                    score.setText("Score: " + (score_player + 10));
-                    resultAP.setVisible(true);
+                    score_player +=10;
                 } else {
                     choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
-                    score.setText("Score: " + (score_player - 5));
-                    resultAP.setVisible(true);
+                    score_player -=5;
                 }
+                score.setText("Score: " + (score_player));
+                resultAP.setVisible(true);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -130,23 +121,38 @@ public class ChallengingController implements Initializable {
 
         choiceC.setOnAction(actionEvent -> {
             try {
-                if (checkAnswer()) {
+                String key = checkAnswer();
+                if (choiceC.getText().equals(key)) {
                     choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
-                    score.setText("Score: " + (score_player + 10));
-                    resultAP.setVisible(true);
+                    score_player +=10;
                 } else {
                     choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
-                    score.setText("Score: " + (score_player - 5));
-                    resultAP.setVisible(true);
+                    score_player -=5;
                 }
+                score.setText("Score: " + (score_player));
+                resultAP.setVisible(true);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
             rectangle.toFront();
+        });
+
+        next.setOnAction(actionEvent -> {
+            choiceA.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+            choiceB.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+            choiceC.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+            try {
+                loadQuestion();
+                loadChoices();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            resultAP.setVisible(false);
+            rectangle.toBack();
         });
     }
 }
