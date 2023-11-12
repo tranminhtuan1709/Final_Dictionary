@@ -35,7 +35,6 @@
     -fx-border-radius: 30;
     -fx-border-width: 1;
     -fx-effect: dropshadow(gaussian, #8A8A8A, 30, 0.5, 0, 0);
-    -fx-scale-y: -1;
 }
 
 .flashcardWord:hover {
