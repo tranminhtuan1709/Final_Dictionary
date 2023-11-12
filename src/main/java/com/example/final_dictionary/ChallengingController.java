@@ -54,7 +54,7 @@ public class ChallengingController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 timeSeconds--;
-                time.setText("Time: " + timeSeconds);
+                time.setText(String.format("Time: %02d", timeSeconds));
 
                 if (timeSeconds <= 0) {
                     timeline.stop();
@@ -122,11 +122,13 @@ public class ChallengingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
                     score_player += 10;
+                    timeline.stop();
                 } else {
                     choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
                     score_player -= 5;
+                    timeline.stop();
                 }
                 score.setText("Score: " + (score_player));
                 resultAP.setVisible(true);
@@ -144,11 +146,13 @@ public class ChallengingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
                     score_player += 10;
+                    timeline.stop();
                 } else {
                     choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
                     score_player -= 5;
+                    timeline.stop();
                 }
                 score.setText("Score: " + (score_player));
                 resultAP.setVisible(true);
@@ -166,11 +170,13 @@ public class ChallengingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
                     score_player += 10;
+                    timeline.stop();
                 } else {
                     choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
                     score_player -= 5;
+                    timeline.stop();
                 }
                 score.setText("Score: " + (score_player));
                 resultAP.setVisible(true);
