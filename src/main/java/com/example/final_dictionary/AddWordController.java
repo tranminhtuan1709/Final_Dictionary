@@ -1,5 +1,6 @@
 package com.example.final_dictionary;
 
+import Database.DataLite;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddWordController implements Initializable {
@@ -54,11 +56,11 @@ public class AddWordController implements Initializable {
     @FXML
     private TabPane tabPane;
 
+    private final DataLite d = new DataLite();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public AddWordController() throws SQLException {
     }
+
 
     public void handleDiscardButton(ActionEvent e) {
         wordField.clear();
@@ -68,21 +70,20 @@ public class AddWordController implements Initializable {
         addwordmeaning.clear();
     }
 
-    public void handleSaveButton(ActionEvent e) {
+    public void handleSaveButton(ActionEvent e) throws SQLException {
         String word = wordField.getText();
         String pos = posField.getText();
         String bre = breIPA.getText();
-        String name = nameIPA.getText();
         String meaning = addwordmeaning.getText();
         if (!word.isEmpty() && !pos.isEmpty() && !meaning.isEmpty()) {
-            if (true/*word not in the dictionary*/) {
+            if (!d.isExist(word)) {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);
                 }
                 addNotiPane.setDisable(false);
                 addNotiPane.setVisible(true);
                 addNotiPane.toFront();
-                //add word definition to database
+                d.addWord(word, pos, bre, meaning);
             } else {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);
@@ -152,5 +153,10 @@ public class AddWordController implements Initializable {
         changeNotiPane.setDisable(false);
         changeNotiPane.setVisible(true);
         changeNotiPane.toFront();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

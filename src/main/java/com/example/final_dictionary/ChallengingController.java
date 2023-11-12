@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -24,17 +23,15 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ChallengingController implements Initializable {
     @FXML
-    private AnchorPane questionAP, resultAP;
+    private AnchorPane resultAP;
     @FXML
     private Button choiceA, choiceB, choiceC, next;
     @FXML
     private Label word, resultText, time, score;
     @FXML
-    private ImageView imageView;
-    @FXML
     Rectangle rectangle;
 
-    private int timeSeconds = 10;
+    private int timeSeconds = 3;
     private Timeline timeline;
     private int attemptCount = 0;
     private static final int MAX_ATTEMPTS = 10;
@@ -65,9 +62,28 @@ public class ChallengingController implements Initializable {
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
     }
+
     private void handleTimeout() {
-        // Thực hiện khi thời gian hết
-        // Ví dụ: Hiển thị thông báo,  kết thúc trò chơi
+        if (!choiceA.isDisabled() && !choiceB.isDisabled() && !choiceC.isDisabled()) {
+            resultText.setStyle("-fx-text-fill: #C00000");
+            resultText.setText("Time's up!Sorry, you ran out of time. - 5pt");
+            score_player -= 5;
+            score.setText("Score: " + score_player);
+            resultAP.setVisible(true);
+            try {
+                String key = checkAnswer();
+                if (choiceA.getText().equals(key)) {
+                    choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                } else if (choiceB.getText().equals(key)) {
+                    choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                } else if (choiceC.getText().equals(key)) {
+                    choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            rectangle.toFront();
+        }
     }
 
     private void loadQuestion() throws SQLException {
@@ -100,21 +116,22 @@ public class ChallengingController implements Initializable {
         return d.getAnswer(String.valueOf(question));
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             if (timeline != null) {
                 timeline.stop();
             }
-            timeSeconds = 10;
-            time.setText("Time: " + timeSeconds);
+            timeSeconds = 3;
+            time.setText(String.format("Time: %02d", timeSeconds));
             startCountdown();
             loadQuestion();
             loadChoices();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
         choiceA.setOnAction(actionEvent -> {
             try {
                 String key = checkAnswer();
@@ -189,16 +206,16 @@ public class ChallengingController implements Initializable {
 
         next.setOnAction(actionEvent -> {
             attemptCount++;
-            if (attemptCount <= MAX_ATTEMPTS) {
-                choiceA.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
-                choiceB.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
-                choiceC.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+            if (attemptCount < MAX_ATTEMPTS) {
+                choiceA.setStyle("");
+                choiceB.setStyle("");
+                choiceC.setStyle("");
                 try {
                     if (timeline != null) {
                         timeline.stop();
                     }
-                    timeSeconds = 10;
-                    time.setText("Time: " + timeSeconds);
+                    timeSeconds = 3;
+                    time.setText(String.format("Time: %02d", timeSeconds));
                     startCountdown();
                     loadQuestion();
                     loadChoices();
