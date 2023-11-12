@@ -522,7 +522,7 @@ public class DataLite {
         * 12/11
         */
     public ArrayList<String> getFlashcardFront() throws SQLException {
-        String querySql = "SELECT word FROM av where id = (select id_av from practice)";;
+        String querySql = "SELECT word FROM av where id in (select id_av from practice)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
