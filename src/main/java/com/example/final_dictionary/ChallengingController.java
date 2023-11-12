@@ -208,6 +208,7 @@ public class ChallengingController implements Initializable {
                 resultAP.setVisible(false);
                 rectangle.toBack();
             } else {
+                next.setText("End");
                 System.out.println("Maximum attempts reached. End of quiz.");
             }
         });
