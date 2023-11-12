@@ -24,7 +24,7 @@
       </Label>
       <AnchorPane fx:id="questionAP" layoutX="75.0" layoutY="80.0" prefHeight="500.0" prefWidth="1050.0" styleClass="challenging" stylesheets="@Style.css">
          <children>
-            <Label fx:id="word" alignment="CENTER" layoutX="70.0" layoutY="329.0" prefHeight="131.0" prefWidth="443.0" text="Word" wrapText="true">
+            <Label fx:id="word" alignment="CENTER" layoutX="70.0" layoutY="329.0" prefHeight="131.0" prefWidth="443.0" text="Word" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Segoe UI Bold" size="36.0" />
                </font>

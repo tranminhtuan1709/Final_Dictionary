@@ -87,6 +87,19 @@ public class MatchingController implements Initializable {
             }
         }
     }
+
+    // Reset all boxes to visible and enable state and randomize the boxes again
+    // This method is called when the reset button is clicked
+    // This method is also called when the user clicks the "Play Again" button
+    private void reset() {
+        List<Label> boxes = new ArrayList<>(List.of(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10,
+                box11, box12, box13, box14, box15, box16, box17, box18, box19, box20));
+        for (Label label : boxes) {
+            label.setVisible(true);
+            label.setDisable(false);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         randomBox();
