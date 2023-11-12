@@ -130,7 +130,6 @@ public class FlashcardController implements Initializable {
                 TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.25), stackPane1);
                 TranslateTransition transition2 = new TranslateTransition(Duration.seconds(0.25), stackPane2);
                 if (center == 1) {
-                    System.out.println(flashcardFront2.isVisible());
                     try {
                         setStackPane2Content();
                     } catch (SQLException e) {

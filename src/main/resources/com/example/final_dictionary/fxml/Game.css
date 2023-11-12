@@ -81,11 +81,6 @@
     -fx-border-width: 0.5;
 }
 
-.choiceButton:hover {
-    -fx-background-color: #E4E4E4;
-    -fx-font-weight: bold;
-}
-
 .boxMatching {
     -fx-background-color: #BDD6F1;
     -fx-background-radius: 20;
