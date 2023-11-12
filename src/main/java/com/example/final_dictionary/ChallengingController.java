@@ -29,6 +29,8 @@ public class ChallengingController implements Initializable {
     @FXML
     Rectangle rectangle;
 
+    private int attemptCount = 0;
+    private static final int MAX_ATTEMPTS = 10;
     private int score_player = 0;
     private final DataLite d = new DataLite();
 
@@ -82,12 +84,12 @@ public class ChallengingController implements Initializable {
                     choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
-                    score_player +=10;
+                    score_player += 10;
                 } else {
                     choiceA.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
-                    score_player -=5;
+                    score_player -= 5;
                 }
                 score.setText("Score: " + (score_player));
                 resultAP.setVisible(true);
@@ -104,12 +106,12 @@ public class ChallengingController implements Initializable {
                     choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
-                    score_player +=10;
+                    score_player += 10;
                 } else {
                     choiceB.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
-                    score_player -=5;
+                    score_player -= 5;
                 }
                 score.setText("Score: " + (score_player));
                 resultAP.setVisible(true);
@@ -126,12 +128,12 @@ public class ChallengingController implements Initializable {
                     choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done! + 10pt");
-                    score_player +=10;
+                    score_player += 10;
                 } else {
                     choiceC.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("That’s incorrect! - 5pt");
-                    score_player -=5;
+                    score_player -= 5;
                 }
                 score.setText("Score: " + (score_player));
                 resultAP.setVisible(true);
@@ -142,17 +144,22 @@ public class ChallengingController implements Initializable {
         });
 
         next.setOnAction(actionEvent -> {
-            choiceA.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
-            choiceB.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
-            choiceC.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
-            try {
-                loadQuestion();
-                loadChoices();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            attemptCount++;
+            if (attemptCount <= MAX_ATTEMPTS) {
+                choiceA.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+                choiceB.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+                choiceC.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+                try {
+                    loadQuestion();
+                    loadChoices();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                resultAP.setVisible(false);
+                rectangle.toBack();
+            } else {
+                System.out.println("Maximum attempts reached. End of quiz.");
             }
-            resultAP.setVisible(false);
-            rectangle.toBack();
         });
     }
 }
