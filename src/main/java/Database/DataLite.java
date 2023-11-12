@@ -535,7 +535,7 @@ public class DataLite {
     }
 
     public ArrayList<String> getFlashcardBack(String front) throws SQLException {
-        String sql = "SELECT description, pronounce FROM av where word = ?";;
+        String sql = "SELECT description, pronounce FROM av where word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, front);
