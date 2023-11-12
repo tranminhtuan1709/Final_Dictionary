@@ -20,102 +20,102 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="box1" alignment="CENTER" layoutX="40.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box1" alignment="CENTER" layoutX="40.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box5" alignment="CENTER" layoutX="960.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box5" alignment="CENTER" layoutX="960.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box3" alignment="CENTER" layoutX="500.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box3" alignment="CENTER" layoutX="500.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box2" alignment="CENTER" layoutX="270.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box2" alignment="CENTER" layoutX="270.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box4" alignment="CENTER" layoutX="730.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box4" alignment="CENTER" layoutX="730.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box6" alignment="CENTER" layoutX="40.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box6" alignment="CENTER" layoutX="40.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box10" alignment="CENTER" layoutX="960.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box10" alignment="CENTER" layoutX="960.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box8" alignment="CENTER" layoutX="500.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box8" alignment="CENTER" layoutX="500.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box7" alignment="CENTER" layoutX="270.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box7" alignment="CENTER" layoutX="270.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box9" alignment="CENTER" layoutX="730.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word">
+      <Label fx:id="box9" alignment="CENTER" layoutX="730.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="word" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box11" alignment="CENTER" layoutX="40.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box11" alignment="CENTER" layoutX="40.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box15" alignment="CENTER" layoutX="960.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box15" alignment="CENTER" layoutX="960.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box13" alignment="CENTER" layoutX="500.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box13" alignment="CENTER" layoutX="500.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box12" alignment="CENTER" layoutX="270.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box12" alignment="CENTER" layoutX="270.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box14" alignment="CENTER" layoutX="730.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box14" alignment="CENTER" layoutX="730.0" layoutY="420.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box16" alignment="CENTER" layoutX="40.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box16" alignment="CENTER" layoutX="40.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box17" alignment="CENTER" layoutX="270.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box17" alignment="CENTER" layoutX="270.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box18" alignment="CENTER" layoutX="500.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box18" alignment="CENTER" layoutX="500.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box19" alignment="CENTER" layoutX="730.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box19" alignment="CENTER" layoutX="730.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="box20" alignment="CENTER" layoutX="960.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning">
+      <Label fx:id="box20" alignment="CENTER" layoutX="960.0" layoutY="560.0" prefHeight="100.0" prefWidth="200.0" styleClass="boxMatching" stylesheets="@Game.css" text="meaning" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>

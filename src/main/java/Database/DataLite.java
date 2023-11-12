@@ -596,4 +596,34 @@ public class DataLite {
         }
         return null;
     }
+    /*
+    ********************************************************************************************************************
+    * Matching
+     */
+    public ArrayList<String> getMatchingWord() throws SQLException {
+        String querySql = "SELECT word FROM av ORDER BY RANDOM() LIMIT 10";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(querySql);
+             ResultSet resultSet = ps.executeQuery()) {
+            ArrayList<String> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("word"));
+            }
+            return list;
+        }
+    }
+
+    public String getMatchingMean(String word) throws SQLException {
+        String sql = "SELECT description FROM av where word = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, word);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("description");
+                }
+            }
+        }
+        return null;
+    }
 }
