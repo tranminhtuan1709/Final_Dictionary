@@ -1,9 +1,8 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
-import javafx.animation.ParallelTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -30,6 +30,8 @@ public class MatchingController implements Initializable {
     @FXML
     private AnchorPane notification, root, startAnchorpane;
 
+    private Timeline timeline = new Timeline();
+    private int elapsedSeconds;
     private int remainingLabels = 20;
     private final DataLite d = new DataLite();
     private final List<Label> selectedLabels = new ArrayList<>();
@@ -37,8 +39,6 @@ public class MatchingController implements Initializable {
     public MatchingController() throws SQLException {
 
     }
-
-
     private List<String> generateRandomValues() throws SQLException {
         List<String> originalValues = d.getMatchingWord();
         List<String> values = new ArrayList<>(originalValues);
@@ -129,6 +129,13 @@ public class MatchingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            elapsedSeconds++;
+            updateTime();
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        startTimer();
+
         for (Node i : root.getChildren()) {
             if (i.getId() == null || !i.getId().equals("startAnchorpane")) {
                 i.setDisable(true);
@@ -164,7 +171,8 @@ public class MatchingController implements Initializable {
                 no.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        // thoát game luôn (nhưng chưa biết làm)
+                        Stage stage = (Stage) no.getScene().getWindow();
+                        stage.close();
                     }
                 });
 
@@ -208,6 +216,8 @@ public class MatchingController implements Initializable {
         transition.setToX(1);
         transition.setToY(1);
         transition.play();
+        stopTimer();
+        completionTime.setText(remainingTime.getText());
     }
 
     @FXML
@@ -221,6 +231,27 @@ public class MatchingController implements Initializable {
 
     @FXML
     public void startTime() {
-        // reset lại thời gian và bắt đầu đếm ngược
+        stopTimer();
+        elapsedSeconds = 0;
+        updateTime();
+        startTimer();
+    }
+
+    private void updateTime() {
+        int seconds = elapsedSeconds % 60;
+        int minutes = elapsedSeconds / 60;
+        remainingTime.setText("Time: " + String.format("%02d:%02d", minutes, seconds));
+    }
+    @FXML
+    private void startTimer() {
+        elapsedSeconds = 0;
+        updateTime();
+        timeline.play();
+    }
+    @FXML
+    private void stopTimer() {
+        if (timeline != null) {
+            timeline.stop();
+        }
     }
 }
