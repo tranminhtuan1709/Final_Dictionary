@@ -1,9 +1,18 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -14,12 +23,22 @@ public class MatchingController implements Initializable {
     private Label box1, box2, box3, box4, box5, box6, box7, box8, box9, box10;
     @FXML
     private Label box11, box12, box13, box14, box15, box16, box17, box18, box19, box20;
+    @FXML
+    private Label remainingTime, completionTime;
+    @FXML
+    private Button yes, no, replay, start;
+    @FXML
+    private AnchorPane notification, root, startAnchorpane;
 
+    private int remainingLabels = 20;
     private final DataLite d = new DataLite();
+    private final List<Label> selectedLabels = new ArrayList<>();
 
     public MatchingController() throws SQLException {
+
     }
-    private final List<Label> selectedLabels = new ArrayList<>();
+
+
     private List<String> generateRandomValues() throws SQLException {
         List<String> originalValues = d.getMatchingWord();
         List<String> values = new ArrayList<>(originalValues);
@@ -58,7 +77,7 @@ public class MatchingController implements Initializable {
             }
         }
     }
-    private void checkMatch(Label label1, Label label2) throws SQLException {//, Map<Label, String> originalTexts
+    private void checkMatch(Label label1, Label label2) throws SQLException {
         String text1 = label1.getText();
         String text2 = label2.getText();
 
@@ -68,8 +87,12 @@ public class MatchingController implements Initializable {
         boolean isMatch = (meaning1 != null && meaning1.equals(text2)) || (meaning2 != null && meaning2.equals(text1));
 
         if (isMatch) {
-                label1.setVisible(false);
-                label2.setVisible(false);
+            labelAnimation(label1, label2);
+            remainingLabels -= 2;
+            if (remainingLabels == 0) {
+                remainingLabels = 20;
+                showNotification();
+            }
         } else {
             label1.setDisable(false);
             label2.setDisable(false);
@@ -97,11 +120,107 @@ public class MatchingController implements Initializable {
         for (Label label : boxes) {
             label.setVisible(true);
             label.setDisable(false);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), label);
+            transition.setFromX(-1200);
+            transition.setToX(0);
+            transition.play();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        randomBox();
+        for (Node i : root.getChildren()) {
+            if (i.getId() == null || !i.getId().equals("startAnchorpane")) {
+                i.setDisable(true);
+                i.setVisible(false);
+            }
+        }
+        startAnchorpane.setDisable(false);
+        startAnchorpane.setVisible(true);
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                for (Node i : root.getChildren()) {
+                    if (i.getId() == null || (!i.getId().equals("startAnchorpane") && !i.getId().equals("notification"))) {
+                        i.setDisable(false);
+                        i.setVisible(true);
+                    }
+                }
+                startAnchorpane.setDisable(true);
+                startAnchorpane.setVisible(false);
+                startTime();
+                randomBox();
+                yes.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        remainingLabels = 20;
+                        reset();
+                        randomBox();
+                        quitNotification();
+                        startTime();
+                    }
+                });
+
+                no.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        // thoát game luôn (nhưng chưa biết làm)
+                    }
+                });
+
+                replay.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        remainingLabels = 20;
+                        reset();
+                        randomBox();
+                        startTime();
+                    }
+                });
+            }
+        });
+    }
+
+    @FXML
+    public void labelAnimation(Label label1, Label label2) {
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.25), label1);
+        TranslateTransition transition2 = new TranslateTransition(Duration.seconds(0.25), label2);
+        transition1.setFromX(0);
+        transition1.setToX(-1200);
+        transition2.setFromX(0);
+        transition2.setToX(-1200);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition2);
+        parallelTransition.play();
+    }
+
+    @FXML
+    public void showNotification() {
+        for (Node i : root.getChildren()) {
+            if (i.getId() == null || !i.getId().equals("notification")) {
+                i.setDisable(true);
+            }
+        }
+        notification.setVisible(true);
+        notification.setDisable(false);
+        ScaleTransition transition = new ScaleTransition(Duration.seconds(0.5), notification);
+        transition.setFromX(0.1);
+        transition.setFromY(0.1);
+        transition.setToX(1);
+        transition.setToY(1);
+        transition.play();
+    }
+
+    @FXML
+    public void quitNotification() {
+        for (Node i : root.getChildren()) {
+            i.setDisable(false);
+        }
+        notification.setDisable(true);
+        notification.setVisible(false);
+    }
+
+    @FXML
+    public void startTime() {
+        // reset lại thời gian và bắt đầu đếm ngược
     }
 }

@@ -40,7 +40,7 @@ public class ChallengingController implements Initializable {
     private final ArrayList<String> question = d.getQuestion();
     private int center = 1;
     private final Random random = new Random();
-    private int timeSeconds = 3;
+    private int timeSeconds = 5;
     private Timeline timeline;
     private int score_player = 0;
 
@@ -87,7 +87,7 @@ public class ChallengingController implements Initializable {
         if (timeline != null) {
             timeline.stop();
         }
-        timeSeconds = 3;
+        timeSeconds = 5;
         time.setText(String.format("Time: %02d", timeSeconds));
         startCountdown();
         try {
@@ -247,12 +247,12 @@ public class ChallengingController implements Initializable {
 
         next.setOnAction(actionEvent -> {
             attemptCount++;
-            if (attemptCount <= MAX_ATTEMPTS) {
+            if (attemptCount < MAX_ATTEMPTS) {
                 try {
                     if (timeline != null) {
                         timeline.stop();
                     }
-                    timeSeconds = 3;
+                    timeSeconds = 5;
                     time.setText(String.format("Time: %02d", timeSeconds));
                     startCountdown();
                     refreshChoiceButtonEffect();
