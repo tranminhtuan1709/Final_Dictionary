@@ -59,6 +59,7 @@ public class StudyingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
                 }
+                showCorrectAnswer();
                 resultAP.setVisible(true);
                 showResultChoice();
                 rectangle.toFront();
@@ -78,6 +79,7 @@ public class StudyingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
                 }
+                showCorrectAnswer();
                 resultAP.setVisible(true);
                 showResultChoice();
                 rectangle.toFront();
@@ -97,6 +99,7 @@ public class StudyingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
                 }
+                showCorrectAnswer();
                 resultAP.setVisible(true);
                 showResultChoice();
                 rectangle.toFront();
@@ -116,6 +119,7 @@ public class StudyingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
                 }
+                showCorrectAnswer();
                 resultAP.setVisible(true);
                 showResultChoice();
                 rectangle.toFront();
@@ -135,6 +139,7 @@ public class StudyingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
                 }
+                showCorrectAnswer();
                 resultAP.setVisible(true);
                 showResultChoice();
                 rectangle.toFront();
@@ -154,6 +159,7 @@ public class StudyingController implements Initializable {
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
                 }
+                showCorrectAnswer();
                 resultAP.setVisible(true);
                 showResultChoice();
                 rectangle.toFront();
@@ -268,5 +274,26 @@ public class StudyingController implements Initializable {
         choiceA2.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
         choiceB2.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
         choiceC2.setStyle("-fx-font-weight: normal; -fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+    }
+
+    @FXML
+    public void showCorrectAnswer() throws SQLException {
+        if (center == 1) {
+            if (choiceA1.getText().equals(d.getAnswer(word1.getText()))) {
+                choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+            } else if (choiceB1.getText().equals(d.getAnswer(word1.getText()))) {
+                choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+            } else {
+                choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+            }
+        } else {
+            if (choiceA2.getText().equals(d.getAnswer(word2.getText()))) {
+                choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+            } else if (choiceB2.getText().equals(d.getAnswer(word2.getText()))) {
+                choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+            } else {
+                choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+            }
+        }
     }
 }
