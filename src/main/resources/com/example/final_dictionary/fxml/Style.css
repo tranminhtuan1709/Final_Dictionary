@@ -155,7 +155,7 @@
 }
 
 .addwordmeaning.text-area .content {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
     -fx-border-color: #000000;
     -fx-border-width: 0.5px 0.5px 0.5px 0.5px;
 }

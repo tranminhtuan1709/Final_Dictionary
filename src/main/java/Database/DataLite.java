@@ -142,7 +142,11 @@ public class DataLite {
     }
 
     public void addWord(String word, String pos, String breIpa, String meaning) throws SQLException {
-        String html = convertToHTML(word + "<br>" +breIpa, pos, meaning);
+        String html = "<h1 style= \"color:#951D05; font-family: Segoe UI\">" + word
+                + "</h1><h3 style=\"font-family: Segoe UI Light; color : #12225B\"><i>" + breIpa
+                + "</i></h3><h2 style=\"font-family: Segoe UI;font-size: 20px;\">" + pos
+                + "</h2><ul style=\"font-family: Segoe UI Bold; color :  #12225B ;\"><li style=\"font-family: Segoe UI; font-size: 18px;\">" + meaning
+                + "</li></ul>";//convertToHTML(word + "<br>" +breIpa, pos, meaning);
         String sql = "INSERT INTO av(word, description, html, pronounce) VALUES(?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -164,17 +168,17 @@ public class DataLite {
         }
     }
 
-    public void updateWord(String word, String pos, String breIpa, String nameIpa, String meaning, String old_word) throws SQLException {
-        String html = convertToHTML(word + "<br>" +breIpa, pos, meaning);
+    public void updateWord(String word, String detail, String old_word) throws SQLException { //, String pos, String breIpa, String nameIpa, String meaning, String old_word
+        //String html = convertToHTML(word + "<br>" +breIpa, pos, meaning);
         word = word.toLowerCase();
-        String sql = "UPDATE av SET word = ?, html = ?, description = ?, pronounce = ? WHERE word = ?";
+        String sql = "UPDATE av SET word = ?, html = ? WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
-            ps.setString(2, html);
-            ps.setString(3, nameIpa);
-            ps.setString(4, pos + "; " +meaning);
-            ps.setString(5, old_word);
+            ps.setString(2, detail);
+//            ps.setString(3, nameIpa);
+//            ps.setString(4, pos + "; " +meaning);
+            ps.setString(3, old_word);
             ps.executeUpdate();
         }
     }

@@ -119,40 +119,14 @@ public class AddWordController implements Initializable {
         addNotiPane.toBack();
     }
 
-    //For changeNotiPane
+
     public void handleOkayButton2(ActionEvent e) {
         for (Node i : addwordPane.getChildren()) {
             i.setDisable(false);
         }
-
-        changeNotiPane.setDisable(true);
-        changeNotiPane.setVisible(false);
-        changeNotiPane.toBack();
-    }
-
-    public void handleUpdateButton(ActionEvent e) {
         alertPane.setDisable(true);
         alertPane.setVisible(false);
         alertPane.toBack();
-
-        //Change meaning in the database
-
-
-        changeNotiPane.setDisable(false);
-        changeNotiPane.setVisible(true);
-        changeNotiPane.toFront();
-    }
-
-    public void handleAppendButton(ActionEvent e) {
-        alertPane.setDisable(true);
-        alertPane.setVisible(false);
-        alertPane.toBack();
-
-        //append meaning in the database
-
-        changeNotiPane.setDisable(false);
-        changeNotiPane.setVisible(true);
-        changeNotiPane.toFront();
     }
 
     @Override
