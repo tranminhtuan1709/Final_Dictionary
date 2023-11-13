@@ -1,6 +1,5 @@
 package Database;
 
-
 import java.io.PrintStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -126,7 +125,7 @@ public class DataLite {
      ********************************************************************************************************************
      *Add Word, DeleteWord, Update Word
      */
-    public boolean isExist(String word) throws SQLException {
+        public boolean isExist(String word) throws SQLException {
         String sql = "SELECT COUNT(*) FROM av WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -135,46 +134,47 @@ public class DataLite {
             return rs.next() && rs.getInt(1) > 0;
         }
     }
-    public String convertToHTML(String addWord, String addPronounce, String addDescription) {
+    public String convertToHTML(String addWord, String addPronounce, String addMeaning) {
         return "<h1 style= \"color:#951D05; font-family : Segoe UI\">" + addWord + "</h1>" +
-                "<h3><i>/" + addPronounce + "/</i></h3>" +
-                "<h2>" + addDescription + "</h2>";
+                "<h3 style=\"font-family: Segoe UI Light; color : #12225B\"><i>/" + addPronounce + "/</i></h3>" +
+                "<h2 style=\"font-family: Segoe UI;font-size: 20px;\">" + addMeaning + "</h2>";
     }
 
     public void addWord(String word, String pos, String breIpa, String meaning) throws SQLException {
-        String html = convertToHTML(word + "<br>" +breIpa, pos, meaning);
-        String sql = "INSERT INTO av(word, description, html, pronounce) VALUES(?, ?, ?, ?)";
+            String[] tmp = meaning.split("\n");
+
+            StringBuilder html = new StringBuilder(convertToHTML(word, breIpa, pos));
+
+            for(String si : tmp) {
+                html.append("<li style=\"font-family: Segoe UI; font-size: 18px; color: #12225B;\">").append(si).append("</li>");
+            }
+
+            String sql = "INSERT INTO av(word, description, html, pronounce) VALUES(?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
-            ps.setString(2, pos + "; " + meaning);
-            ps.setString(3, html);
+            ps.setString(2, pos + ": " + meaning);
+            ps.setString(3, html.toString());
             ps.setString(4, breIpa);
             ps.executeUpdate();
         }
     }
 
-    public void deleteWord(String s) throws SQLException {
-        s = s.toLowerCase();
-        String sql = "DELETE FROM av WHERE word = ?";
+    public void updateWord(String rep) throws SQLException {
+        String sql = "UPDATE av SET html = ? WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, s.toLowerCase());
+            ps.setString(1, rep);
+            ps.setString(2, rep);
             ps.executeUpdate();
         }
     }
 
-    public void updateWord(String word, String pos, String breIpa, String nameIpa, String meaning, String old_word) throws SQLException {
-        String html = convertToHTML(word + "<br>" +breIpa, pos, meaning);
-        word = word.toLowerCase();
-        String sql = "UPDATE av SET word = ?, html = ?, description = ?, pronounce = ? WHERE word = ?";
+    public void deleteWord(String s) throws SQLException {
+        String sql = "DELETE FROM av WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, word);
-            ps.setString(2, html);
-            ps.setString(3, nameIpa);
-            ps.setString(4, pos + "; " +meaning);
-            ps.setString(5, old_word);
+            ps.setString(1, s.toLowerCase());
             ps.executeUpdate();
         }
     }
@@ -443,15 +443,6 @@ public class DataLite {
                 }
                 return wordList;
             }
-        }
-    }
-
-    public ArrayList<String> deleteAllFavorite() throws SQLException {
-        String deleteSql = "DELETE FROM avfavorite where true";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(deleteSql)) {
-            ps.executeUpdate();
-            return new ArrayList<>();
         }
     }
     /*
