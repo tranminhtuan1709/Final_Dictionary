@@ -4,6 +4,8 @@ import Database.DataLite;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,9 +26,9 @@ public class MatchingController implements Initializable {
     @FXML
     private Label remainingTime, completionTime;
     @FXML
-    private Button yes, no, replay;
+    private Button yes, no, replay, start;
     @FXML
-    private AnchorPane notification, root;
+    private AnchorPane notification, root, startAnchorpane;
 
     private int remainingLabels = 20;
     private final DataLite d = new DataLite();
@@ -127,25 +129,55 @@ public class MatchingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        startTime();
-        randomBox();
-        yes.setOnAction(actionEvent -> {
-            remainingLabels = 20;
-            reset();
-            randomBox();
-            quitNotification();
-            startTime();
-        });
+        for (Node i : root.getChildren()) {
+            if (i.getId() == null || !i.getId().equals("startAnchorpane")) {
+                i.setDisable(true);
+                i.setVisible(false);
+            }
+        }
+        startAnchorpane.setDisable(false);
+        startAnchorpane.setVisible(true);
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                for (Node i : root.getChildren()) {
+                    if (i.getId() == null || (!i.getId().equals("startAnchorpane") && !i.getId().equals("notification"))) {
+                        i.setDisable(false);
+                        i.setVisible(true);
+                    }
+                }
+                startAnchorpane.setDisable(true);
+                startAnchorpane.setVisible(false);
+                startTime();
+                randomBox();
+                yes.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        remainingLabels = 20;
+                        reset();
+                        randomBox();
+                        quitNotification();
+                        startTime();
+                    }
+                });
 
-        no.setOnAction(actionEvent -> {
-            // thoát game luôn (nhưng t chưa biết làm)
-        });
+                no.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        // thoát game luôn (nhưng chưa biết làm)
+                    }
+                });
 
-        replay.setOnAction(actionEvent -> {
-            remainingLabels = 20;
-            reset();
-            randomBox();
-            startTime();
+                replay.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        remainingLabels = 20;
+                        reset();
+                        randomBox();
+                        startTime();
+                    }
+                });
+            }
         });
     }
 
