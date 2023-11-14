@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -25,9 +26,9 @@ import java.util.ResourceBundle;
 
 public class ChallengingController implements Initializable {
     @FXML
-    private AnchorPane questionAP1, questionAP2, resultAP;
+    private AnchorPane questionAP1, questionAP2, resultAP, root, startAnchorpane;
     @FXML
-    private Button choiceA1, choiceB1, choiceC1, choiceA2, choiceB2, choiceC2, next;
+    private Button choiceA1, choiceB1, choiceC1, choiceA2, choiceB2, choiceC2, next, start;
     @FXML
     private Label word1, word2, resultText, time, score;
     @FXML
@@ -84,186 +85,227 @@ public class ChallengingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (timeline != null) {
-            timeline.stop();
+        for (Node i : root.getChildren()) {
+            if (i.getId() == null || !i.getId().equals("startAnchorpane")) {
+                i.setVisible(false);
+                i.setDisable(true);
+            }
         }
-        timeSeconds = 5;
-        time.setText(String.format("Time: %02d", timeSeconds));
-        startCountdown();
-        try {
-            setQuestionAP1();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        choiceA1.setOnAction(actionEvent -> {
-            try {
-                if (checkAnswer(center, choiceA1.getText())) {
-                    choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
-                    resultText.setStyle("-fx-text-fill: #385723");
-                    resultText.setText("Well done! + 10pt");
-                    score_player += 10;
-                    timeline.stop();
-                } else {
-                    choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
-                    resultText.setStyle("-fx-text-fill: #C00000");
-                    resultText.setText("That’s incorrect! - 5pt");
-                    score_player -= 5;
+        startAnchorpane.setDisable(false);
+        startAnchorpane.setVisible(true);
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                for (Node i : root.getChildren()) {
+                    i.setVisible(true);
+                    i.setDisable(false);
+                }
+                startAnchorpane.setDisable(true);
+                startAnchorpane.setVisible(false);
+                if (timeline != null) {
                     timeline.stop();
                 }
-                score.setText("Score: " + (score_player));
-                showCorrectAnswer();
-                resultAP.setVisible(true);
-                showResultChoice();
-                rectangle.toFront();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        choiceB1.setOnAction(actionEvent -> {
-            try {
-                if (checkAnswer(center, choiceB1.getText())) {
-                    choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
-                    resultText.setStyle("-fx-text-fill: #385723");
-                    resultText.setText("Well done! + 10pt");
-                    score_player += 10;
-                    timeline.stop();
-                } else {
-                    choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
-                    resultText.setStyle("-fx-text-fill: #C00000");
-                    resultText.setText("That’s incorrect! - 5pt");
-                    score_player -= 5;
-                    timeline.stop();
-                }
-                score.setText("Score: " + (score_player));
-                showCorrectAnswer();
-                resultAP.setVisible(true);
-                showResultChoice();
-                rectangle.toFront();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        choiceC1.setOnAction(actionEvent -> {
-            try {
-                if (checkAnswer(center, choiceC1.getText())) {
-                    choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
-                    resultText.setStyle("-fx-text-fill: #385723");
-                    resultText.setText("Well done! + 10pt");
-                    score_player += 10;
-                    timeline.stop();
-                } else {
-                    choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
-                    resultText.setStyle("-fx-text-fill: #C00000");
-                    resultText.setText("That’s incorrect! - 5pt");
-                    score_player -= 5;
-                    timeline.stop();
-                }
-                score.setText("Score: " + (score_player));
-                showCorrectAnswer();
-                resultAP.setVisible(true);
-                showResultChoice();
-                rectangle.toFront();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        choiceA2.setOnAction(actionEvent -> {
-            try {
-                if (checkAnswer(center, choiceA2.getText())) {
-                    choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
-                    resultText.setStyle("-fx-text-fill: #385723");
-                    resultText.setText("Well done! + 10pt");
-                    score_player += 10;
-                    timeline.stop();
-                } else {
-                    choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
-                    resultText.setStyle("-fx-text-fill: #C00000");
-                    resultText.setText("That’s incorrect! - 5pt");
-                    score_player -= 5;
-                    timeline.stop();
-                }
-                score.setText("Score: " + (score_player));
-                showCorrectAnswer();
-                resultAP.setVisible(true);
-                showResultChoice();
-                rectangle.toFront();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        choiceB2.setOnAction(actionEvent -> {
-            try {
-                if (checkAnswer(center, choiceB2.getText())) {
-                    choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
-                    resultText.setStyle("-fx-text-fill: #385723");
-                    resultText.setText("Well done! + 10pt");
-                    score_player += 10;
-                    timeline.stop();
-                } else {
-                    choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
-                    resultText.setStyle("-fx-text-fill: #C00000");
-                    resultText.setText("That’s incorrect! - 5pt");
-                    score_player -= 5;
-                    timeline.stop();
-                }
-                score.setText("Score: " + (score_player));
-                showCorrectAnswer();
-                resultAP.setVisible(true);
-                showResultChoice();
-                rectangle.toFront();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        choiceC2.setOnAction(actionEvent -> {
-            try {
-                if (checkAnswer(center, choiceC2.getText())) {
-                    choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
-                    resultText.setStyle("-fx-text-fill: #385723");
-                    resultText.setText("Well done! + 10pt");
-                    score_player += 10;
-                    timeline.stop();
-                } else {
-                    choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
-                    resultText.setStyle("-fx-text-fill: #C00000");
-                    resultText.setText("That’s incorrect! - 5pt");
-                    score_player -= 5;
-                    timeline.stop();
-                }
-                score.setText("Score: " + (score_player));
-                showCorrectAnswer();
-                resultAP.setVisible(true);
-                showResultChoice();
-                rectangle.toFront();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        next.setOnAction(actionEvent -> {
-            attemptCount++;
-            if (attemptCount < MAX_ATTEMPTS) {
+                timeSeconds = 5;
+                time.setText(String.format("Time: %02d", timeSeconds));
+                startCountdown();
                 try {
-                    if (timeline != null) {
-                        timeline.stop();
-                    }
-                    timeSeconds = 5;
-                    time.setText(String.format("Time: %02d", timeSeconds));
-                    startCountdown();
-                    refreshChoiceButtonEffect();
-                    nextQuestion();
-                    rectangle.toBack();
+                    setQuestionAP1();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            } else {
-                next.setText("End");
-                System.out.println("Maximum attempts reached. End of quiz.");
+                choiceA1.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            if (checkAnswer(center, choiceA1.getText())) {
+                                choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                                resultText.setStyle("-fx-text-fill: #385723");
+                                resultText.setText("Well done! + 10pt");
+                                score_player += 10;
+                                timeline.stop();
+                            } else {
+                                choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
+                                resultText.setStyle("-fx-text-fill: #C00000");
+                                resultText.setText("That’s incorrect! - 5pt");
+                                score_player -= 5;
+                                timeline.stop();
+                            }
+                            score.setText("Score: " + (score_player));
+                            showCorrectAnswer();
+                            resultAP.setVisible(true);
+                            showResultChoice();
+                            rectangle.toFront();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
+                choiceB1.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            if (checkAnswer(center, choiceB1.getText())) {
+                                choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                                resultText.setStyle("-fx-text-fill: #385723");
+                                resultText.setText("Well done! + 10pt");
+                                score_player += 10;
+                                timeline.stop();
+                            } else {
+                                choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
+                                resultText.setStyle("-fx-text-fill: #C00000");
+                                resultText.setText("That’s incorrect! - 5pt");
+                                score_player -= 5;
+                                timeline.stop();
+                            }
+                            score.setText("Score: " + (score_player));
+                            showCorrectAnswer();
+                            resultAP.setVisible(true);
+                            showResultChoice();
+                            rectangle.toFront();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+                });
+
+                choiceC1.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            if (checkAnswer(center, choiceC1.getText())) {
+                                choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                                resultText.setStyle("-fx-text-fill: #385723");
+                                resultText.setText("Well done! + 10pt");
+                                score_player += 10;
+                                timeline.stop();
+                            } else {
+                                choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
+                                resultText.setStyle("-fx-text-fill: #C00000");
+                                resultText.setText("That’s incorrect! - 5pt");
+                                score_player -= 5;
+                                timeline.stop();
+                            }
+                            score.setText("Score: " + (score_player));
+                            showCorrectAnswer();
+                            resultAP.setVisible(true);
+                            showResultChoice();
+                            rectangle.toFront();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
+                choiceA2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            if (checkAnswer(center, choiceA2.getText())) {
+                                choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                                resultText.setStyle("-fx-text-fill: #385723");
+                                resultText.setText("Well done! + 10pt");
+                                score_player += 10;
+                                timeline.stop();
+                            } else {
+                                choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
+                                resultText.setStyle("-fx-text-fill: #C00000");
+                                resultText.setText("That’s incorrect! - 5pt");
+                                score_player -= 5;
+                                timeline.stop();
+                            }
+                            score.setText("Score: " + (score_player));
+                            showCorrectAnswer();
+                            resultAP.setVisible(true);
+                            showResultChoice();
+                            rectangle.toFront();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
+                choiceB2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            if (checkAnswer(center, choiceB2.getText())) {
+                                choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                                resultText.setStyle("-fx-text-fill: #385723");
+                                resultText.setText("Well done! + 10pt");
+                                score_player += 10;
+                                timeline.stop();
+                            } else {
+                                choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
+                                resultText.setStyle("-fx-text-fill: #C00000");
+                                resultText.setText("That’s incorrect! - 5pt");
+                                score_player -= 5;
+                                timeline.stop();
+                            }
+                            score.setText("Score: " + (score_player));
+                            showCorrectAnswer();
+                            resultAP.setVisible(true);
+                            showResultChoice();
+                            rectangle.toFront();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
+                choiceC2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            if (checkAnswer(center, choiceC2.getText())) {
+                                choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
+                                resultText.setStyle("-fx-text-fill: #385723");
+                                resultText.setText("Well done! + 10pt");
+                                score_player += 10;
+                                timeline.stop();
+                            } else {
+                                choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
+                                resultText.setStyle("-fx-text-fill: #C00000");
+                                resultText.setText("That’s incorrect! - 5pt");
+                                score_player -= 5;
+                                timeline.stop();
+                            }
+                            score.setText("Score: " + (score_player));
+                            showCorrectAnswer();
+                            resultAP.setVisible(true);
+                            showResultChoice();
+                            rectangle.toFront();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
+                next.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        attemptCount++;
+                        if (attemptCount < MAX_ATTEMPTS) {
+                            try {
+                                if (timeline != null) {
+                                    timeline.stop();
+                                }
+                                timeSeconds = 5;
+                                time.setText(String.format("Time: %02d", timeSeconds));
+                                startCountdown();
+                                refreshChoiceButtonEffect();
+                                nextQuestion();
+                                rectangle.toBack();
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        } else {
+                            next.setText("End");
+                            System.out.println("Maximum attempts reached. End of quiz.");
+                        }
+                    }
+                });
             }
         });
     }

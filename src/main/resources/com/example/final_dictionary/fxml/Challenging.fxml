@@ -8,8 +8,22 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.ChallengingController">
+<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.ChallengingController">
    <children>
+      <AnchorPane fx:id="startAnchorpane" disable="true" layoutY="50.0" prefHeight="650.0" prefWidth="1200.0" visible="false">
+         <children>
+            <Label layoutX="500.0" layoutY="300.0" prefHeight="40.0" prefWidth="200.0" text="Start nhanh mọe lên">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="start" layoutX="500.0" layoutY="400.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="launchButton" stylesheets="@Game.css" text="Start">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
       <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="630.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8cc7fc" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">

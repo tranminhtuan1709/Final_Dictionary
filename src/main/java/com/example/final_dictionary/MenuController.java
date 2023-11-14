@@ -1,5 +1,10 @@
 package com.example.final_dictionary;
 
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,12 +17,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class MenuController implements Initializable {
     @FXML
@@ -90,7 +99,7 @@ public class MenuController implements Initializable {
             quitMenu.setOnAction(actionEvent -> quitMenu());
             container.setOnMouseClicked(mouseEvent -> {
                 if (!menuAP.isHover() && !menuAP.isDisable()) {
-                    quitMenu();
+                    quitMenu().play();
                 }
                 if (!usernameAP.isHover() && !usernameAP.isDisable()) {
                     quitUsernameAP();
@@ -98,16 +107,15 @@ public class MenuController implements Initializable {
             });
             usernameButton.setOnAction(actionEvent -> showUsernameAP());
             usernameButton2.setOnAction(actionEvent -> quitUsernameAP());
+
             savedWordButton.setOnAction(actionEvent -> {
-                quitMenu();
                 //put loading saved word here so that the saved word list will be automatically update when adding or eliminating favourite
                 try {
                     savedWordAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Save.fxml")));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                switchToSavedWordAP();
-
+                switchToSavedWordAP(quitMenu());
 
                 section1.setVisible(false);
                 section2.setVisible(true);
@@ -117,15 +125,15 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(false);
             });
+
             homeButton.setOnAction(actionEvent -> {
-                quitMenu();
                 try {
                     homeAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Home.fxml")));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
 
-                switchToHomeAP();
+                switchToHomeAP(quitMenu());
 
                 section1.setVisible(true);
                 section2.setVisible(false);
@@ -135,9 +143,9 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(false);
             });
+
             translateButton.setOnAction(actionEvent -> {
-                quitMenu();
-                switchToTranslateAP();
+                switchToTranslateAP(quitMenu());
 
                 section1.setVisible(false);
                 section2.setVisible(false);
@@ -147,9 +155,9 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(false);
             });
+
             addWordButton.setOnAction(actionEvent -> {
-                quitMenu();
-                switchToAddWordAP();
+                switchToAddWordAP(quitMenu());
 
                 section1.setVisible(false);
                 section2.setVisible(false);
@@ -161,8 +169,7 @@ public class MenuController implements Initializable {
             });
 
             settingButton.setOnAction(actionEvent -> {
-                quitMenu();
-                switchToSettingAP();
+                switchToSettingAP(quitMenu());
 
                 section1.setVisible(false);
                 section2.setVisible(false);
@@ -174,8 +181,7 @@ public class MenuController implements Initializable {
             });
 
             infoButton.setOnAction(actionEvent -> {
-                quitMenu();
-                switchToInfoAP();
+                switchToInfoAP(quitMenu());
 
                 section1.setVisible(false);
                 section2.setVisible(false);
@@ -187,8 +193,7 @@ public class MenuController implements Initializable {
             });
 
             gameButton.setOnAction(actionEvent -> {
-                quitMenu();
-                switchToGameAP();
+                switchToGameAP(quitMenu());
 
                 section1.setVisible(false);
                 section2.setVisible(false);
@@ -211,16 +216,29 @@ public class MenuController implements Initializable {
         menuAP.setDisable(false);
         menuAP.setVisible(true);
         menuAP.toFront();
+        TranslateTransition transition = new TranslateTransition((Duration.seconds(0.15)), menuAP);
+        transition.setFromX(-288);
+        transition.setToX(0);
+        transition.play();
     }
 
     @FXML
-    public void quitMenu() {
+    public TranslateTransition quitMenu() {
         for (Node i : switchAP.getChildren()) {
             i.setDisable(false);
         }
-        menuAP.setDisable(true);
-        menuAP.setVisible(false);
-        menuAP.toBack();
+        TranslateTransition transition = new TranslateTransition((Duration.seconds(0.15)), menuAP);
+        transition.setFromX(0);
+        transition.setToX(-288);
+        transition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                menuAP.setDisable(true);
+                menuAP.setVisible(false);
+                menuAP.toBack();
+            }
+        });
+        return transition;
     }
 
     @FXML
@@ -247,46 +265,80 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void switchToSavedWordAP() {
+    public void switchToSavedWordAP(TranslateTransition transition) {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(savedWordAP);
-
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.15), switchAP);
+        transition1.setFromX(1200);
+        transition1.setToX(0);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition);
+        parallelTransition.play();
     }
 
     @FXML
-    public void switchToHomeAP() {
+    public void switchToHomeAP(TranslateTransition transition) {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(homeAP);
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.15), switchAP);
+        transition1.setFromX(1200);
+        transition1.setToX(0);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition);
+        parallelTransition.play();
     }
 
     @FXML
-    public void switchToTranslateAP() {
+    public void switchToTranslateAP(TranslateTransition transition) {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(translateAP);
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.15), switchAP);
+        transition1.setFromX(1200);
+        transition1.setToX(0);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition);
+        parallelTransition.play();
     }
 
     @FXML
-    public void switchToAddWordAP() {
+    public void switchToAddWordAP(TranslateTransition transition) {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(addWordAP);
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.15), switchAP);
+        transition1.setFromX(1200);
+        transition1.setToX(0);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition);
+        parallelTransition.play();
     }
 
     @FXML
-    public void switchToInfoAP() {
+    public void switchToInfoAP(TranslateTransition transition) {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(infoAP);
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.15), switchAP);
+        transition1.setFromX(1200);
+        transition1.setToX(0);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition);
+        parallelTransition.play();
     }
 
     @FXML
-    public void switchToSettingAP() {
+    public void switchToSettingAP(TranslateTransition transition) {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(settingAP);
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.15), switchAP);
+        transition1.setFromX(1200);
+        transition1.setToX(0);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition);
+        parallelTransition.play();
     }
 
     @FXML
-    public void switchToGameAP() {
+    public void switchToGameAP(TranslateTransition transition) {
         switchAP.getChildren().clear();
         switchAP.getChildren().add(gameAP);
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.15), switchAP);
+        transition1.setFromX(1200);
+        transition1.setToX(0);
+        ParallelTransition parallelTransition = new ParallelTransition(transition1, transition);
+        parallelTransition.play();
     }
 
     @FXML

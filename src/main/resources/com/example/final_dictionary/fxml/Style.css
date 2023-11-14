@@ -510,3 +510,7 @@
     -fx-font-weight: bold;
     -fx-cursor: hand;
 }
+
+.stageColor {
+    -fx-background-radius: lightblue;
+}
