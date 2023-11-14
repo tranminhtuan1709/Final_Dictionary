@@ -127,8 +127,6 @@ public class HomeController implements Initializable {
     private Button discardChangeButton;
 
 
-
-
     private final DataLite d = new DataLite();
 
     public AtomicReference<String> currentWord = new AtomicReference<>("");
