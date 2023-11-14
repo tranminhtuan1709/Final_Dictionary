@@ -301,6 +301,11 @@ public class ChallengingController implements Initializable {
                                 throw new RuntimeException(e);
                             }
                         } else {
+                            try {
+                                d.addMultipleChoicePoint(score_player);
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
                             next.setText("End");
                             System.out.println("Maximum attempts reached. End of quiz.");
                         }

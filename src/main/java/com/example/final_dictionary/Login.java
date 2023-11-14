@@ -29,8 +29,6 @@ import java.util.regex.Pattern;
 public class Login implements Initializable {
 
     @FXML
-    public Button leak;
-    @FXML
     public PasswordField su_pass;
     @FXML
     public Button signUpButton;
@@ -60,18 +58,17 @@ public class Login implements Initializable {
     private AnchorPane login_form;
 
     private final DataLite dataLite = new DataLite();
-    public static String userName;
 
     public Login() throws SQLException {
     }
 
-    public void login() throws SQLException {
+    public void login() {
         //connect = connectDB();
         try {
             String user = username.getText();
             String pass = password.getText();
             if (dataLite.checkLogin(user, pass)) {
-                userName = user;
+                dataLite.setActiveAccount(user, pass);
                 //Show the dictionary after successful login
                 //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 loginButton.getScene().getWindow().hide();
@@ -97,11 +94,11 @@ public class Login implements Initializable {
                 stage.show();
 
             } else {
-                javax.swing.JOptionPane.showMessageDialog(null, "Wrong Username of Password. Please try again!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(null, "Wrong Username of Password.\n Please try again or sign up!", "System Alert", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (Exception event) {
-            event.printStackTrace(new PrintStream(System.out));
+            event.printStackTrace(new PrintStream(System.err));
         }
     }
 
@@ -116,7 +113,6 @@ public class Login implements Initializable {
                         String user = username.getText();
                         String pass = password.getText();
                         if (dataLite.checkLogin(user, pass)) {
-                            userName = user;
                             //Show the dictionary after successful login
                             //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             loginButton.getScene().getWindow().hide();
@@ -146,7 +142,7 @@ public class Login implements Initializable {
                         }
 
                     } catch (Exception ev) {
-                        ev.printStackTrace(new PrintStream(System.out));
+                        ev.printStackTrace(new PrintStream(System.err));
                     }
                 }
             }
@@ -159,7 +155,6 @@ public class Login implements Initializable {
                         String user = username.getText();
                         String pass = password.getText();
                         if (dataLite.checkLogin(user, pass)) {
-                            userName = user;
                             //Show the dictionary after successful login
                             //javax.swing.JOptionPane.showMessageDialog(null, "Login Successfully!", "System Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             loginButton.getScene().getWindow().hide();
@@ -189,7 +184,7 @@ public class Login implements Initializable {
                         }
 
                     } catch (Exception ev) {
-                        ev.printStackTrace(new PrintStream(System.out));
+                        ev.printStackTrace(new PrintStream(System.err));
                     }
                 }
             }
@@ -214,7 +209,7 @@ public class Login implements Initializable {
             String pass = su_pass.getText();
             String email = su_email.getText();
             if(patternMatches(email)) {
-                if(dataLite.isExistAccount(email, user, pass)) {
+                if(dataLite.isExistAccount(user)) {
                     javax.swing.JOptionPane.showMessageDialog(null, "Account is exist!", "System Alert", JOptionPane.ERROR_MESSAGE);
                 } else {
                     dataLite.signUp(user, pass, email);
@@ -227,7 +222,7 @@ public class Login implements Initializable {
             login_form.setVisible(true);
 
         } catch (Exception event) {
-            event.printStackTrace(new PrintStream(System.out));
+            event.printStackTrace(new PrintStream(System.err));
         }
     }
 
@@ -242,38 +237,21 @@ public class Login implements Initializable {
             login_form.setVisible(true);
         }
     }
-
-    @FXML
-    public void quickStart() {
-        leak.setOnMouseClicked(mouseEvent -> {
+    private void addShutdownHook() {
+        Thread shutdownThread = new Thread(() -> {
             try {
-                userName = "guest";
-                loginButton.getScene().getWindow().hide();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-
-                Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/logo.png")).toString());
-                stage.getIcons().add(icon);
-
-                stage.setTitle("English - Vietnamese Learner's Dictionary");
-
-                Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-                stage.setX((screen.getWidth() - 1200) / 2);
-                stage.setY((screen.getHeight() - 700) / 2);
-
-                stage.setResizable(false);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                dataLite.resetActiveAccount();
+            } catch (Exception e) {
+                e.printStackTrace(new PrintStream(System.err));
             }
         });
+
+        Runtime.getRuntime().addShutdownHook(shutdownThread);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        quickStart();
+        addShutdownHook();
     }
 }

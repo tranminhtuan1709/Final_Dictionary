@@ -218,6 +218,7 @@ public class MatchingController implements Initializable {
         transition.play();
         stopTimer();
         completionTime.setText(remainingTime.getText());
+        d.addMatchingTime(elapsedSeconds);
     }
 
     @FXML

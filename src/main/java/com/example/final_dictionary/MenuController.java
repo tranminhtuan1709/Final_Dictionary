@@ -1,5 +1,6 @@
 package com.example.final_dictionary;
 
+import Database.DataLite;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -24,6 +25,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -75,12 +77,18 @@ public class MenuController implements Initializable {
     @FXML
     private Rectangle section7;
 
+    private final DataLite d = new DataLite();
+
+    public MenuController() throws SQLException {
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            usernameButton.setText(Login.userName);
-            usernameButton2.setText(Login.userName);
-            welcome.setText("Welcome " + Login.userName + "!");
+            String userName = d.getUsername();
+            usernameButton.setText(userName);
+            usernameButton2.setText(userName);
+            welcome.setText("Welcome " + userName + "!");
             loadAP();
             switchAP.getChildren().add(homeAP);
             switchAP.toFront();
@@ -206,6 +214,8 @@ public class MenuController implements Initializable {
                 section7.setVisible(false);
             });
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -371,6 +381,7 @@ public class MenuController implements Initializable {
     @FXML
     public void handleSignOutButton() {
         try {
+            d.resetActiveAccount();
             signOutButton.getScene().getWindow().hide();
             Parent borderPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Login.fxml")));
             Stage stage = new Stage();

@@ -19,6 +19,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,8 +27,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SavedItemController implements Initializable {
-
-    private EventBus eventBus = new EventBus();
 
     @FXML
     private Label detailLabel;
@@ -118,14 +117,15 @@ public class SavedItemController implements Initializable {
                 d.deleteFavorite(wordLabel.getText());
                 //delete file .txt
                 try {
-                    File file = new File("src/main/Note/" + Login.userName + "_" + wordLabel.getText() + ".txt");
+                    String userName = d.getUsername();
+                    File file = new File("src/main/Note/" + userName + "_" + wordLabel.getText() + ".txt");
                     if (file.delete()) {
                         //System.out.println(file.getName() + " is deleted!");
                     } else {
                         System.out.println("Delete operation is failed.");
                     }
                 } catch (Exception ee) {
-                    ee.printStackTrace();
+                    ee.printStackTrace(new PrintStream(System.err));
                 }
             }
         } catch (SQLException ev) {

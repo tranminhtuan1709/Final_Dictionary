@@ -46,7 +46,7 @@ public class ChangePasswordController implements Initializable {
     @FXML
     public void checkPass() throws SQLException {
         notificationText.setStyle("-fx-text-fill: red");
-        String user = Login.userName;
+        String user = dataLite.getUsername();
         if (currentPass.getText().isEmpty()) {
             notificationText.setText("Current password field is empty!");
         } else if (newPass.getText().isEmpty()) {

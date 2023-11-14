@@ -16,7 +16,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 import javafx.event.ActionEvent;
@@ -24,6 +23,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,8 +31,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SaveController implements Initializable {
-
-    private EventBus eventBus = new EventBus();
 
     @FXML
     private TextField searchSaveWordBar;
@@ -62,7 +60,7 @@ public class SaveController implements Initializable {
     @FXML
     private ImageView image;
 
-    private DataLite d = new DataLite();
+    private final DataLite d = new DataLite();
 
     public SaveController() throws SQLException {
     }
@@ -86,10 +84,10 @@ public class SaveController implements Initializable {
                 for (int i = 0; i < nodes.length; i++) {
                     try {
                         SavedItemController.index = i;
-                        nodes[i] = FXMLLoader.load(SaveController.class.getResource("fxml/Item.fxml"));
+                        nodes[i] = FXMLLoader.load(Objects.requireNonNull(SaveController.class.getResource("fxml/Item.fxml")));
                         savedWordsContainer.getChildren().add(nodes[i]);
                     } catch (IOException ev) {
-                        ev.printStackTrace();
+                        ev.printStackTrace(new PrintStream(System.err));
                     }
                 }
             } else {
@@ -104,26 +102,25 @@ public class SaveController implements Initializable {
 
     public void loadListSuggestSavedWords(ArrayList<String> suggestList) {
         SavedItemController.option = 1;
-        ArrayList<String> list = suggestList;
         wordCount.setText(0 + " word");
-        if (!list.isEmpty()) {
-            if (list.size() == 1)
+        if (!suggestList.isEmpty()) {
+            if (suggestList.size() == 1)
                 wordCount.setText("1 word");
-            else wordCount.setText(list.size() + " words");
+            else wordCount.setText(suggestList.size() + " words");
             SavedList.setVisible(true);
             image.setVisible(false);
             nothingLabel.setVisible(false);
             savedWordsContainer.getChildren().clear();
             savedWordsContainer.setSpacing(10);
-            Node[] nodes = new Node[list.size()];
+            Node[] nodes = new Node[suggestList.size()];
 
             for (int i = 0; i < nodes.length; i++) {
                 try {
                     SavedItemController.index = i;
-                    nodes[i] = FXMLLoader.load(SaveController.class.getResource("fxml/Item.fxml"));
+                    nodes[i] = FXMLLoader.load(Objects.requireNonNull(SaveController.class.getResource("fxml/Item.fxml")));
                     savedWordsContainer.getChildren().add(nodes[i]);
                 } catch (IOException ev) {
-                    ev.printStackTrace();
+                    ev.printStackTrace(new PrintStream(System.err));
                 }
             }
         } else {
@@ -198,7 +195,7 @@ public class SaveController implements Initializable {
             savedWordsContainer.getChildren().clear();
             String in1 = searchSaveWordBar.getText();
             SavedItemController.input = in1;
-            ArrayList<String> list1 = null;
+            ArrayList<String> list1;
             try {
                 list1 = d.suggestWordsFa(in1);
             } catch (SQLException e) {

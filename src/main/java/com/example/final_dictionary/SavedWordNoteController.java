@@ -1,5 +1,6 @@
 package com.example.final_dictionary;
 
+import Database.DataLite;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,12 +26,20 @@ public class SavedWordNoteController implements Initializable {
     public static String word;
 
 
+    private final DataLite d = new DataLite();
 
+    public SavedWordNoteController() throws SQLException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String filePath = "src/main/Note/" + Login.userName + "_" + word + ".txt";
-        String text = "";
+        String filePath;
+        try {
+            filePath = "src/main/Note/" + d.getUsername() + "_" + word + ".txt";
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        StringBuilder text = new StringBuilder();
         try {
             FileReader reader = new FileReader(filePath);
             if (reader.ready()) {
@@ -39,14 +48,14 @@ public class SavedWordNoteController implements Initializable {
                 String line;
 
                 while ((line = bufferedReader.readLine()) != null) {
-                    text = text + line + "\n";
+                    text.append(line).append("\n");
                 }
             }
             reader.close();
 
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
-        noteArea.setText(text);
+        noteArea.setText(text.toString());
 
         discardButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             discardButton.getScene().getWindow().hide();
@@ -57,7 +66,7 @@ public class SavedWordNoteController implements Initializable {
                 String content = noteArea.getText();
                 writer.write(content);
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(new PrintStream(System.err));
             }
             saveButton.getScene().getWindow().hide();
         }));

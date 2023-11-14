@@ -18,7 +18,8 @@ public class DataLite {
         config.setMaximumPoolSize(20);
         dataSource = new HikariDataSource(config);
     }
-    
+
+
     /*
     ********************************************************************************************************************
      author: anh tuan
@@ -108,20 +109,6 @@ public class DataLite {
         return null;
     }
 
-    public String searchIPAbyID(int num) throws SQLException {
-        String sql = "SELECT * FROM av WHERE id = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, String.valueOf(num));
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getString("pronounce");
-                }
-            }
-        }
-        return null;
-    }
-
     /*
      ********************************************************************************************************************
      *Add Word, DeleteWord, Update Word
@@ -134,11 +121,6 @@ public class DataLite {
             ResultSet rs = ps.executeQuery();
             return rs.next() && rs.getInt(1) > 0;
         }
-    }
-    public String convertToHTML(String addWord, String addPronounce, String addDescription) {
-        return "<h1 style= \"color:#951D05; font-family : Segoe UI\">" + addWord + "</h1>" +
-                "<h3><i>/" + addPronounce + "/</i></h3>" +
-                "<h2>" + addDescription + "</h2>";
     }
 
     public void addWord(String word, String pos, String breIpa, String meaning) throws SQLException {
@@ -198,17 +180,46 @@ public class DataLite {
             }
         }
     }
+
+    public void setActiveAccount(String username, String password) throws SQLException {
+        String sql = "UPDATE account SET active = 1 WHERE username = ? AND password = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.executeUpdate();
+        }
+    }
+
+    public void resetActiveAccount() {
+        String sql = "UPDATE account SET active = 0 WHERE active = 1";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getUsername() throws SQLException {
+        String sql = "SELECT username FROM account WHERE active = 1";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            return ps.executeQuery().getString("username");
+        }
+    }
+
     /*
      ********************************************************************************************************************
      *SignUp
      */
-    public boolean isExistAccount(String email,String username, String password) {
-        String sql = "SELECT COUNT(*) FROM account WHERE email = ? AND username = ? AND password = ?";
+    public boolean isExistAccount(String username) {
+        String sql = "SELECT COUNT(*) FROM account WHERE username = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, email);
-            ps.setString(2, username);
-            ps.setString(3, password);
+
+            ps.setString(1, username);
+
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -302,32 +313,24 @@ public class DataLite {
      *Favorite Word
      */
     public boolean isExistFavorite(String word) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM avfavorite WHERE word = ?";
+        String username = getUsername();
+        String sql = "SELECT COUNT(*) FROM avfavorite WHERE word = ? AND username = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word.toLowerCase());
+            ps.setString(2, username);
             ResultSet rs = ps.executeQuery();
             return rs.next() && rs.getInt(1) > 0;
         }
     }
 
-//    public void addFavorite(String word) throws SQLException {
-//        String sql = "INSERT INTO avFavorite(word_id, account_id, word, html, description, pronounce)\n" +
-//                "SELECT id, active_id, word, html, description, pronounce\n" +
-//                "FROM av, activeAccount\n" +
-//                "WHERE word = ?";
-//        try (Connection connection = dataSource.getConnection();
-//             PreparedStatement ps = connection.prepareStatement(sql)) {
-//            ps.setString(1, word);
-//            ps.executeUpdate();
-//        }
-//    }
-
     public void addFavorite(String word) throws SQLException {
-        String sql = "INSERT INTO avfavorite(word, html, description, pronounce) SELECT word, html, description, pronounce FROM av WHERE word=?";
+        String username = getUsername();
+        String sql = "INSERT INTO avfavorite(word, html, description, pronounce, username) SELECT word, html, description, pronounce, ? FROM av WHERE word=?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, word);
+            ps.setString(1, username);
+            ps.setString(2, word);
             ps.executeUpdate();
         }
     }
@@ -338,33 +341,23 @@ public class DataLite {
      * @throws SQLException SQL Exception
      */
     public void deleteFavorite(String word) throws SQLException {
-        String sql = "DELETE FROM avfavorite WHERE word=?";
+        String username = getUsername();
+        String sql = "DELETE FROM avfavorite WHERE word=? and username=?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
+            ps.setString(2, username);
             ps.executeUpdate();
         }
     }
 
-    public String searchWordFa(String s) throws SQLException {
-        String sql = "SELECT * FROM avfavorite WHERE word = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, s.toLowerCase());
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getString("html");
-                }
-            }
-        }
-        return null;
-    }
-
     public ArrayList<String> getFavorite() throws SQLException {
-        String querySql = "SELECT word FROM avfavorite group by word";
+        String username = getUsername();
+        String querySql = "SELECT word FROM avfavorite where username = ? group by word";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(querySql);
-             ResultSet resultSet = ps.executeQuery()) {
+             PreparedStatement ps = connection.prepareStatement(querySql)) {
+                ps.setString(1, username);
+                ResultSet resultSet = ps.executeQuery();
             ArrayList<String> list = new ArrayList<>();
             while (resultSet.next()) {
                 list.add(resultSet.getString("word"));
@@ -374,10 +367,12 @@ public class DataLite {
     }
 
     public ArrayList<String> getFavoritePOS() throws SQLException {
-        String querySql = "SELECT pronounce FROM avfavorite group by word";
+        String username = getUsername();
+        String querySql = "SELECT pronounce FROM avfavorite where username = ? group by word";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(querySql);
-             ResultSet resultSet = ps.executeQuery()) {
+             PreparedStatement ps = connection.prepareStatement(querySql)) {
+            ps.setString(1, username);
+             ResultSet resultSet = ps.executeQuery();
             ArrayList<String> list = new ArrayList<>();
             while (resultSet.next()) {
                 list.add(resultSet.getString("pronounce"));
@@ -387,10 +382,12 @@ public class DataLite {
     }
 
     public ArrayList<String> getFavoriteDetail() throws SQLException {
-        String querySql = "SELECT description FROM avfavorite group by word";
+        String username = getUsername();
+        String querySql = "SELECT description FROM avfavorite where username = ? group by word";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(querySql);
-             ResultSet resultSet = ps.executeQuery()) {
+             PreparedStatement ps = connection.prepareStatement(querySql)) {
+            ps.setString(1, username);
+             ResultSet resultSet = ps.executeQuery();
             ArrayList<String> list = new ArrayList<>();
             while (resultSet.next()) {
                 list.add(resultSet.getString("description"));
@@ -400,12 +397,14 @@ public class DataLite {
     }
 
     public ArrayList<String> suggestWordsFa(String input) throws SQLException {
+        String username = getUsername();
         input = input.toLowerCase();
-        String sql = "SELECT word FROM avfavorite WHERE word LIKE ?";
+        String sql = "SELECT word FROM avfavorite WHERE word LIKE ? AND username = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, input + "%");
+            ps.setString(2, username);
             try (ResultSet rs = ps.executeQuery()) {
                 ArrayList<String> wordList = new ArrayList<>();
                 while (rs.next()) {
@@ -417,12 +416,14 @@ public class DataLite {
     }
 
     public ArrayList<String> suggestPronounceFa(String input) throws SQLException {
+        String username = getUsername();
         input = input.toLowerCase();
-        String sql = "SELECT pronounce FROM avfavorite WHERE word LIKE ?";
+        String sql = "SELECT pronounce FROM avfavorite WHERE word LIKE ? AND username = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, input + "%");
+            ps.setString(2, username);
             try (ResultSet rs = ps.executeQuery()) {
                 ArrayList<String> wordList = new ArrayList<>();
                 while (rs.next()) {
@@ -434,12 +435,14 @@ public class DataLite {
     }
 
     public ArrayList<String> suggestDetailFa(String input) throws SQLException {
+        String username = getUsername();
         input = input.toLowerCase();
-        String sql = "SELECT description FROM avfavorite WHERE word LIKE ?";
+        String sql = "SELECT description FROM avfavorite WHERE word LIKE ? AND username = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, input + "%");
+            ps.setString(2, username);
             try (ResultSet rs = ps.executeQuery()) {
                 ArrayList<String> wordList = new ArrayList<>();
                 while (rs.next()) {
@@ -450,14 +453,6 @@ public class DataLite {
         }
     }
 
-    public ArrayList<String> deleteAllFavorite() throws SQLException {
-        String deleteSql = "DELETE FROM avfavorite where true";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(deleteSql)) {
-            ps.executeUpdate();
-            return new ArrayList<>();
-        }
-    }
     /*
      ********************************************************************************************************************
      *History Word
@@ -495,31 +490,6 @@ public class DataLite {
      ********************************************************************************************************************
      *Learning
      */
-
-    public void insertActiveAccount(String username, String password) throws SQLException {
-        deleteActiveAccount();
-        String sql = "INSERT INTO activeAccount(active_id, username, password, email)\n" +
-                "SELECT id, username, password, email\n" +
-                "FROM account\n" +
-                "WHERE username = ? AND password = ?;";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, username);
-            ps.setString(2, password);
-//            try (ResultSet rs = ps.executeQuery()) {
-//
-//            }
-            ps.executeUpdate();
-        }
-    }
-
-    public void deleteActiveAccount() throws SQLException {
-        String sql = "DELETE FROM activeAccount";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.executeUpdate();
-        }
-    }
     /*
         ********************************************************************************************************************
         * Flashcard
@@ -629,5 +599,28 @@ public class DataLite {
             }
         }
         return null;
+    }
+    /*
+    ********************************************************************************************************************
+    * Score
+     */
+    public void addMultipleChoicePoint(int point) throws SQLException {
+        String sql = "UPDATE account SET multipleChoicePoint = ? WHERE active = 1";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, point);
+            ps.executeUpdate();
+        }
+    }
+
+    public void addMatchingTime(int time) {
+        String sql = "UPDATE account SET matchingTime = ? WHERE active = 1";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, time);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
