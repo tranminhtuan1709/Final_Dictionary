@@ -1,6 +1,8 @@
 package com.example.final_dictionary;
 
 import Speech.TextToSpeechOnline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,8 +36,37 @@ public class TranslateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setUp();
+        // multi-threading
+        inputfieldtranslate.textProperty().addListener((observable, oldValue, newValue) -> {
+            translateText();
+        });
     }
+    // multi-threading
+    private void translateText() {
+        Task<String> task = new Task<String>() {
+            @Override
+            protected String call() throws Exception {
+                String input = inputfieldtranslate.getText();
+                String from = translate.getValue();
+                String to = meaning.getValue();
+                String res;
+                if (from.equals(to)) {
+                    res = input;
+                } else if ("   English".equals(from) && "   Vietnamese".equals(to)) {
+                    res = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "");
+                } else {
+                    res = GoogleAPI.translateViToEn(input).trim().replace("[", "").replace("]", "");
+                }
+                return res;
+            }
+        };
 
+        task.setOnSucceeded(event -> {
+            Platform.runLater(() -> showmeaning.setText(task.getValue()));
+        });
+
+        new Thread(task).start();
+    }
     @FXML
     private void setUp() {
         translate.setValue("   English");
