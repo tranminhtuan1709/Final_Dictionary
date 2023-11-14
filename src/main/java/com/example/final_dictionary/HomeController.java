@@ -123,6 +123,9 @@ public class HomeController implements Initializable {
     @FXML
     private AnchorPane homeAP;
 
+    @FXML
+    private Button discardChangeButton;
+
 
 
 
@@ -374,6 +377,8 @@ public class HomeController implements Initializable {
             htmlTextEditor.setVisible(true);
             editButton.setVisible(false);
             saveEditButton.setVisible(true);
+            discardChangeButton.setVisible(true);
+            discardChangeButton.setDisable(false);
             corrector.setVisible(true);
             trashButton.setVisible(false);
         });
@@ -463,6 +468,19 @@ public class HomeController implements Initializable {
             htmlTextEditor.setVisible(false);
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
+            discardChangeButton.setVisible(false);
+            corrector.setVisible(false);
+            trashButton.setVisible(true);
+        });
+
+        discardChangeButton.setOnAction(actionEvent -> {
+            for (Node i : homeAP.getChildren()) {
+                i.setDisable(false);
+            }
+            htmlTextEditor.setVisible(false);
+            editButton.setVisible(true);
+            saveEditButton.setVisible(false);
+            discardChangeButton.setVisible(false);
             corrector.setVisible(false);
             trashButton.setVisible(true);
         });
