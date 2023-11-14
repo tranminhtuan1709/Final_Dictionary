@@ -88,8 +88,8 @@ public class FlashcardController implements Initializable {
                         throw new RuntimeException(e);
                     }
                     transition1.setFromX(0);
-                    transition1.setToX(-1050);
-                    transition2.setFromX(1050);
+                    transition1.setToX(1050);
+                    transition2.setFromX(-1050);
                     transition2.setToX(0);
                     ParallelTransition parallelTransition = new ParallelTransition(transition1, transition2);
                     parallelTransition.play();
@@ -106,10 +106,10 @@ public class FlashcardController implements Initializable {
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    transition1.setFromX(1050);
+                    transition1.setFromX(-1050);
                     transition1.setToX(0);
                     transition2.setFromX(0);
-                    transition2.setToX(-1050);
+                    transition2.setToX(1050);
                     ParallelTransition parallelTransition = new ParallelTransition(transition1, transition2);
                     parallelTransition.play();
                     parallelTransition.setOnFinished(actionEvent1 -> {
@@ -136,8 +136,8 @@ public class FlashcardController implements Initializable {
                         throw new RuntimeException(e);
                     }
                     transition1.setFromX(0);
-                    transition1.setToX(1050);
-                    transition2.setFromX(-1050);
+                    transition1.setToX(-1050);
+                    transition2.setFromX(1050);
                     transition2.setToX(0);
                     ParallelTransition parallelTransition = new ParallelTransition(transition1, transition2);
                     parallelTransition.play();
@@ -154,10 +154,10 @@ public class FlashcardController implements Initializable {
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    transition1.setFromX(-1050);
+                    transition1.setFromX(1050);
                     transition1.setToX(0);
                     transition2.setFromX(0);
-                    transition2.setToX(1050);
+                    transition2.setToX(-1050);
                     ParallelTransition parallelTransition = new ParallelTransition(transition1, transition2);
                     parallelTransition.play();
                     parallelTransition.setOnFinished(actionEvent1 -> {
