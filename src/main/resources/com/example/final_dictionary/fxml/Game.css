@@ -109,3 +109,8 @@
     -fx-cursor: hand;
     -fx-font-size: 14;
 }
+
+.gameTitle {
+    -fx-font-family: 'DEBUG FREE TRIAL';
+    -fx-font-size: 80;
+}

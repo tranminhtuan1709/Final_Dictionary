@@ -1,6 +1,8 @@
 package com.example.final_dictionary;
 
+import Database.DataLite;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -9,12 +11,19 @@ import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 
+
+
 public class Main extends Application {
+    public Main() throws SQLException {
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/splashScreen.fxml")));
@@ -26,7 +35,12 @@ public class Main extends Application {
 
         stage.setX((screen.getWidth() - 637) / 2);//637
         stage.setY((screen.getHeight() - 360) / 2);
-
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                d.resetActiveAccount();
+            }
+        });
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
@@ -35,4 +49,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    private final DataLite d = new DataLite();
 }

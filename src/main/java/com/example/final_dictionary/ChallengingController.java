@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -85,6 +86,7 @@ public class ChallengingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Font.loadFont(getClass().getResourceAsStream("image/DEBUG FREE TRIAL.ttf"), 18);
         for (Node i : root.getChildren()) {
             if (i.getId() == null || !i.getId().equals("startAnchorpane")) {
                 i.setVisible(false);
@@ -93,15 +95,20 @@ public class ChallengingController implements Initializable {
         }
         startAnchorpane.setDisable(false);
         startAnchorpane.setVisible(true);
+        startAnchorpane.toFront();
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 for (Node i : root.getChildren()) {
-                    i.setVisible(true);
-                    i.setDisable(false);
+                    if (i.getId() == null || !i.getId().equals("resultAP")) {
+                        i.setVisible(true);
+                        i.setDisable(false);
+                    }
                 }
+                resultAP.setDisable(false);
                 startAnchorpane.setDisable(true);
                 startAnchorpane.setVisible(false);
+                startAnchorpane.toBack();
                 if (timeline != null) {
                     timeline.stop();
                 }

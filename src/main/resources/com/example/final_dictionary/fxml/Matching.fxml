@@ -6,6 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -13,12 +16,50 @@
    <children>
       <AnchorPane fx:id="startAnchorpane" disable="true" layoutY="50.0" prefHeight="650.0" prefWidth="1200.0" visible="false">
          <children>
-            <Label alignment="CENTER" layoutX="100.0" layoutY="200.0" prefHeight="50.0" prefWidth="1000.0" text="Bạn đã sẵn sàng?" textAlignment="CENTER" wrapText="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="650.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0">
+               <fill>
+                  <RadialGradient centerX="0.6017699199440205" centerY="0.5" focusAngle="-45.0" focusDistance="0.6055047971392988" radius="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.11999999731779099" green="1.0" blue="0.3400000035762787" opacity="0.8976595997810364" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006729475100942127">
+                           <color>
+                              <Color red="1.0" green="0.11999999731779099" blue="0.9274111390113831" opacity="0.8999999761581421" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.11999999731779099" green="1.0" blue="0.941109836101532" opacity="0.8799999952316284" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Button fx:id="start" layoutX="539.0" layoutY="530.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" styleClass="launchButton" stylesheets="@Game.css" text="Start">
                <font>
-                  <Font name="Segoe UI" size="18.0" />
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="400.0" layoutY="70.0" prefHeight="100.0" prefWidth="400.0" styleClass="gameTitle" stylesheets="@Game.css" text="Matching" />
+            <ImageView fitHeight="265.0" fitWidth="289.0" layoutX="170.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/matching.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="500.0" layoutY="259.0" lineSpacing="2.0" prefHeight="90.0" prefWidth="500.0" text="Ten words and their definitions will be shown in 20 boxes randomly. " textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="start" layoutX="550.0" layoutY="400.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="launchButton" stylesheets="@Game.css" text="Start" />
+            <Label layoutX="500.0" layoutY="324.0" lineSpacing="2.0" prefHeight="68.0" prefWidth="500.0" styleClass="gameDescription" stylesheets="@Game.css" text="Try to match all the terms with their definitions as quickly as possible. Avoid incorrect matches. They add extra time!" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#42ffa1b5" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />

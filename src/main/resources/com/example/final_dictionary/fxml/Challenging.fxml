@@ -5,6 +5,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -12,16 +15,60 @@
    <children>
       <AnchorPane fx:id="startAnchorpane" disable="true" layoutY="50.0" prefHeight="650.0" prefWidth="1200.0" visible="false">
          <children>
-            <Label layoutX="500.0" layoutY="300.0" prefHeight="40.0" prefWidth="200.0" text="Start nhanh mọe lên">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="start" layoutX="500.0" layoutY="400.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="launchButton" stylesheets="@Game.css" text="Start">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="650.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0">
+               <fill>
+                  <RadialGradient centerX="0.6017699199440205" centerY="0.5" focusAngle="-45.0" focusDistance="0.6055047971392988" radius="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.11999999731779099" green="1.0" blue="0.3400000035762787" opacity="0.8976595997810364" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006729475100942127">
+                           <color>
+                              <Color red="0.11999999731779099" green="1.0" blue="0.3400000035762787" opacity="0.8976595997810364" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.11999999731779099" green="0.7360000014305115" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Button fx:id="start" layoutX="539.0" layoutY="530.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" styleClass="launchButton" stylesheets="@Game.css" text="Start">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Button>
+            <Label alignment="CENTER" layoutX="400.0" layoutY="70.0" prefHeight="100.0" prefWidth="400.0" styleClass="gameTitle" stylesheets="@Game.css" text="Challeging" />
+            <ImageView fitHeight="265.0" fitWidth="289.0" layoutX="170.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/challengePic.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="500.0" layoutY="199.0" lineSpacing="2.0" prefHeight="90.0" prefWidth="500.0" text="You will have a set of 20 questions with given Vietnamese meaning and 5 seconds to choose the most suitable English lexis." textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="500.0" layoutY="289.0" lineSpacing="2.0" prefHeight="40.0" prefWidth="500.0" styleClass="gameDescription" stylesheets="@Game.css" text="Every correct answer you will get 10 points." textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="500.0" layoutY="329.0" lineSpacing="2.0" prefHeight="61.0" prefWidth="500.0" styleClass="gameDescription" stylesheets="@Game.css" text="However, be careful as you also lose 5 points for each incorrect choice." textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="500.0" layoutY="389.0" lineSpacing="2.0" prefHeight="46.0" prefWidth="500.0" styleClass="gameDescription" stylesheets="@Game.css" text="Try your best and get the as high score as you can!" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="630.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
