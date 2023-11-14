@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="container" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.MenuController">
+<AnchorPane fx:id="container" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.MenuController">
    <children>
       <Label layoutX="90.0" layoutY="2.0" prefHeight="45.0" prefWidth="454.0" text="English – Vietnamese Learner’s Dictionary">
          <font>
@@ -176,15 +176,6 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Rectangle fx:id="section7" arcHeight="5.0" arcWidth="5.0" fill="#75717138" height="60.0" layoutY="650.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="320.0">
-               <effect>
-                  <DropShadow offsetX="3.0" offsetY="5.0">
-                     <color>
-                        <Color opacity="0.5600000023841858" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Rectangle>
             <Button fx:id="infoButton" alignment="TOP_LEFT" graphicTextGap="30.0" layoutY="650.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Information">
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -197,6 +188,15 @@
                   <Font size="22.0" />
                </font>
             </Button>
+            <Rectangle fx:id="section7" arcHeight="5.0" arcWidth="5.0" fill="#75717138" height="60.0" layoutY="650.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="320.0">
+               <effect>
+                  <DropShadow offsetX="3.0" offsetY="5.0">
+                     <color>
+                        <Color opacity="0.5600000023841858" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Rectangle>
             <Button fx:id="quitMenu" contentDisplay="GRAPHIC_ONLY" graphicTextGap="30.0" layoutX="265.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="34.0" styleClass="menuButton" stylesheets="@Style.css" text="quitMenuButton">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">

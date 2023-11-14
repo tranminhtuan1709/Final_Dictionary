@@ -492,7 +492,6 @@ public class HomeController implements Initializable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            currentWord = null;
             searchBar.clear();
             handleListWord();
             scrollpane.setVisible(false);

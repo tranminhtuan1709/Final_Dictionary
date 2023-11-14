@@ -28,7 +28,7 @@
             <Font name="Segoe UI Bold" size="36.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0b4a97" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0b4a97" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1203.0" />
       <TextField fx:id="searchBar" layoutX="225.0" layoutY="5.0" prefHeight="40.0" prefWidth="684.0" promptText="Search words" styleClass="text-field" stylesheets="@Style.css">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
@@ -68,7 +68,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="unsaveButton" contentDisplay="GRAPHIC_ONLY" layoutX="560.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css" visible="false">
+            <Button fx:id="unsaveButton" contentDisplay="GRAPHIC_ONLY" layoutX="505.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css" visible="false">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -137,7 +137,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <AnchorPane layoutX="923.0" layoutY="343.0" prefHeight="301.0" prefWidth="271.0">
+      <AnchorPane layoutX="923.0" layoutY="73.0" prefHeight="301.0" prefWidth="271.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfece9" height="301.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="271.0" />
             <Label fx:id="dateLabel" alignment="CENTER" layoutX="24.0" layoutY="9.0" prefHeight="24.0" prefWidth="230.0" text="10/11/2023">
@@ -156,7 +156,7 @@
                </font>
             </Label>
             <Button fx:id="seeDetail" layoutX="46.0" layoutY="213.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="186.0" styleClass="seeDetailButton" stylesheets="@Style.css" text="See Detail" />
-            <Label layoutX="5.0" layoutY="280.0" text="English - Vietnamese Learner's Dictionaries Word of the Day" textFill="#5a5858">
+            <Label layoutX="8.0" layoutY="280.0" text="English - Vietnamese Learner's Dictionary Word of the Day" textFill="#5a5858">
                <font>
                   <Font name="Segoe UI Italic" size="10.0" />
                </font>
@@ -175,7 +175,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="923.0" layoutY="73.0" prefHeight="257.0" prefWidth="271.0">
+      <AnchorPane layoutX="923.0" layoutY="383.0" prefHeight="257.0" prefWidth="271.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7dd94bf" height="264.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" visible="false" width="271.0" />
             <Label layoutX="58.0" layoutY="2.0" text="Recently Searched">
@@ -184,7 +184,7 @@
                </font>
             </Label>
             <Line endX="124.6181640625" endY="7.62939453125E-6" layoutX="135.0" layoutY="33.0" startX="-125.85455322265625" startY="7.62939453125E-6" />
-            <ListView fx:id="historyList" layoutX="10.0" layoutY="42.0" prefHeight="209.0" prefWidth="251.0" styleClass="history" stylesheets="@Style.css" />
+            <ListView fx:id="historyList" layoutX="10.0" layoutY="42.0" prefHeight="209.0" prefWidth="259.0" styleClass="history" stylesheets="@Style.css" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="alertPane" disable="true" layoutX="326.0" layoutY="210.0" prefHeight="294.0" prefWidth="545.0" visible="false">

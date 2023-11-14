@@ -96,7 +96,9 @@ public class MenuController implements Initializable {
             section7.setVisible(false);
 
             showMenu.setOnAction(actionEvent -> showMenu());
-            quitMenu.setOnAction(actionEvent -> quitMenu());
+            quitMenu.setOnAction(actionEvent -> {
+                    quitMenu().play();
+            });
             container.setOnMouseClicked(mouseEvent -> {
                 if (!menuAP.isHover() && !menuAP.isDisable()) {
                     quitMenu().play();
@@ -199,8 +201,8 @@ public class MenuController implements Initializable {
                 section2.setVisible(false);
                 section3.setVisible(false);
                 section4.setVisible(false);
-                section5.setVisible(false);
-                section6.setVisible(true);
+                section5.setVisible(true);
+                section6.setVisible(false);
                 section7.setVisible(false);
             });
         } catch (IOException e) {
