@@ -2,7 +2,6 @@ package com.example.final_dictionary;
 
 import Database.DataLite;
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -206,7 +205,7 @@ public class MatchingController implements Initializable {
     }
 
     @FXML
-    public void showNotification() {
+    public void showNotification() throws SQLException {
         for (Node i : root.getChildren()) {
             if (i.getId() == null || !i.getId().equals("notification")) {
                 i.setDisable(true);
@@ -222,7 +221,9 @@ public class MatchingController implements Initializable {
         transition.play();
         stopTimer();
         completionTime.setText(remainingTime.getText());
-        d.addMatchingTime(elapsedSeconds);
+        if(elapsedSeconds > d.getMatchingTime()) {
+            d.addMatchingTime(elapsedSeconds);
+        }
     }
 
     @FXML

@@ -660,6 +660,34 @@ public class DataLite {
     ********************************************************************************************************************
     * Score
      */
+    public Integer getMultipleChoicePoint() throws SQLException {
+        String sql = "SELECT multipleChoicePoint from account where username = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, getUsername());
+            ps.executeUpdate();
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("multipleChoicePoint");
+                }
+            }
+        }
+        return null;
+    }
+    public Integer getMatchingTime() throws SQLException {
+        String sql = "SELECT matchingTime from account where username = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, getUsername());
+            ps.executeUpdate();
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("matchingTime");
+                }
+            }
+        }
+        return null;
+    }
     public void addMultipleChoicePoint(int point) throws SQLException {
         String sql = "UPDATE account SET multipleChoicePoint = ? WHERE active = 1";
         try (Connection connection = dataSource.getConnection();

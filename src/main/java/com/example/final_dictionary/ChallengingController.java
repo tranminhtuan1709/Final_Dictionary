@@ -309,7 +309,9 @@ public class ChallengingController implements Initializable {
                             }
                         } else {
                             try {
-                                d.addMultipleChoicePoint(score_player);
+                                if(score_player > d.getMultipleChoicePoint()) {
+                                    d.addMultipleChoicePoint(score_player);
+                                }
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
