@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -129,6 +130,7 @@ public class MatchingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Font.loadFont(getClass().getResourceAsStream("image/DEBUG FREE TRIAL.ttf"), 18);
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             elapsedSeconds++;
             updateTime();
@@ -144,6 +146,7 @@ public class MatchingController implements Initializable {
         }
         startAnchorpane.setDisable(false);
         startAnchorpane.setVisible(true);
+        startAnchorpane.toFront();
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -155,6 +158,7 @@ public class MatchingController implements Initializable {
                 }
                 startAnchorpane.setDisable(true);
                 startAnchorpane.setVisible(false);
+                startAnchorpane.toBack();
                 startTime();
                 randomBox();
                 yes.setOnAction(new EventHandler<ActionEvent>() {
