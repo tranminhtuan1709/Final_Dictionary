@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="dict_t.db" uuid="a126b316-9c15-4bc4-b3ee-0af34db06344">
+    <data-source source="LOCAL" name="dict_t.db" uuid="700fd899-0ec0-44d2-bd9c-f582a073523c">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/main/java/Database/dict_t.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:F:\Code\Final_Dictionary\src\main\java\Database\dict_t.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

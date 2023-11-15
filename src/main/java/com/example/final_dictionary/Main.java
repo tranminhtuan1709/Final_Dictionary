@@ -33,7 +33,7 @@ public class Main extends Application {
 
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
 
-        stage.setX((screen.getWidth() - 637) / 2);//637
+        stage.setX((screen.getWidth() - 637) / 2);
         stage.setY((screen.getHeight() - 360) / 2);
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

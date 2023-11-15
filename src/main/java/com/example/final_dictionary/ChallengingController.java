@@ -1,10 +1,7 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
-import javafx.animation.KeyFrame;
-import javafx.animation.ParallelTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -27,17 +25,17 @@ import java.util.ResourceBundle;
 
 public class ChallengingController implements Initializable {
     @FXML
-    private AnchorPane questionAP1, questionAP2, resultAP, root, startAnchorpane;
+    private AnchorPane questionAP1, questionAP2, resultAP, root, startAnchorpane, notification;
     @FXML
-    private Button choiceA1, choiceB1, choiceC1, choiceA2, choiceB2, choiceC2, next, start;
+    private Button choiceA1, choiceB1, choiceC1, choiceA2, choiceB2, choiceC2, next, start, quit;
     @FXML
-    private Label word1, word2, resultText, time, score;
+    private Label word1, word2, resultText, time, score, finalScore;
     @FXML
     private ImageView imageView1, imageView2;
     @FXML
     Rectangle rectangle;
     private int attemptCount = 0;
-    private static final int MAX_ATTEMPTS = 20;
+    private static final int MAX_ATTEMPTS = 2;
     private final DataLite d = new DataLite();
     private final ArrayList<String> question = d.getQuestion();
     private int center = 1;
@@ -100,7 +98,7 @@ public class ChallengingController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 for (Node i : root.getChildren()) {
-                    if (i.getId() == null || !i.getId().equals("resultAP")) {
+                    if (i.getId() == null || (!i.getId().equals("resultAP") && !i.getId().equals("notification"))) {
                         i.setVisible(true);
                         i.setDisable(false);
                     }
@@ -128,12 +126,14 @@ public class ChallengingController implements Initializable {
                                 choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
                                 choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                                 resultText.setStyle("-fx-text-fill: #C00000");
                                 resultText.setText("That’s incorrect! - 5pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                                 score_player -= 5;
                                 timeline.stop();
                             }
@@ -156,12 +156,14 @@ public class ChallengingController implements Initializable {
                                 choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
                                 choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                                 resultText.setStyle("-fx-text-fill: #C00000");
                                 resultText.setText("That’s incorrect! - 5pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                                 score_player -= 5;
                                 timeline.stop();
                             }
@@ -185,12 +187,14 @@ public class ChallengingController implements Initializable {
                                 choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
                                 choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                                 resultText.setStyle("-fx-text-fill: #C00000");
                                 resultText.setText("That’s incorrect! - 5pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                                 score_player -= 5;
                                 timeline.stop();
                             }
@@ -213,12 +217,14 @@ public class ChallengingController implements Initializable {
                                 choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
                                 choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                                 resultText.setStyle("-fx-text-fill: #C00000");
                                 resultText.setText("That’s incorrect! - 5pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                                 score_player -= 5;
                                 timeline.stop();
                             }
@@ -241,12 +247,14 @@ public class ChallengingController implements Initializable {
                                 choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
                                 choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                                 resultText.setStyle("-fx-text-fill: #C00000");
                                 resultText.setText("That’s incorrect! - 5pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                                 score_player -= 5;
                                 timeline.stop();
                             }
@@ -269,12 +277,14 @@ public class ChallengingController implements Initializable {
                                 choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
                                 choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                                 resultText.setStyle("-fx-text-fill: #C00000");
                                 resultText.setText("That’s incorrect! - 5pt");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                                 score_player -= 5;
                                 timeline.stop();
                             }
@@ -308,18 +318,24 @@ public class ChallengingController implements Initializable {
                                 throw new RuntimeException(e);
                             }
                         } else {
+                            next.setText("End");
                             try {
-                                if(score_player > d.getMultipleChoicePoint()) {
-                                    d.addMultipleChoicePoint(score_player);
-                                }
+                                d.addMultipleChoicePoint(score_player);
+                                showNotification();
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
-                            next.setText("End");
                             System.out.println("Maximum attempts reached. End of quiz.");
                         }
                     }
                 });
+            }
+        });
+        quit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage stage = (Stage) quit.getScene().getWindow();
+                stage.close();
             }
         });
     }
@@ -434,5 +450,32 @@ public class ChallengingController implements Initializable {
                 choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
             }
         }
+    }
+
+    @FXML
+    public void showNotification() throws SQLException {
+        for (Node i : root.getChildren()) {
+            if (i.getId() == null || !i.getId().equals("notification")) {
+                i.setDisable(true);
+            }
+        }
+        notification.setVisible(true);
+        notification.setDisable(false);
+        ScaleTransition transition = new ScaleTransition(Duration.seconds(0.5), notification);
+        transition.setFromX(0.1);
+        transition.setFromY(0.1);
+        transition.setToX(1);
+        transition.setToY(1);
+        transition.play();
+        finalScore.setText("Your score: " + score_player);
+    }
+
+    @FXML
+    public void quitNotification() {
+        for (Node i : root.getChildren()) {
+            i.setDisable(false);
+        }
+        notification.setDisable(true);
+        notification.setVisible(false);
     }
 }

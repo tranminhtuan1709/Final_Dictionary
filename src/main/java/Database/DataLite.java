@@ -660,11 +660,10 @@ public class DataLite {
     ********************************************************************************************************************
     * Score
      */
-    public Integer getMultipleChoicePoint() throws SQLException {
-        String sql = "SELECT multipleChoicePoint from account where username = ?";
+    public int getMultipleChoicePoint() throws SQLException {
+        String sql = "SELECT multipleChoicePoint from account where active = 1";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, getUsername());
             ps.executeUpdate();
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -672,9 +671,9 @@ public class DataLite {
                 }
             }
         }
-        return null;
+        return 0;
     }
-    public Integer getMatchingTime() throws SQLException {
+    public int getMatchingTime() throws SQLException {
         String sql = "SELECT matchingTime from account where username = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -686,22 +685,24 @@ public class DataLite {
                 }
             }
         }
-        return null;
+        return 0;
     }
     public void addMultipleChoicePoint(int point) throws SQLException {
-        String sql = "UPDATE account SET multipleChoicePoint = ? WHERE active = 1";
+        String sql = "UPDATE account SET multipleChoicePoint = ? WHERE active = 1 AND ? > multipleChoicePoint";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, point);
+            ps.setInt(2, point);
             ps.executeUpdate();
         }
     }
 
     public void addMatchingTime(int time) {
-        String sql = "UPDATE account SET matchingTime = ? WHERE active = 1";
+        String sql = "UPDATE account SET matchingTime = ? WHERE active = 1 AND ? < matchingTime";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, time);
+            ps.setInt(2, time);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

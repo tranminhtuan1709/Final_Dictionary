@@ -92,6 +92,7 @@ public class MatchingController implements Initializable {
             if (remainingLabels == 0) {
                 remainingLabels = 20;
                 showNotification();
+                d.addMatchingTime(elapsedSeconds);
             }
         } else {
             label1.setDisable(false);
@@ -221,9 +222,6 @@ public class MatchingController implements Initializable {
         transition.play();
         stopTimer();
         completionTime.setText(remainingTime.getText());
-        if(elapsedSeconds < d.getMatchingTime()) {
-            d.addMatchingTime(elapsedSeconds);
-        }
     }
 
     @FXML
