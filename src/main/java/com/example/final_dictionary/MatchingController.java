@@ -221,7 +221,7 @@ public class MatchingController implements Initializable {
         transition.play();
         stopTimer();
         completionTime.setText(remainingTime.getText());
-        if(elapsedSeconds > d.getMatchingTime()) {
+        if(elapsedSeconds < d.getMatchingTime()) {
             d.addMatchingTime(elapsedSeconds);
         }
     }
