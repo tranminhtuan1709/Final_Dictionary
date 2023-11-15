@@ -1,5 +1,6 @@
 package Speech;
 
+import com.example.final_dictionary.AutomaticSoundController;
 import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
 
@@ -42,7 +43,12 @@ public class TextToSpeechOnline {
         VoiceProvider tts = new VoiceProvider("4f17198eb22e43a9bf77e5ee3bf2e5a7");
 
         VoiceParameters params = new VoiceParameters(text, Languages.English_UnitedStates);
-        params.setVoice("Mary");
+
+        if(AutomaticSoundController.isMan)
+            params.setVoice("Mike");
+        else
+            params.setVoice("Mary");
+
         params.setCodec(AudioCodec.WAV);
         params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
         params.setBase64(false);
@@ -56,7 +62,12 @@ public class TextToSpeechOnline {
         VoiceProvider tts = new VoiceProvider("4f17198eb22e43a9bf77e5ee3bf2e5a7");
 
         VoiceParameters params = new VoiceParameters(text, Languages.Vietnamese);
-        params.setVoice("Mary");
+
+        if(AutomaticSoundController.isMan)
+            params.setVoice("Mike");
+        else
+            params.setVoice("Mary");
+
         params.setCodec(AudioCodec.WAV);
         params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
         params.setBase64(false);
