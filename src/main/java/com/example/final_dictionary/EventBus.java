@@ -3,9 +3,6 @@ package com.example.final_dictionary;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EventBus {
     /**
      * All the method in subscribers will be call when calling publish method.

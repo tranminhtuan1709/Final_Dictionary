@@ -31,7 +31,4 @@ public class InfoController {
     void tuantran(ActionEvent e) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://github.com/tranminhtuan1709"));
     }
-
-
-
 }
