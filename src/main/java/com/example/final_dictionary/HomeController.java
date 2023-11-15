@@ -256,6 +256,17 @@ public class HomeController implements Initializable {
             }
         });
         listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+
+            for (Node i : homeAP.getChildren()) {
+                i.setDisable(false);
+            }
+            htmlTextEditor.setVisible(false);
+            editButton.setVisible(true);
+            saveEditButton.setVisible(false);
+            discardChangeButton.setVisible(false);
+            corrector.setVisible(false);
+            trashButton.setVisible(true);
+
             String word = listWord.getSelectionModel().getSelectedItem().toString();
 
             handleSearchButton(word);
@@ -265,6 +276,17 @@ public class HomeController implements Initializable {
 
 
         searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
+
+            for (Node i : homeAP.getChildren()) {
+                i.setDisable(false);
+            }
+            htmlTextEditor.setVisible(false);
+            editButton.setVisible(true);
+            saveEditButton.setVisible(false);
+            discardChangeButton.setVisible(false);
+            corrector.setVisible(false);
+            trashButton.setVisible(true);
+
             String word = searchBar.getText();
             currentWord.set(word);
             try {
@@ -279,6 +301,16 @@ public class HomeController implements Initializable {
         }));
 
         searchBar.setOnKeyPressed(event -> {
+            for (Node i : homeAP.getChildren()) {
+                i.setDisable(false);
+            }
+            htmlTextEditor.setVisible(false);
+            editButton.setVisible(true);
+            saveEditButton.setVisible(false);
+            discardChangeButton.setVisible(false);
+            corrector.setVisible(false);
+            trashButton.setVisible(true);
+
             if (event.getCode() == KeyCode.ENTER) {
                 String word = searchBar.getText();
                 currentWord.set(word);
@@ -296,6 +328,17 @@ public class HomeController implements Initializable {
 
         listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = listWord.getSelectionModel().getSelectedItem().toString();
+
+            for (Node i : homeAP.getChildren()) {
+                i.setDisable(false);
+            }
+            htmlTextEditor.setVisible(false);
+            editButton.setVisible(true);
+            saveEditButton.setVisible(false);
+            discardChangeButton.setVisible(false);
+            corrector.setVisible(false);
+            trashButton.setVisible(true);
+
             try {
                 d.addHistory(word);
             } catch (SQLException e) {
@@ -326,6 +369,16 @@ public class HomeController implements Initializable {
 
         seeDetail.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             String word = wordLabel.getText();
+
+            for (Node i : homeAP.getChildren()) {
+                i.setDisable(false);
+            }
+            htmlTextEditor.setVisible(false);
+            editButton.setVisible(true);
+            saveEditButton.setVisible(false);
+            discardChangeButton.setVisible(false);
+            corrector.setVisible(false);
+            trashButton.setVisible(true);
 
             try {
                 d.addHistory(word);

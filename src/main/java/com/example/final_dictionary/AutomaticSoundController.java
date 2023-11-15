@@ -10,12 +10,18 @@ public class AutomaticSoundController implements Initializable {
     @FXML
     private Button man, woman;
 
+    public static boolean isMan = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        man.setStyle("-fx-background-color: green");
+        woman.setStyle("-fx-background-color: transparent");
+
         man.setOnAction(actionEvent -> {
+            isMan = true;
             changeVoiceToMan();
         });
         woman.setOnAction(actionEvent -> {
+            isMan = false;
             changeVoiceToWoman();
         });
     }

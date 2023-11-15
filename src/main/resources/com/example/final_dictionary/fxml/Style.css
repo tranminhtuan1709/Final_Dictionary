@@ -248,28 +248,6 @@
     -fx-font-weight: bold;
 }
 
-/*translate button in online translate section*/
-.translatebutton{
-    -fx-background-color: #FDC600;
-    -fx-background-radius: 40;
-    -fx-border-radius: 40;
-    -fx-border-width: 10;
-    -fx-font-size: 17;
-    -fx-text-fill: #12225B;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-}
-
-.translatebutton:hover{
-    -fx-background-color: #F2BE00;
-    -fx-background-radius: 40;
-    -fx-border-radius: 40;
-    -fx-border-width: 10;
-    -fx-font-size: 17;
-    -fx-text-fill: #12225B;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-}
 
 .deleteusernameButton {
     -fx-background-color: transparent;
