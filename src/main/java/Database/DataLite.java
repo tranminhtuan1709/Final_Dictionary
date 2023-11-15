@@ -571,47 +571,47 @@ public class DataLite {
         return null;
     }
 
-    public void setActiveAccount(String username, String password) {
-        String sql = "UPDATE account SET status = 1 WHERE username = ? AND password = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, username);
-            ps.setString(2, password);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void resetActiveAccount() {
-        String sql = "UPDATE account SET status = 0 WHERE status = 1";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void addMultipleChoicePoint(int point) throws SQLException {
-        String sql = "UPDATE account SET multipleChoicePoint = ? WHERE status = 1";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, point);
-            ps.executeUpdate();
-        }
-    }
-
-    public void addMatchingTime(int time) {
-        String sql = "UPDATE account SET matchingTime = ? WHERE status = 1";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, time);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void setActiveAccount(String username, String password) {
+//        String sql = "UPDATE account SET status = 1 WHERE username = ? AND password = ?";
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ps.setString(1, username);
+//            ps.setString(2, password);
+//            ps.executeUpdate();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public void resetActiveAccount() {
+//        String sql = "UPDATE account SET status = 0 WHERE status = 1";
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ps.executeUpdate();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public void addMultipleChoicePoint(int point) throws SQLException {
+//        String sql = "UPDATE account SET multipleChoicePoint = ? WHERE status = 1";
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ps.setInt(1, point);
+//            ps.executeUpdate();
+//        }
+//    }
+//
+//    public void addMatchingTime(int time) {
+//        String sql = "UPDATE account SET matchingTime = ? WHERE status = 1";
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ps.setInt(1, time);
+//            ps.executeUpdate();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     /*
     ********************************************************************************************************************
