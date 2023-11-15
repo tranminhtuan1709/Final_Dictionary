@@ -13,7 +13,7 @@ module com.mydictionaryfx {
     requires jlayer;
     requires org.jsoup;
     requires java.ocr.api;
-    //requires javafx.autocomplete.field;
+
 
     opens com.example.final_dictionary to javafx.fxml;
     exports com.example.final_dictionary;
