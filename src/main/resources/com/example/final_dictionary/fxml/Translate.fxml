@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.TranslateController">
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.TranslateController">
    <children>
       <Rectangle arcWidth="5.0" fill="#0b4a97" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="30.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
@@ -68,10 +68,17 @@
       </Button>
       <ChoiceBox fx:id="translate" layoutX="50.0" layoutY="188.0" prefHeight="36.0" prefWidth="150.0" stylesheets="@Style.css" />
       <ChoiceBox fx:id="meaning" layoutX="654.0" layoutY="188.0" prefHeight="36.0" prefWidth="150.0" stylesheets="@Style.css" />
-      <Button fx:id="translateButton" layoutX="415.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleTranslateButton" prefHeight="36.0" prefWidth="105.0" styleClass="translatebutton" stylesheets="@Style.css" text="Translate" visible="false">
+      <Button fx:id="translateButton" contentDisplay="GRAPHIC_ONLY" layoutX="478.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleTranslateButton" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css">
          <font>
             <Font name="Segoe UI" size="17.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/imgtotext.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
       <Button contentDisplay="GRAPHIC_ONLY" layoutX="680.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleSoundButton" styleClass="menuIconButton" stylesheets="@Style.css" text="sound">
          <graphic>

@@ -85,6 +85,8 @@ public class DeleteAccountController implements Initializable {
             dataLite.deleteAccount(user, pass, mail);
             notificationText.setText("Your account is deleted successfully!");
             notificationText.setStyle("-fx-text-fill: green");
+            dataLite.deleteFavorite();
+            dataLite.deleteHistory();
             quit();
         }
     }

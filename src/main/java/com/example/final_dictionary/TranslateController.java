@@ -11,9 +11,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import API.GoogleAPI;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.asprise.ocr.Ocr;
+import javafx.stage.FileChooser;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class TranslateController implements Initializable {
 
@@ -46,14 +51,15 @@ public class TranslateController implements Initializable {
         Task<String> task = new Task<String>() {
             @Override
             protected String call() throws Exception {
-                String input = inputfieldtranslate.getText();
+                String input = inputfieldtranslate.getText().replace("\n" , " ");
                 String from = translate.getValue();
                 String to = meaning.getValue();
                 String res;
                 if (from.equals(to)) {
                     res = input;
                 } else if ("   English".equals(from) && "   Vietnamese".equals(to)) {
-                    res = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "");
+                    res = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "")
+;
                 } else {
                     res = GoogleAPI.translateViToEn(input).trim().replace("[", "").replace("]", "");
                 }
@@ -105,24 +111,26 @@ public class TranslateController implements Initializable {
     @FXML
     public void handleTranslateButton() {
         translateButton.setOnMouseClicked(mouseEvent -> {
-            String input = inputfieldtranslate.getText();
-            String from = translate.getValue();
-            String to = meaning.getValue();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Hình ảnh", "*.png", "*.jpg", "*.jpeg"));
 
-            try {
-                String output;
+            File selectedFile = fileChooser.showOpenDialog(null);
 
-                if (from.equals(to)) {
-                    output = input;
-                } else if ("   English".equals(from) && "   Vietnamese".equals(to)) {
-                    output = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "");
-                } else {
-                    output = GoogleAPI.translateViToEn(input).trim().replace("[", "").replace("]", "");
+            if (selectedFile != null) {
+                Ocr ocr = new Ocr();
+                ocr.startEngine("eng", Ocr.SPEED_FASTEST);
+                BufferedImage bufferedImage;
+                try {
+                    bufferedImage = ImageIO.read(selectedFile);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-
-                showmeaning.setText(output);
-            } catch (IOException | URISyntaxException ex) {
-                throw new RuntimeException(ex);
+                String result = ocr.recognize(bufferedImage, Ocr.RECOGNIZE_TYPE_TEXT, Ocr.OUTPUT_FORMAT_PLAINTEXT);
+                result = result.trim().replace("\n", " ");
+                inputfieldtranslate.setText(result);
+                ocr.stopEngine();
+            } else {
+                System.out.println("No image is selected!");
             }
         });
     }
