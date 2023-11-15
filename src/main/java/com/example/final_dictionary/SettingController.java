@@ -14,9 +14,9 @@ import java.util.ResourceBundle;
 
 public class SettingController implements Initializable {
     @FXML
-    private Button automaticSoundButton, themeButton, changePasswordButton, deleteAccountButton;
+    private Button automaticSoundButton, changePasswordButton, deleteAccountButton;
     @FXML
-    private AnchorPane automaticSoundAP, themeAP, changePasswordAP, deleteAccountAP;
+    private AnchorPane automaticSoundAP, changePasswordAP, deleteAccountAP;
     @FXML
     private AnchorPane switchOptionAP;
 
@@ -46,13 +46,6 @@ public class SettingController implements Initializable {
             option3.setVisible(false);
             option4.setVisible(false);
         });
-        themeButton.setOnAction(actionEvent -> {
-            switchToThemeAP();
-            option2.setVisible(true);
-            option1.setVisible(false);
-            option3.setVisible(false);
-            option4.setVisible(false);
-        });
         changePasswordButton.setOnAction(actionEvent -> {
             switchToChangePasswordAP();
             option3.setVisible(true);
@@ -76,12 +69,6 @@ public class SettingController implements Initializable {
     }
 
     @FXML
-    public void switchToThemeAP() {
-        switchOptionAP.getChildren().clear();
-        switchOptionAP.getChildren().add(themeAP);
-    }
-
-    @FXML
     public void switchToChangePasswordAP() {
         switchOptionAP.getChildren().clear();
         switchOptionAP.getChildren().add(changePasswordAP);
@@ -97,9 +84,6 @@ public class SettingController implements Initializable {
     public void loadAP() throws IOException {
         if (automaticSoundAP == null) {
             automaticSoundAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/AutomaticSound.fxml")));
-        }
-        if (themeAP == null) {
-            themeAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Theme.fxml")));
         }
         if (changePasswordAP == null) {
             changePasswordAP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/ChangePassword.fxml")));

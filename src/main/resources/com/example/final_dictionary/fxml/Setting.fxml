@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="settingAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.SettingController">
+<AnchorPane fx:id="settingAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.SettingController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#767171" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
@@ -64,11 +64,6 @@
                   </DropShadow>
                </effect>
             </Rectangle>
-            <Button fx:id="themeButton" alignment="TOP_LEFT" layoutY="235.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="309.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Theme">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Button>
             <Rectangle fx:id="option3" arcHeight="5.0" arcWidth="5.0" fill="#75717138" height="40.0" layoutY="386.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="309.0">
                <effect>
                   <DropShadow offsetX="3.0" offsetY="5.0">
