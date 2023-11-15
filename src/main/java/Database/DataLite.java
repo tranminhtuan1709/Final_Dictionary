@@ -57,7 +57,7 @@ public class DataLite {
     }
 
     public ArrayList<String> getListWord() throws SQLException {
-        String querySql = "SELECT word FROM av limit 58171";
+        String querySql = "SELECT word FROM av limit 58169 ";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
@@ -89,7 +89,7 @@ public class DataLite {
     }
 
     public String searchPOSbyID(int num) throws SQLException {
-        String sql = "SELECT html FROM av WHERE id = ?";
+        String sql = "SELECT html FROM av WHERE id = ? AND fav != ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, String.valueOf(num));
@@ -145,7 +145,7 @@ public class DataLite {
         String sql = "DELETE FROM av WHERE word = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, s.toLowerCase());
+            ps.setString(1, s);
             ps.executeUpdate();
         }
     }
@@ -453,24 +453,36 @@ public class DataLite {
         }
     }
 
+    public void deleteFavorite() throws SQLException {
+        String username = getUsername();
+        String sql = "DELETE FROM avfavorite WHERE username=?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ps.executeUpdate();
+        }
+    }
+
     /*
      ********************************************************************************************************************
      *History Word
      */
     public void addHistory(String word) throws SQLException {
-        String sql = "INSERT INTO avhistory(word) VALUES (?)";
+        String sql = "INSERT INTO avhistory(word, username) VALUES (?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
+            ps.setString(2, getUsername());
             ps.executeUpdate();
         }
     }
 
     public ArrayList<String> getHistory() throws SQLException {
-        String querySql = "SELECT word FROM avhistory order by id desc limit 20";
+        String querySql = "SELECT word FROM avhistory where username = ? order by id desc limit 20";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(querySql);
-             ResultSet resultSet = ps.executeQuery()) {
+             PreparedStatement ps = connection.prepareStatement(querySql)) {
+            ps.setString(1, getUsername());
+             ResultSet resultSet = ps.executeQuery();
             ArrayList<String> list = new ArrayList<>();
             while (resultSet.next()) {
                 list.add(resultSet.getString("word"));
@@ -480,9 +492,10 @@ public class DataLite {
     }
 
     public void deleteHistory() throws SQLException {
-        String deleteSql = "DELETE FROM avhistory where true";
+        String deleteSql = "DELETE FROM avhistory where username = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(deleteSql)) {
+            ps.setString(1, getUsername());
             ps.executeUpdate();
         }
     }
@@ -496,7 +509,7 @@ public class DataLite {
         * 12/11
         */
     public ArrayList<String> getFlashcardFront() throws SQLException {
-        String querySql = "SELECT word FROM av where id in (select id_av from practice)";
+        String querySql = "SELECT word FROM av where id in (select id_av from practice) ";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
