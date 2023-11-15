@@ -74,7 +74,7 @@ public class ChallengingController implements Initializable {
     private void handleTimeout() throws SQLException {
         showCorrectAnswer();
         resultText.setStyle("-fx-text-fill: #C00000");
-        resultText.setText("Time's up!Sorry, you ran out of time. - 5pt");
+        resultText.setText("Time's up! Sorry, you ran out of time. - 5pt");
         score_player -= 5;
         score.setText("Score: " + score_player);
         resultAP.setVisible(true);
@@ -126,7 +126,7 @@ public class ChallengingController implements Initializable {
                                 choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
-                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
@@ -156,7 +156,7 @@ public class ChallengingController implements Initializable {
                                 choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
-                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
@@ -187,7 +187,7 @@ public class ChallengingController implements Initializable {
                                 choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
-                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
@@ -217,7 +217,7 @@ public class ChallengingController implements Initializable {
                                 choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
-                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
@@ -247,7 +247,7 @@ public class ChallengingController implements Initializable {
                                 choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
-                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {
@@ -277,7 +277,7 @@ public class ChallengingController implements Initializable {
                                 choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                                 resultText.setStyle("-fx-text-fill: #385723");
                                 resultText.setText("Well done! + 10pt");
-                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0)");
+                                resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                                 score_player += 10;
                                 timeline.stop();
                             } else {

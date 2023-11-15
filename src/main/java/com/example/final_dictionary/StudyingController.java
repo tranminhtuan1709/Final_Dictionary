@@ -54,10 +54,12 @@ public class StudyingController implements Initializable {
                     choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                 } else {
                     choiceA1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                 }
                 showCorrectAnswer();
                 resultAP.setVisible(true);
@@ -74,10 +76,12 @@ public class StudyingController implements Initializable {
                     choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                 } else {
                     choiceB1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                 }
                 showCorrectAnswer();
                 resultAP.setVisible(true);
@@ -94,10 +98,12 @@ public class StudyingController implements Initializable {
                     choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                 } else {
                     choiceC1.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                 }
                 showCorrectAnswer();
                 resultAP.setVisible(true);
@@ -114,10 +120,12 @@ public class StudyingController implements Initializable {
                     choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                 } else {
                     choiceA2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                 }
                 showCorrectAnswer();
                 resultAP.setVisible(true);
@@ -134,10 +142,12 @@ public class StudyingController implements Initializable {
                     choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                 } else {
                     choiceB2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                 }
                 showCorrectAnswer();
                 resultAP.setVisible(true);
@@ -154,10 +164,12 @@ public class StudyingController implements Initializable {
                     choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
                     resultText.setStyle("-fx-text-fill: #385723");
                     resultText.setText("Well done!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #8BC266, 30, 0.5, 0, 0)");
                 } else {
                     choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #FFB097; -fx-text-fill: #C00000");
                     resultText.setStyle("-fx-text-fill: #C00000");
                     resultText.setText("Don’t worry, just keep learning!");
+                    resultAP.setStyle("-fx-effect: dropshadow(gaussian, #FFB097, 30, 0.5, 0, 0)");
                 }
                 showCorrectAnswer();
                 resultAP.setVisible(true);

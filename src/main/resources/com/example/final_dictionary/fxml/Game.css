@@ -38,25 +38,25 @@
 }
 
 .flashcardWord:hover {
-    -fx-effect: dropshadow(gaussian, #ffb097, 30, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #FFC5B3, 30, 0.2, 0, 0);
 }
 
 .flashcardMeaning:hover {
-    -fx-effect: dropshadow(gaussian, #ffb097, 30, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #FFC5B3, 30, 0.2, 0, 0);
 }
 
 .studying {
     -fx-background-color: whitesmoke;
     -fx-border-radius: 30;
     -fx-border-width: 1;
-    -fx-effect: dropshadow(gaussian, #FFDB93, 30, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #7F7F7F, 30, 0.2, 0, 0);
 }
 
 .challenging {
     -fx-background-color: whitesmoke;
     -fx-border-radius: 30;
     -fx-border-width: 1;
-    -fx-effect: dropshadow(gaussian, #8cc7fc, 30, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #A7E4F7, 30, 0.2, 0, 0);
 }
 
 .nextStudying {
@@ -82,7 +82,7 @@
 }
 
 .boxMatching {
-    -fx-background-color: #BDD6F1;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 20;
 }
 
@@ -113,4 +113,5 @@
 .gameTitle {
     -fx-font-family: 'DEBUG FREE TRIAL';
     -fx-font-size: 80;
+    -fx-text-fill: white;
 }
