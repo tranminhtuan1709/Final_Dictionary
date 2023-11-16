@@ -645,7 +645,7 @@ public class DataLite {
     * Matching
      */
     public ArrayList<String> getMatchingWord() throws SQLException {
-        String querySql = "SELECT word FROM av ORDER BY RANDOM() LIMIT 10";
+        String querySql = "SELECT word FROM av WHERE id BETWEEN 1 AND 58169 ORDER BY RANDOM() LIMIT 10";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(querySql);
              ResultSet resultSet = ps.executeQuery()) {
