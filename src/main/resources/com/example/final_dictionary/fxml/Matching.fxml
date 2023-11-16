@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.MatchingController">
+<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.MatchingController">
    <children>
       <AnchorPane fx:id="startAnchorpane" disable="true" layoutY="50.0" prefHeight="650.0" prefWidth="1200.0" visible="false">
          <children>
@@ -350,14 +350,14 @@
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="notification" disable="true" layoutX="345.0" layoutY="145.0" prefHeight="410.0" prefWidth="510.0" styleClass="notificationFinished" stylesheets="@Game.css" visible="false">
+      <AnchorPane fx:id="notification" layoutX="345.0" layoutY="145.0" prefHeight="410.0" prefWidth="510.0" styleClass="notificationFinished" stylesheets="@Game.css">
          <children>
             <Label alignment="CENTER" layoutX="160.0" layoutY="16.0" prefHeight="30.0" prefWidth="200.0" text="Congratulation!">
                <font>
                   <Font name="Segoe UI Bold" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="35.0" layoutY="300.0" prefHeight="38.0" prefWidth="440.0" text="Do you want to play again?">
+            <Label alignment="CENTER" layoutX="35.0" layoutY="310.0" prefHeight="38.0" prefWidth="440.0" text="Do you want to play again?">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -367,21 +367,26 @@
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="yes" layoutX="130.0" layoutY="349.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="launchButton" stylesheets="@Game.css" text="Replay">
+            <Button fx:id="yes" layoutX="130.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="launchButton" stylesheets="@Game.css" text="Replay">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="no" layoutX="280.0" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="discardButton" stylesheets="@Game.css" text="Quit">
+            <Button fx:id="no" layoutX="280.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="discardButton" stylesheets="@Game.css" text="Quit">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Button>
-            <ImageView fitHeight="190.0" fitWidth="383.0" layoutX="85.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="190.0" fitWidth="383.0" layoutX="85.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/congratulation.gif" />
                </image>
             </ImageView>
+            <Label fx:id="record" alignment="CENTER" layoutX="120.0" layoutY="75.0" prefHeight="44.0" prefWidth="270.0" text="Record: " textFill="#ff0016">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow />

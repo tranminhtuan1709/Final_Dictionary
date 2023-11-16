@@ -584,7 +584,21 @@ public class DataLite {
         return null;
     }
 
-//    public void setActiveAccount(String username, String password) {
+    public int getId(String question) throws SQLException {
+        String sql = "SELECT id FROM practice WHERE question = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, question);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id");
+                }
+            }
+        }
+        return 0;
+    }
+
+    //    public void setActiveAccount(String username, String password) {
 //        String sql = "UPDATE account SET status = 1 WHERE username = ? AND password = ?";
 //        try (Connection connection = dataSource.getConnection();
 //             PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -664,7 +678,6 @@ public class DataLite {
         String sql = "SELECT multipleChoicePoint from account where active = 1";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.executeUpdate();
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt("multipleChoicePoint");
@@ -674,11 +687,10 @@ public class DataLite {
         return 0;
     }
     public int getMatchingTime() throws SQLException {
-        String sql = "SELECT matchingTime from account where username = ?";
+        String sql = "SELECT matchingTime FROM account WHERE username = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, getUsername());
-            ps.executeUpdate();
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt("matchingTime");
@@ -687,6 +699,7 @@ public class DataLite {
         }
         return 0;
     }
+
     public void addMultipleChoicePoint(int point) throws SQLException {
         String sql = "UPDATE account SET multipleChoicePoint = ? WHERE active = 1 AND ? > multipleChoicePoint";
         try (Connection connection = dataSource.getConnection();

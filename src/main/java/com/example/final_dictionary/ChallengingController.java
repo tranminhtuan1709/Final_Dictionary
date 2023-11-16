@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -18,10 +19,7 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ChallengingController implements Initializable {
     @FXML
@@ -29,13 +27,13 @@ public class ChallengingController implements Initializable {
     @FXML
     private Button choiceA1, choiceB1, choiceC1, choiceA2, choiceB2, choiceC2, next, start, quit;
     @FXML
-    private Label word1, word2, resultText, time, score, finalScore;
+    private Label word1, word2, resultText, time, score, finalScore, highestscore;
     @FXML
     private ImageView imageView1, imageView2;
     @FXML
     Rectangle rectangle;
     private int attemptCount = 0;
-    private static final int MAX_ATTEMPTS = 2;
+    private static final int MAX_ATTEMPTS = 10;
     private final DataLite d = new DataLite();
     private final ArrayList<String> question = d.getQuestion();
     private int center = 1;
@@ -325,7 +323,6 @@ public class ChallengingController implements Initializable {
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
-                            System.out.println("Maximum attempts reached. End of quiz.");
                         }
                     }
                 });
@@ -404,20 +401,22 @@ public class ChallengingController implements Initializable {
 
     @FXML
     public void setQuestionAP1() throws SQLException {
-        //Image image = new Image("image/anime.jpg");
-        //imageView1.setImage(image);
         int randomIndex = random.nextInt(question.size());
         word1.setText(question.get(randomIndex));
         setChoices(word1, choiceA1, choiceB1, choiceC1);
+        String id = String.valueOf(d.getId(word1.getText()));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("image/msi/" + id + ".jpg")));
+        imageView1.setImage(image);
     }
 
     @FXML
     public void setQuestionAP2() throws SQLException {
-        //Image image = new Image("image/anime.jpg");
-        //imageView2.setImage(image);
         int randomIndex = random.nextInt(question.size());
         word2.setText(question.get(randomIndex));
         setChoices(word2, choiceA2, choiceB2, choiceC2);
+        String id = String.valueOf(d.getId(word2.getText()));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("image/msi/" + id + ".jpg")));
+        imageView2.setImage(image);
     }
 
     @FXML
@@ -468,14 +467,6 @@ public class ChallengingController implements Initializable {
         transition.setToY(1);
         transition.play();
         finalScore.setText("Your score: " + score_player);
-    }
-
-    @FXML
-    public void quitNotification() {
-        for (Node i : root.getChildren()) {
-            i.setDisable(false);
-        }
-        notification.setDisable(true);
-        notification.setVisible(false);
+        highestscore.setText("Highest score: " + d.getMultipleChoicePoint());
     }
 }

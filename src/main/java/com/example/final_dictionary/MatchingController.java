@@ -19,12 +19,13 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class MatchingController implements Initializable {
+
     @FXML
     private Label box1, box2, box3, box4, box5, box6, box7, box8, box9, box10;
     @FXML
     private Label box11, box12, box13, box14, box15, box16, box17, box18, box19, box20;
     @FXML
-    private Label remainingTime, completionTime;
+    private Label remainingTime, completionTime, record;
     @FXML
     private Button yes, no, replay, start;
     @FXML
@@ -91,8 +92,8 @@ public class MatchingController implements Initializable {
             remainingLabels -= 2;
             if (remainingLabels == 0) {
                 remainingLabels = 20;
-                showNotification();
                 d.addMatchingTime(elapsedSeconds);
+                showNotification();
             }
         } else {
             label1.setDisable(false);
@@ -222,6 +223,10 @@ public class MatchingController implements Initializable {
         transition.play();
         stopTimer();
         completionTime.setText(remainingTime.getText());
+        int time = d.getMatchingTime();
+        int seconds = time % 60;
+        int minutes = time / 60;
+        record.setText("Record: " + String.format("%02d:%02d", minutes, seconds));
     }
 
     @FXML
