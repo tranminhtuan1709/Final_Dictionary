@@ -17,9 +17,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-
-
-
 public class Main extends Application {
     public Main() throws SQLException {
     }
