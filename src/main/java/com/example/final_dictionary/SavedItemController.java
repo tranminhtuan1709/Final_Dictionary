@@ -71,7 +71,6 @@ public class SavedItemController implements Initializable {
     public SavedItemController() throws SQLException {
     }
 
-
     /**
      * Update the label of word, IPA, and detail of each card in the list.
      */

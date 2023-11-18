@@ -32,7 +32,6 @@ public class SaveController implements Initializable {
     @FXML
     private TextField searchSaveWordBar;
 
-
     @FXML
     private VBox savedWordsContainer;
 
