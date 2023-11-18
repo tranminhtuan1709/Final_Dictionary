@@ -11,6 +11,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 import javafx.scene.layout.AnchorPane;
@@ -27,10 +28,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -294,6 +292,10 @@ public class HomeController implements Initializable {
 
             window.setScene(scene);
             window.setTitle("Oxford Learner's Dictionaries Online");
+
+            Image icon = new Image(Objects.requireNonNull(getClass().getResource("image/OLD.png")).toString());
+            window.getIcons().add(icon);
+
             window.show();
 
             WebView webView = new WebView();
