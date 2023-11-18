@@ -18,7 +18,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
@@ -75,7 +74,6 @@ public class Login implements Initializable {
 
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
 
-                //Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
 
@@ -120,7 +118,6 @@ public class Login implements Initializable {
 
                             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/Menu.fxml")));
 
-                            //Parent root = FXMLLoader.load(getClass().getResource("fxml/DictionaryScene1.fxml"));
                             Scene scene = new Scene(root);
                             Stage stage = new Stage();
 
@@ -253,6 +250,12 @@ public class Login implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //username.add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        username.setTooltip(new Tooltip("Type your username here"));
+        password.setTooltip(new Tooltip("Type your password here"));
+        su_email.setTooltip(new Tooltip("Type your email here"));
+        su_username.setTooltip(new Tooltip("Type your username here"));
+        su_pass.setTooltip(new Tooltip("Type your password here"));
         // TODO
         addShutdownHook();
     }

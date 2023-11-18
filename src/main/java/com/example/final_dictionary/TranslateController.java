@@ -28,8 +28,10 @@ public class TranslateController implements Initializable {
     private ChoiceBox<String> meaning;
     @FXML
     private Button transfer;
+
     @FXML
-    private Button translateButton;
+    private Button soundButton;
+
     @FXML
     private TextArea inputfieldtranslate;
 
@@ -41,6 +43,13 @@ public class TranslateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setUp();
+
+        transfer.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        transfer.setTooltip(new Tooltip("Swap languages"));
+
+        soundButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        soundButton.setTooltip(new Tooltip("Word pronunciation"));
+
         // multi-threading
         inputfieldtranslate.textProperty().addListener((observable, oldValue, newValue) -> {
             translateText();
@@ -51,15 +60,16 @@ public class TranslateController implements Initializable {
         Task<String> task = new Task<String>() {
             @Override
             protected String call() throws Exception {
-                String input = inputfieldtranslate.getText().replace("\n" , " ");
+                String input = inputfieldtranslate.getText();
                 String from = translate.getValue();
                 String to = meaning.getValue();
                 String res;
                 if (from.equals(to)) {
                     res = input;
                 } else if ("   English".equals(from) && "   Vietnamese".equals(to)) {
-                    res = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "")
+                    String tmpres = GoogleAPI.translateEnToVi(input).trim().replace("[", "").replace("]", "")
 ;
+                    res = tmpres.replace("\\n", "\n");
                 } else {
                     res = GoogleAPI.translateViToEn(input).trim().replace("[", "").replace("]", "");
                 }
@@ -108,32 +118,7 @@ public class TranslateController implements Initializable {
         });
     }
 
-    @FXML
-    public void handleTranslateButton() {
-        translateButton.setOnMouseClicked(mouseEvent -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Hình ảnh", "*.png", "*.jpg", "*.jpeg"));
 
-            File selectedFile = fileChooser.showOpenDialog(null);
-
-            if (selectedFile != null) {
-                Ocr ocr = new Ocr();
-                ocr.startEngine("eng", Ocr.SPEED_FASTEST);
-                BufferedImage bufferedImage;
-                try {
-                    bufferedImage = ImageIO.read(selectedFile);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                String result = ocr.recognize(bufferedImage, Ocr.RECOGNIZE_TYPE_TEXT, Ocr.OUTPUT_FORMAT_PLAINTEXT);
-                result = result.trim().replace("\n", " ");
-                inputfieldtranslate.setText(result);
-                ocr.stopEngine();
-            } else {
-                System.out.println("No image is selected!");
-            }
-        });
-    }
     @FXML
     public void handleSoundButton() {
         String meaningText = showmeaning.getText();

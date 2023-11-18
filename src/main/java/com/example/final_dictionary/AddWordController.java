@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -22,9 +19,6 @@ public class AddWordController implements Initializable {
 
     @FXML
     private TextField breIPA;
-
-    @FXML
-    private TextField nameIPA;
 
     @FXML
     private TextField posField;
@@ -45,16 +39,16 @@ public class AddWordController implements Initializable {
     private AnchorPane addNotiPane;
 
     @FXML
-    private AnchorPane changeNotiPane;
-
-    @FXML
     private AnchorPane addwordPane;
 
     @FXML
     private AnchorPane alertPane;
 
     @FXML
-    private TabPane tabPane;
+    private Button discardButton;
+
+    @FXML
+    private Button saveButton;
 
     private final DataLite d = new DataLite();
 
@@ -66,7 +60,6 @@ public class AddWordController implements Initializable {
         wordField.clear();
         posField.clear();
         breIPA.clear();
-        nameIPA.clear();
         addwordmeaning.clear();
     }
 
@@ -131,6 +124,22 @@ public class AddWordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        wordField.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        wordField.setTooltip(new Tooltip("Word title"));
 
+        posField.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        posField.setTooltip(new Tooltip("Part of Speech"));
+
+        breIPA.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        breIPA.setTooltip(new Tooltip("International Phonetic Alphabet (IPA)"));
+
+        addwordmeaning.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        addwordmeaning.setTooltip(new Tooltip("Detailed meaning"));
+
+        discardButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        discardButton.setTooltip(new Tooltip("Discard Changes"));
+
+        saveButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        saveButton.setTooltip(new Tooltip("Save Changes"));
     }
 }

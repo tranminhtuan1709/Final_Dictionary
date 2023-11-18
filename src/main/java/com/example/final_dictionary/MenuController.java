@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -81,6 +82,15 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        usernameButton.setTooltip(new Tooltip("User Control Panel"));
+
+        showMenu.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        showMenu.setTooltip(new Tooltip("Menu"));
+
+        quitMenu.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        quitMenu.setTooltip(new Tooltip("Close Menu"));
+
         try {
             String userName = d.getUsername();
             usernameButton.setText(userName);

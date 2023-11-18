@@ -10,10 +10,20 @@
 }
 
 .button{
-    -fx-background-color: #0070C0;
+    -fx-background-color: #1D2A57;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 15;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
     -fx-cursor: hand;
 }
 
 .button:hover{
-    -fx-background-color: #008AF2;
+    -fx-background-color: #334999;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 15;
+    -fx-font-size: 16;
 }

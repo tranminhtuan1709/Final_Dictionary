@@ -19,7 +19,7 @@
             <Image url="@../image/emptyList.png" />
          </image>
       </ImageView>
-      <Label fx:id="nothingLabel" layoutX="215.0" layoutY="561.0" text="Nothing to show here">
+      <Label fx:id="nothingLabel" alignment="CENTER" layoutX="306.0" layoutY="561.0" text="Empty mind" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Bold" size="40.0" />
          </font>
@@ -38,7 +38,7 @@
       </Label>
       <TextField fx:id="searchSaveWordBar" layoutX="6.0" layoutY="76.0" prefHeight="40.0" prefWidth="829.0" promptText="Search saved words" styleClass="searchsaveword" stylesheets="@Style.css">
          <font>
-            <Font name="Segoe UI" size="16.0" />
+            <Font name="Segoe UI Light" size="14.0" />
          </font>
       </TextField>
       <Button fx:id="searchSavedWordButton" contentDisplay="GRAPHIC_ONLY" layoutX="787.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="menuIconButton" stylesheets="@Style.css" text="searchIcon" visible="false">

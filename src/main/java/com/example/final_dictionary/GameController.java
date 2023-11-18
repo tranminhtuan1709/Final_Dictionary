@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
@@ -24,6 +25,18 @@ public class GameController implements Initializable {
     private AnchorPane flashcardAP, studyingAP, challengingAP, matchingAP;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        launchFlashcard.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchFlashcard.setTooltip(new Tooltip("Launch Flashcard"));
+
+        launchStudying.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchStudying.setTooltip(new Tooltip("Launch Studying"));
+
+        launchChallenging.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchChallenging.setTooltip(new Tooltip("Launch Challenging"));
+
+        launchMatching.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchMatching.setTooltip(new Tooltip("Launch Matching"));
+
         try {
             loadAP();
             launchFlashcard.setOnAction(actionEvent -> {

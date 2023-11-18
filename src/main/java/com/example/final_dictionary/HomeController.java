@@ -6,14 +6,22 @@ import javafx.application.Platform;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -126,6 +134,9 @@ public class HomeController implements Initializable {
     @FXML
     private Button discardChangeButton;
 
+    @FXML
+    private Button seeMoreButton;
+
 
     private final DataLite d = new DataLite();
 
@@ -209,6 +220,38 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        searchButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        searchButton.setTooltip(new Tooltip("Search"));
+
+        saveButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        saveButton.setTooltip(new Tooltip("Add to your saved words"));
+
+        unsaveButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        unsaveButton.setTooltip(new Tooltip("Remove from your saved words"));
+
+        editButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        editButton.setTooltip(new Tooltip("Edit the word"));
+
+        saveEditButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        saveEditButton.setTooltip(new Tooltip("Save your changes"));
+
+        discardChangeButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        discardChangeButton.setTooltip(new Tooltip("Discard changes"));
+
+        trashButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        trashButton.setTooltip(new Tooltip("Remove the word from your dictionary"));
+
+        seeDetail.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        seeDetail.setTooltip(new Tooltip("See detail of the word"));
+
+        speech.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        speech.setTooltip(new Tooltip("Word pronunciation"));
+
+        speech2.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        speech2.setTooltip(new Tooltip("Word pronunciation"));
+
+        seeMoreButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        seeMoreButton.setTooltip(new Tooltip("See more"));
 
         LocalDate today = LocalDate.now();
         int dayOfMonth = today.getDayOfMonth();
@@ -238,13 +281,42 @@ public class HomeController implements Initializable {
         handleHistory();
 
 
+        seeMoreButton.setOnAction(event -> {
+
+            Stage window = new Stage();
+            BorderPane bPane = new BorderPane();
+            Scene scene = new Scene(bPane, 1200, 700);
+            //scene.setFill(Color.BLACK);
+
+            Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+            window.setX((screen.getWidth() - 1200) / 2);
+            window.setY((screen.getHeight() - 700) / 2);
+
+            window.setScene(scene);
+            window.setTitle("Oxford Learner's Dictionaries Online");
+            window.show();
+
+            WebView webView = new WebView();
+            BorderPane.setMargin(webView, new Insets(5));
+            bPane.setCenter(webView);
+
+            WebEngine webEngine = webView.getEngine();
+
+            //Search for phrase that has more than one word
+            String[] word = currentWord.get().split(" ");
+            String search = "";
+            for (int i = 0; i < word.length - 1; i++) search += word[i] + "-";
+            search += word[word.length - 1];
+
+            webEngine.load("https://www.oxfordlearnersdictionaries.com/definition/english/" + search);
+        });
+
         searchBar.textProperty().addListener((observableValue, oldValue, newValue) -> {
             listWord.getItems().clear();
             String in1 = searchBar.getText();
             ArrayList<String> list1 = null;
             try {
                 list1 = d.suggestWords(in1);
-                System.out.println(list1.size());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -431,6 +503,7 @@ public class HomeController implements Initializable {
             discardChangeButton.setVisible(true);
             discardChangeButton.setDisable(false);
             corrector.setVisible(true);
+            seeMoreButton.setVisible(false);
             trashButton.setVisible(false);
         });
 
@@ -438,6 +511,7 @@ public class HomeController implements Initializable {
             for (Node i : homeAP.getChildren()) {
                 i.setDisable(true);
             }
+            webView.setDisable(true);
             alertPane.setVisible(true);
             alertPane.setDisable(false);
         });
@@ -506,6 +580,7 @@ public class HomeController implements Initializable {
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
             corrector.setVisible(false);
+            seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
         });
 
@@ -521,6 +596,7 @@ public class HomeController implements Initializable {
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
             corrector.setVisible(false);
+            seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
         });
 
@@ -533,6 +609,7 @@ public class HomeController implements Initializable {
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
             corrector.setVisible(false);
+            seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
         });
 

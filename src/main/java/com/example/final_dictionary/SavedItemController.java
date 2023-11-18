@@ -12,6 +12,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -138,5 +139,10 @@ public class SavedItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItem();
+        noteButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        noteButton.setTooltip(new Tooltip("Add your note"));
+
+        trashButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        trashButton.setTooltip(new Tooltip("Remove from Saved words"));
     }
 }

@@ -7,10 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="settingAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.SettingController">
+<AnchorPane fx:id="settingAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.SettingController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#767171" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
@@ -36,7 +37,7 @@
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" layoutY="330.0" prefHeight="45.0" prefWidth="250.0" text="User settings">
+            <Label layoutX="15.0" layoutY="279.0" prefHeight="45.0" prefWidth="250.0" text="User settings">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
@@ -50,7 +51,7 @@
                   </DropShadow>
                </effect>
             </Rectangle>
-            <Button fx:id="automaticSoundButton" alignment="TOP_LEFT" layoutY="195.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="309.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Automatic sound">
+            <Button fx:id="automaticSoundButton" alignment="TOP_LEFT" layoutX="2.0" layoutY="195.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="309.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Automatic sound">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -64,7 +65,7 @@
                   </DropShadow>
                </effect>
             </Rectangle>
-            <Rectangle fx:id="option3" arcHeight="5.0" arcWidth="5.0" fill="#75717138" height="40.0" layoutY="386.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="309.0">
+            <Rectangle fx:id="option3" arcHeight="5.0" arcWidth="5.0" fill="#75717138" height="40.0" layoutY="335.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="309.0">
                <effect>
                   <DropShadow offsetX="3.0" offsetY="5.0">
                      <color>
@@ -73,12 +74,12 @@
                   </DropShadow>
                </effect>
             </Rectangle>
-            <Button fx:id="changePasswordButton" alignment="TOP_LEFT" layoutY="386.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="309.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Change password">
+            <Button fx:id="changePasswordButton" alignment="TOP_LEFT" layoutX="2.0" layoutY="335.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="309.0" styleClass="menuIconButton" stylesheets="@Style.css" text="Change password">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Button>
-            <Rectangle fx:id="option4" arcHeight="5.0" arcWidth="5.0" fill="#ff00003c" height="40.0" layoutY="426.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="309.0">
+            <Rectangle fx:id="option4" arcHeight="5.0" arcWidth="5.0" fill="#ff00003c" height="40.0" layoutY="375.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="309.0">
                <effect>
                   <DropShadow offsetX="3.0" offsetY="5.0">
                      <color>
@@ -87,11 +88,12 @@
                   </DropShadow>
                </effect>
             </Rectangle>
-            <Button fx:id="deleteAccountButton" alignment="TOP_LEFT" layoutY="426.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="309.0" styleClass="deleteusernameButton" stylesheets="@Style.css" text="Delete account">
+            <Button fx:id="deleteAccountButton" alignment="TOP_LEFT" layoutX="2.0" layoutY="375.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="309.0" styleClass="deleteusernameButton" stylesheets="@Style.css" text="Delete account">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Button>
+            <Line endX="212.88180541992188" fill="#888686" layoutX="84.0" layoutY="257.0" startX="-69.88182067871094" stroke="#0000004a" />
          </children></AnchorPane>
       <AnchorPane fx:id="switchOptionAP" layoutX="300.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0" />
    </children>

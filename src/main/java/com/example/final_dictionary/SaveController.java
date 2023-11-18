@@ -10,10 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -140,6 +137,12 @@ public class SaveController implements Initializable {
         loadListSavedWords();
         handleListSaveWord();
         EventBus.subscribe(this::handleReloadButton);
+
+        launchQuiz1Button.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchQuiz1Button.setTooltip(new Tooltip("Launch Flashcard"));
+
+        launchQuiz2Button.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchQuiz2Button.setTooltip(new Tooltip("Launch Studying"));
 
         launchQuiz1Button.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
             try {

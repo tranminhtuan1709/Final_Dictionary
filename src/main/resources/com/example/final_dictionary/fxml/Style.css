@@ -70,15 +70,22 @@
 }
 
 .signOutButton {
-    -fx-background-color: rgb(0, 102, 204);
+    -fx-background-color: #C00000;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
     -fx-text-fill: white;
-    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-cursor: hand;
 }
 
 .signOutButton:hover {
-    -fx-background-color: #F54949;
-    -fx-font-weight: bold;
-    -fx-font-size: 16;
+    -fx-background-color: #F20000;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-width: 10;
+    -fx-font-size: 14;
 }
 
 .deleteSavedWordButton {
@@ -102,7 +109,7 @@
 .searchsaveword.text-field{
     -fx-background-color: white;
     -fx-border-color: #000000;
-    -fx-border-width: 0px 0px 0px 0px;
+    -fx-border-width: 0.2px 0.2px 0.2px 0.2px;
 }
 
 .searchsaveword.text-field:hover{
@@ -110,15 +117,19 @@
     -fx-border-width: 1px 1px 1px 1px;
 }
 
-.inputfieldtranslate.text-area .content{
+.inputfieldtranslate.text-area{
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #000000;
+    -fx-border-color: #FFFFFF;
     -fx-border-width: 0px 0px 0px 0px;
 }
 
-.inputfieldtranslate.text-area .content:hover{
-    -fx-background-color: #F2F2F2;
+.inputfieldtranslate.text-area .content{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 0px 0px 0px 0px;
 }
+
+
 
 .selectLanguageButton {
 
