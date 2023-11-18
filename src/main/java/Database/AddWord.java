@@ -63,5 +63,4 @@ public class AddWord extends DefaultData{
             ps.executeUpdate();
         }
     }
-
 }
