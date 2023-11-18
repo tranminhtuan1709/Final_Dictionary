@@ -329,25 +329,6 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> listWord.getItems().addAll(sublist));
             }
         });
-        listWord.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
-
-            for (Node i : homeAP.getChildren()) {
-                i.setDisable(false);
-            }
-            htmlTextEditor.setVisible(false);
-            editButton.setVisible(true);
-            saveEditButton.setVisible(false);
-            discardChangeButton.setVisible(false);
-            corrector.setVisible(false);
-            trashButton.setVisible(true);
-
-            String word = listWord.getSelectionModel().getSelectedItem().toString();
-
-            handleSearchButton(word);
-
-            scrollpane.setVisible(true);
-        }));
-
 
         searchButton.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {
 
@@ -359,6 +340,7 @@ public class HomeController implements Initializable {
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
             corrector.setVisible(false);
+            seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
             String word = searchBar.getText();
@@ -383,6 +365,7 @@ public class HomeController implements Initializable {
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
             corrector.setVisible(false);
+            seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
             if (event.getCode() == KeyCode.ENTER) {
@@ -411,6 +394,7 @@ public class HomeController implements Initializable {
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
             corrector.setVisible(false);
+            seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
             try {
@@ -452,6 +436,7 @@ public class HomeController implements Initializable {
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
             corrector.setVisible(false);
+            seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
             try {
