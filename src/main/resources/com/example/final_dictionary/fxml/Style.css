@@ -76,7 +76,7 @@
     -fx-border-width: 10;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14;
+    -fx-font-size: 16;
     -fx-cursor: hand;
 }
 
@@ -85,7 +85,7 @@
     -fx-background-radius: 40;
     -fx-border-radius: 40;
     -fx-border-width: 10;
-    -fx-font-size: 14;
+    -fx-font-size: 16;
 }
 
 .deleteSavedWordButton {
