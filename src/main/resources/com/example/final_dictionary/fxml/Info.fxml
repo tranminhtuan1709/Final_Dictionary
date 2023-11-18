@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.InfoController">
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.InfoController">
    <children>
       <Label layoutX="208.0" layoutY="31.0" text="English - Vietnamese Learner's Dictionary (First edition)" textFill="#02096b">
          <font>
@@ -50,7 +50,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="308.0" layoutY="263.0" text="Search">
+      <Label layoutX="308.0" layoutY="262.0" text="Search">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
@@ -65,22 +65,22 @@
             <Font name="Segoe UI Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="320.0" text="Save">
+      <Label layoutX="324.0" layoutY="317.0" text="Save">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="328.0" layoutY="346.0" text="Add">
+      <Label layoutX="328.0" layoutY="344.0" text="Add">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="210.0" layoutY="399.0" text="Modifiy / Remove">
+      <Label layoutX="210.0" layoutY="396.0" text="Modifiy / Remove">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="227.0" layoutY="423.0" prefHeight="24.0" prefWidth="140.0" text="Translate online">
+      <Label layoutX="227.0" layoutY="422.0" prefHeight="24.0" prefWidth="140.0" text="Translate online">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
