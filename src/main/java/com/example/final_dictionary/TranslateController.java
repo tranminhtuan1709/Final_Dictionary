@@ -1,5 +1,6 @@
 package com.example.final_dictionary;
 
+import API.GoogleAPI;
 import Speech.TextToSpeechOnline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -9,16 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
-import API.GoogleAPI;
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.asprise.ocr.Ocr;
-import javafx.stage.FileChooser;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class TranslateController implements Initializable {
 
@@ -126,14 +120,12 @@ public class TranslateController implements Initializable {
         if (language.equals("   Vietnamese")) {
             try {
                 TextToSpeechOnline.textToSpeechVie(meaningText);
-                //TextToSpeech.Speech(word);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         } else {
             try {
                 TextToSpeechOnline.textToSpeech(meaningText);
-                //TextToSpeech.Speech(word);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }

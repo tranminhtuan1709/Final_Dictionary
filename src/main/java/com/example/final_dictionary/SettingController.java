@@ -34,9 +34,6 @@ public class SettingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Load default scene
-//        switchOptionAP.getChildren().clear();
-//        switchOptionAP.getChildren().add(automaticSoundAP);
         option1.setVisible(true);
         option2.setVisible(false);
         option3.setVisible(false);
@@ -46,8 +43,8 @@ public class SettingController implements Initializable {
         try {
             loadAP();
             //Load default scene
-        switchOptionAP.getChildren().clear();
-        switchOptionAP.getChildren().add(automaticSoundAP);
+            switchOptionAP.getChildren().clear();
+            switchOptionAP.getChildren().add(automaticSoundAP);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
