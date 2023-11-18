@@ -15,7 +15,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
+<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="607.0" layoutY="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1202.0" />
       <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="361.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
