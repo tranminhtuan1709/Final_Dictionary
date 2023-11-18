@@ -39,7 +39,6 @@ public class SettingController implements Initializable {
         option3.setVisible(false);
         option4.setVisible(false);
 
-
         try {
             loadAP();
             //Load default scene
