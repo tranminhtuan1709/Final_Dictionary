@@ -140,7 +140,7 @@ public class DataLite {
         String sql = "INSERT INTO av(word, description, html, pronounce) VALUES(?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, word);
+            ps.setString(1, word.toLowerCase());
             ps.setString(2, pos + ". " + meaningSummary);
             ps.setString(3, html);
             ps.setString(4, breIpa);
