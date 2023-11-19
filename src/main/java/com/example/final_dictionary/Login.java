@@ -3,7 +3,6 @@ package com.example.final_dictionary;
 import Database.DataLite;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,14 +17,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
@@ -298,7 +295,7 @@ public class Login implements Initializable {
         fade5.setFromValue(1.0);
         fade5.setToValue(0.0);
 
-        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(1));
+        PauseTransition pauseTransition = new PauseTransition(Duration.millis(500));
         pauseTransition.play();
 
         pauseTransition.setOnFinished(event -> {

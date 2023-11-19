@@ -167,7 +167,7 @@
                   <Font name="Segoe UI Light" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="gettingStartedButton" layoutX="814.0" layoutY="611.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="171.0" stylesheets="@login.css" text="Getting Started">
+            <Button fx:id="gettingStartedButton" layoutX="814.0" layoutY="611.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="171.0" styleClass="gettingStarted" stylesheets="@login.css" text="Getting Started">
                <font>
                   <Font size="23.0" />
                </font>
