@@ -147,7 +147,6 @@ public class HomeController implements Initializable {
     private boolean handleSearchButton(String word) {
         boolean check = true;
         try {
-            System.out.println(word);
             String w = d.searchWord(word);
             scrollpane.setVisible(true);
 
