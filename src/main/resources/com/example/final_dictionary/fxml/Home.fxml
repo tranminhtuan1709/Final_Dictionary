@@ -15,7 +15,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
+<AnchorPane fx:id="homeAP" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.HomeController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="607.0" layoutY="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1202.0" />
       <ImageView fitHeight="324.0" fitWidth="412.0" layoutX="361.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
@@ -46,7 +46,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </WebView>
-            <HTMLEditor fx:id="htmlTextEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="571.0" prefWidth="684.0" visible="false" />
             <Button fx:id="saveButton" contentDisplay="GRAPHIC_ONLY" layoutX="471.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="menuIconButton" stylesheets="@Style.css">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
@@ -86,16 +85,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Rectangle fx:id="corrector" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="73.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="684.0" />
-            <Button fx:id="saveEditButton" contentDisplay="TEXT_ONLY" layoutX="585.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="86.0" styleClass="savebutton" stylesheets="@Style.css" text="Save" visible="false">
-               <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/saveICO.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Button fx:id="trashButton" contentDisplay="GRAPHIC_ONLY" layoutX="621.0" layoutY="14.0" mnemonicParsing="false" styleClass="menuIconButton" stylesheets="@Style.css" text="trash">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
@@ -114,7 +103,17 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="discardChangeButton" contentDisplay="TEXT_ONLY" disable="true" layoutX="480.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" styleClass="discardbutton" stylesheets="@Style.css" text="Discard" visible="false">
+            <HTMLEditor fx:id="htmlTextEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="571.0" prefWidth="684.0" visible="false" />
+            <Button fx:id="saveEditButton" contentDisplay="TEXT_ONLY" layoutX="599.0" layoutY="2.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="86.0" styleClass="savebutton" stylesheets="@Style.css" text="Save" visible="false">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/saveICO.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="discardChangeButton" contentDisplay="TEXT_ONLY" disable="true" layoutX="505.0" layoutY="2.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="85.0" styleClass="discardbutton" stylesheets="@Style.css" text="Discard" visible="false">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>

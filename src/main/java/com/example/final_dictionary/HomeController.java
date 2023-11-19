@@ -20,6 +20,10 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -215,6 +219,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        webView.setDisable(true);
         searchButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
         searchButton.setTooltip(new Tooltip("Search"));
 
@@ -252,6 +257,9 @@ public class HomeController implements Initializable {
         int dayOfMonth = today.getDayOfMonth();
         Month month = today.getMonth();
         String monthString = month.toString();
+        String subString = monthString.substring(1, monthString.length());
+        subString = subString.toLowerCase();
+        monthString = monthString.charAt(0) + subString;
         int year = today.getYear();
 
         String date = dayOfMonth + ", "
@@ -336,7 +344,9 @@ public class HomeController implements Initializable {
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
-            corrector.setVisible(false);
+
+
+            speech.setVisible(true);
             seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
@@ -361,7 +371,9 @@ public class HomeController implements Initializable {
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
-            corrector.setVisible(false);
+
+
+            speech.setVisible(true);
             seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
@@ -390,7 +402,9 @@ public class HomeController implements Initializable {
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
-            corrector.setVisible(false);
+
+
+            speech.setVisible(true);
             seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
@@ -432,7 +446,9 @@ public class HomeController implements Initializable {
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
-            corrector.setVisible(false);
+
+
+            speech.setVisible(true);
             seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
 
@@ -486,7 +502,9 @@ public class HomeController implements Initializable {
             saveEditButton.setVisible(true);
             discardChangeButton.setVisible(true);
             discardChangeButton.setDisable(false);
-            corrector.setVisible(true);
+
+
+            speech.setVisible(false);
             seeMoreButton.setVisible(false);
             trashButton.setVisible(false);
         });
@@ -504,25 +522,26 @@ public class HomeController implements Initializable {
             //edit content in database here
             String detail = htmlTextEditor.getHtmlText();
 
-            // Define the pattern to match the content between the specified tags
-            String patternString = "<h1 style=\"color:#951D05; font-family: Segoe UI\">(.*?)</h1>";
-            Pattern pattern = Pattern.compile(patternString);
-
-            // Create a matcher
-            Matcher matcher = pattern.matcher(detail);
-
             // Find and print the matched content
             String extractedText = null;
-            if (matcher.find()) {
-                extractedText = matcher.group(1);
+            // Define the pattern to match the content between the specified tags
+            Document doc = Jsoup.parse(detail);
+
+            // Select the first <h1> tag
+            Elements h1 = doc.select("h1");
+
+            // Check if any <h1> tags were found
+            if (!h1.isEmpty()) {
+                // Get the text content of the first <h1> tag
+                Element firstH1 = h1.first();
+                extractedText = firstH1.text();
             }
 
             if (extractedText != null) {
-                String newWord = extractedText.replaceAll("<[^>]*>", "");
-                System.out.println(newWord);
-                if (!currentWord.get().equals(newWord)) {
+                System.out.println(extractedText);
+                if (!currentWord.get().equals(extractedText)) {
                     try {
-                        d.updateWord(newWord, detail, currentWord.get());
+                        d.updateWord(extractedText, detail, currentWord.get());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -563,7 +582,9 @@ public class HomeController implements Initializable {
             scrollpane.setVisible(false);
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
-            corrector.setVisible(false);
+
+
+            speech.setVisible(true);
             seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
         });
@@ -579,7 +600,9 @@ public class HomeController implements Initializable {
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
-            corrector.setVisible(false);
+
+
+            speech.setVisible(true);
             seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
         });
@@ -592,7 +615,9 @@ public class HomeController implements Initializable {
             editButton.setVisible(true);
             saveEditButton.setVisible(false);
             discardChangeButton.setVisible(false);
-            corrector.setVisible(false);
+
+
+            speech.setVisible(true);
             seeMoreButton.setVisible(true);
             trashButton.setVisible(true);
         });
