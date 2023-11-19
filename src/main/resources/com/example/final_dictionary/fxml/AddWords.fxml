@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.AddWordController">
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.AddWordController">
    <children>
   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="1200.0">
          <children>
@@ -85,17 +85,17 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fx:id="alert1" fitHeight="24.0" fitWidth="32.0" layoutX="935.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="alert1" fitHeight="17.0" fitWidth="18.0" layoutX="927.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../image/alert-icon-red-11.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="alert2" fitHeight="24.0" fitWidth="32.0" layoutX="927.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="alert2" fitHeight="17.0" fitWidth="18.0" layoutX="927.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../image/alert-icon-red-11.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="alert3" fitHeight="24.0" fitWidth="32.0" layoutX="927.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="alert3" fitHeight="17.0" fitWidth="18.0" layoutX="927.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../image/alert-icon-red-11.png" />
                      </image>

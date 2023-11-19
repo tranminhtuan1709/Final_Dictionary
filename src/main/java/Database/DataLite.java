@@ -123,17 +123,25 @@ public class DataLite {
         }
     }
 
-    public void addWord(String word, String pos, String breIpa, String meaning) throws SQLException {
+    public void addWord(String word, String pos, String breIpa, String[] meaning) throws SQLException {
+        String meaningLine = "";
+        String meaningSummary = "";
+        for (String x : meaning) {
+            meaningLine += "<li style=\"font-family: Segoe UI; font-size: 18px;\">" + x
+                    + "</li>";
+            meaningSummary += x + ", ";
+        }
+
         String html = "<h1 style= \"color:#951D05; font-family: Segoe UI\">" + word
                 + "</h1><h3 style=\"font-family: Segoe UI Light; color : #12225B\"><i>" + breIpa
                 + "</i></h3><h2 style=\"font-family: Segoe UI;font-size: 20px;\">" + pos
-                + "</h2><ul style=\"font-family: Segoe UI Bold; color :  #12225B ;\"><li style=\"font-family: Segoe UI; font-size: 18px;\">" + meaning
-                + "</li></ul>";//convertToHTML(word + "<br>" +breIpa, pos, meaning);
+                + "</h2><ul style=\"font-family: Segoe UI Bold; color :  #12225B ;\">" + meaningLine
+                + "</ul>";
         String sql = "INSERT INTO av(word, description, html, pronounce) VALUES(?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, word);
-            ps.setString(2, pos + "; " + meaning);
+            ps.setString(2, pos + ". " + meaningSummary);
             ps.setString(3, html);
             ps.setString(4, breIpa);
             ps.executeUpdate();

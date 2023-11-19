@@ -68,6 +68,7 @@ public class AddWordController implements Initializable {
         String pos = posField.getText();
         String bre = breIPA.getText();
         String meaning = addwordmeaning.getText();
+        String[] lines = meaning.split("\n");
         if (!word.isEmpty() && !pos.isEmpty() && !meaning.isEmpty()) {
             if (!d.isExist(word)) {
                 for (Node i : addwordPane.getChildren()) {
@@ -76,7 +77,7 @@ public class AddWordController implements Initializable {
                 addNotiPane.setDisable(false);
                 addNotiPane.setVisible(true);
                 addNotiPane.toFront();
-                d.addWord(word, pos, bre, meaning);
+                d.addWord(word, pos, bre, lines);
             } else {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);
@@ -107,6 +108,10 @@ public class AddWordController implements Initializable {
             i.setDisable(false);
         }
 
+        wordField.clear();
+        posField.clear();
+        breIPA.clear();
+        addwordmeaning.clear();
         addNotiPane.setDisable(true);
         addNotiPane.setVisible(false);
         addNotiPane.toBack();
@@ -117,6 +122,10 @@ public class AddWordController implements Initializable {
         for (Node i : addwordPane.getChildren()) {
             i.setDisable(false);
         }
+        wordField.clear();
+        posField.clear();
+        breIPA.clear();
+        addwordmeaning.clear();
         alertPane.setDisable(true);
         alertPane.setVisible(false);
         alertPane.toBack();
