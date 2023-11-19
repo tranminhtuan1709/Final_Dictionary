@@ -1,6 +1,9 @@
 package com.example.final_dictionary;
 
 import Database.DataLite;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,13 +14,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
@@ -55,6 +63,26 @@ public class Login implements Initializable {
 
     @FXML
     private AnchorPane login_form;
+
+    @FXML
+    private Rectangle fadeRectangle;
+
+    @FXML
+    private Button gettingStartedButton;
+
+    @FXML
+    private Label dictionaryLabel;
+
+    @FXML
+    private Label descriptionLabel;
+
+    @FXML
+    private ImageView image;
+
+    @FXML
+    private AnchorPane gettingStartedPane;
+
+
 
     private final DataLite dataLite = new DataLite();
 
@@ -250,7 +278,54 @@ public class Login implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //username.add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        FadeTransition fade = new FadeTransition(Duration.seconds(3), fadeRectangle);
+        fade.setFromValue(0.0);
+        fade.setToValue(1.0);
+
+        FadeTransition fade2 = new FadeTransition(Duration.millis(2000), dictionaryLabel);
+        fade2.setFromValue(0.0);
+        fade2.setToValue(1.0);
+
+        FadeTransition fade3 = new FadeTransition(Duration.millis(2000), descriptionLabel);
+        fade3.setFromValue(0.0);
+        fade3.setToValue(1.0);
+
+        FadeTransition fade4 = new FadeTransition(Duration.millis(2000), gettingStartedButton);
+        fade4.setFromValue(0.0);
+        fade4.setToValue(1.0);
+
+        FadeTransition fade5 = new FadeTransition(Duration.millis(1000), image);
+        fade5.setFromValue(1.0);
+        fade5.setToValue(0.0);
+
+        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(1));
+        pauseTransition.play();
+
+        pauseTransition.setOnFinished(event -> {
+            fade5.play();
+            fade.play();
+            fade2.play();
+            fade3.play();
+            fade4.play();
+            image.setDisable(true);
+
+        });
+
+        FadeTransition fade6 = new FadeTransition(Duration.millis(500), gettingStartedPane);
+        fade6.setFromValue(1.0);
+        fade6.setToValue(0.0);
+
+        FadeTransition fade7 = new FadeTransition(Duration.millis(500), login_form);
+        fade7.setFromValue(0.0);
+        fade7.setToValue(1.0);
+
+        gettingStartedButton.setOnAction(event -> {
+            fade6.play();
+            fade7.play();
+            gettingStartedPane.setDisable(true);
+        });
+
+        username.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
         username.setTooltip(new Tooltip("Type your username here"));
         password.setTooltip(new Tooltip("Type your password here"));
         su_email.setTooltip(new Tooltip("Type your email here"));
