@@ -31,6 +31,8 @@ public class MatchingController implements Initializable {
     @FXML
     private AnchorPane notification, root, startAnchorpane;
 
+    private boolean clicked = false;
+
     private Timeline timeline = new Timeline();
     private int elapsedSeconds;
     private int remainingLabels = 20;
@@ -87,8 +89,9 @@ public class MatchingController implements Initializable {
 
         boolean isMatch = (meaning1 != null && meaning1.equals(text2)) || (meaning2 != null && meaning2.equals(text1));
 
-        if (isMatch) {
+        if (isMatch){
             labelAnimation(label1, label2);
+
             remainingLabels -= 2;
             if (remainingLabels == 0) {
                 remainingLabels = 20;
@@ -96,15 +99,22 @@ public class MatchingController implements Initializable {
                 showNotification();
             }
         } else {
-            label1.setDisable(false);
-            label2.setDisable(false);
+            label1.setStyle("-fx-background-color: #FFFFFF;;-fx-background-radius: 20;");
+            label2.setStyle("-fx-background-color: #FFFFFF;;-fx-background-radius: 20;");
         }
     }
 
     private void handleLabelClick(Label label) throws SQLException {
         if (selectedLabels.size() < 2) {
             selectedLabels.add(label);
-            label.setDisable(true);
+            if (clicked == false) {
+                clicked = true;
+                label.setStyle("-fx-background-color: #FBE5D6;-fx-background-radius: 20;");
+            }
+            else {
+                clicked = false;
+                label.setStyle("-fx-background-color: #FFFFFF;;-fx-background-radius: 20;");
+            }
 
             if (selectedLabels.size() == 2) {
                 checkMatch(selectedLabels.get(0), selectedLabels.get(1));
@@ -122,9 +132,10 @@ public class MatchingController implements Initializable {
         for (Label label : boxes) {
             label.setVisible(true);
             label.setDisable(false);
-            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), label);
-            transition.setFromX(-1200);
-            transition.setToX(0);
+            FadeTransition transition = new FadeTransition(Duration.seconds(0.2), label);
+            transition.setFromValue(0.0);
+            transition.setToValue(1.0);
+            label.setStyle("-fx-background-color: #FFFFFF;;-fx-background-radius: 20;");
             transition.play();
         }
     }
@@ -196,12 +207,18 @@ public class MatchingController implements Initializable {
 
     @FXML
     public void labelAnimation(Label label1, Label label2) {
-        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(0.25), label1);
-        TranslateTransition transition2 = new TranslateTransition(Duration.seconds(0.25), label2);
-        transition1.setFromX(0);
-        transition1.setToX(-1200);
-        transition2.setFromX(0);
-        transition2.setToX(-1200);
+        label1.setStyle("-fx-background-color: #C9FFE1;-fx-background-radius: 20;");
+        label2.setStyle("-fx-background-color: #C9FFE1;-fx-background-radius: 20;");
+
+        FadeTransition transition1 = new FadeTransition(Duration.seconds(0.15), label1);
+        FadeTransition transition2 = new FadeTransition(Duration.seconds(0.15), label2);
+        transition1.setFromValue(1.0);
+        transition1.setToValue(0.0);
+
+        transition2.setFromValue(1.0);
+        transition2.setToValue(0.0);
+
+
         ParallelTransition parallelTransition = new ParallelTransition(transition1, transition2);
         parallelTransition.play();
     }

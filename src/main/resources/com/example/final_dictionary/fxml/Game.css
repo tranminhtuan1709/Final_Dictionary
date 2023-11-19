@@ -91,6 +91,11 @@
     -fx-scale-y: 1.1;
 }
 
+.boxMatching:pressed {
+    -fx-background-color: #FBE5D6;
+    -fx-background-radius: 20;
+}
+
 .notificationFinished {
     -fx-background-color: whitesmoke;
     -fx-background-radius: 10;
