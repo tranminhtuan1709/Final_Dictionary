@@ -119,8 +119,6 @@ public class SavedItemController implements Initializable {
                     File file = new File("src/main/Note/" + userName + "_" + wordLabel.getText() + ".txt");
                     if (file.delete()) {
                         //System.out.println(file.getName() + " is deleted!");
-                    } else {
-                        System.out.println("Delete operation is failed.");
                     }
                 } catch (Exception ee) {
                     ee.printStackTrace(new PrintStream(System.err));

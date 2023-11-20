@@ -275,19 +275,19 @@ public class Login implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        FadeTransition fade = new FadeTransition(Duration.seconds(3), fadeRectangle);
+        FadeTransition fade = new FadeTransition(Duration.seconds(2), fadeRectangle);
         fade.setFromValue(0.0);
         fade.setToValue(1.0);
 
-        FadeTransition fade2 = new FadeTransition(Duration.millis(2000), dictionaryLabel);
+        FadeTransition fade2 = new FadeTransition(Duration.millis(1500), dictionaryLabel);
         fade2.setFromValue(0.0);
         fade2.setToValue(1.0);
 
-        FadeTransition fade3 = new FadeTransition(Duration.millis(2000), descriptionLabel);
+        FadeTransition fade3 = new FadeTransition(Duration.millis(1500), descriptionLabel);
         fade3.setFromValue(0.0);
         fade3.setToValue(1.0);
 
-        FadeTransition fade4 = new FadeTransition(Duration.millis(2000), gettingStartedButton);
+        FadeTransition fade4 = new FadeTransition(Duration.millis(3000), gettingStartedButton);
         fade4.setFromValue(0.0);
         fade4.setToValue(1.0);
 
@@ -295,7 +295,7 @@ public class Login implements Initializable {
         fade5.setFromValue(1.0);
         fade5.setToValue(0.0);
 
-        PauseTransition pauseTransition = new PauseTransition(Duration.millis(500));
+        PauseTransition pauseTransition = new PauseTransition(Duration.millis(1000));
         pauseTransition.play();
 
         pauseTransition.setOnFinished(event -> {
@@ -308,11 +308,11 @@ public class Login implements Initializable {
 
         });
 
-        FadeTransition fade6 = new FadeTransition(Duration.millis(500), gettingStartedPane);
+        FadeTransition fade6 = new FadeTransition(Duration.millis(100), gettingStartedPane);
         fade6.setFromValue(1.0);
         fade6.setToValue(0.0);
 
-        FadeTransition fade7 = new FadeTransition(Duration.millis(500), login_form);
+        FadeTransition fade7 = new FadeTransition(Duration.millis(100), login_form);
         fade7.setFromValue(0.0);
         fade7.setToValue(1.0);
 
