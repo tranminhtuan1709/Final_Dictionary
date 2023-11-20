@@ -1,6 +1,8 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Account;
+import Database.Favorite;
+import Database.History;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,7 +37,9 @@ public class DeleteAccountController implements Initializable {
     @FXML
     private AnchorPane notificationAP, warningAP;
 
-    private final DataLite dataLite = new DataLite();
+    private final Account dataLite = new Account();
+    private final Favorite dataLite1 = new Favorite();
+    private final History dataLite2 = new History();
 
     public DeleteAccountController() throws SQLException {
     }
@@ -85,8 +89,8 @@ public class DeleteAccountController implements Initializable {
             dataLite.deleteAccount(user, pass, mail);
             notificationText.setText("Your account is deleted successfully!");
             notificationText.setStyle("-fx-text-fill: green");
-            dataLite.deleteFavorite();
-            dataLite.deleteHistory();
+            dataLite1.deleteFavorite();
+            dataLite2.deleteHistory();
             quit();
         }
     }

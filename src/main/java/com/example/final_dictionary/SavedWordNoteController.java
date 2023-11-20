@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Account;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,17 +25,11 @@ public class SavedWordNoteController implements Initializable {
 
     public static String word;
 
-
-    private final DataLite d = new DataLite();
-
-    public SavedWordNoteController() throws SQLException {
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String filePath;
         try {
-            filePath = "src/main/Note/" + d.getUsername() + "_" + word + ".txt";
+            filePath = "src/main/Note/" + Account.getUsername() + "_" + word + ".txt";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

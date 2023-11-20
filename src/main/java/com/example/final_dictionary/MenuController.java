@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Account;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -75,24 +75,24 @@ public class MenuController implements Initializable {
     @FXML
     private Rectangle section7;
 
-    private final DataLite d = new DataLite();
+    private final Account d = new Account();
 
     public MenuController() throws SQLException {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        usernameButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        usernameButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         usernameButton.setTooltip(new Tooltip("User Control Panel"));
 
-        showMenu.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        showMenu.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         showMenu.setTooltip(new Tooltip("Menu"));
 
-        quitMenu.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        quitMenu.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         quitMenu.setTooltip(new Tooltip("Close Menu"));
 
         try {
-            String userName = d.getUsername();
+            String userName = Account.getUsername();
             usernameButton.setText(userName);
             usernameButton2.setText(userName);
             welcome.setText("Welcome " + userName + "!");
@@ -220,9 +220,7 @@ public class MenuController implements Initializable {
                 section6.setVisible(false);
                 section7.setVisible(false);
             });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }

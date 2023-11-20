@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Game;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,7 +36,7 @@ public class MatchingController implements Initializable {
     private Timeline timeline = new Timeline();
     private int elapsedSeconds;
     private int remainingLabels = 20;
-    private final DataLite d = new DataLite();
+    private final Game d = new Game();
     private final List<Label> selectedLabels = new ArrayList<>();
 
     public MatchingController() throws SQLException {
@@ -107,7 +107,7 @@ public class MatchingController implements Initializable {
     private void handleLabelClick(Label label) throws SQLException {
         if (selectedLabels.size() < 2) {
             selectedLabels.add(label);
-            if (clicked == false) {
+            if (!clicked) {
                 clicked = true;
                 label.setStyle("-fx-background-color: #FBE5D6;-fx-background-radius: 20;");
             }
@@ -241,6 +241,7 @@ public class MatchingController implements Initializable {
         stopTimer();
         completionTime.setText(remainingTime.getText());
         int time = d.getMatchingTime();
+        if(time > elapsedSeconds) time = elapsedSeconds;
         int seconds = time % 60;
         int minutes = time / 60;
         record.setText("Record: " + String.format("%02d:%02d", minutes, seconds));

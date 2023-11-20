@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Game;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,7 +34,7 @@ public class ChallengingController implements Initializable {
     Rectangle rectangle;
     private int attemptCount = 0;
     private static final int MAX_ATTEMPTS = 10;
-    private final DataLite d = new DataLite();
+    private final Game d = new Game();
     private final ArrayList<String> question = d.getQuestion();
     private int center = 1;
     private final Random random = new Random();
@@ -467,6 +467,8 @@ public class ChallengingController implements Initializable {
         transition.setToY(1);
         transition.play();
         finalScore.setText("Your score: " + score_player);
-        highestscore.setText("Highest score: " + d.getMultipleChoicePoint());
+        int highestScore = d.getMultipleChoicePoint();
+        if(highestScore > score_player) highestScore = score_player;
+        highestscore.setText("Highest score: " + highestScore);
     }
 }

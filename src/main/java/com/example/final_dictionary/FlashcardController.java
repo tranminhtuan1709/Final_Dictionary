@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Game;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,7 +33,7 @@ public class FlashcardController implements Initializable {
     @FXML
     private Label quantity;
 
-    private final DataLite d = new DataLite();
+    private final Game d = new Game();
     private final ArrayList<String> word = d.getFlashcardFront();
     private int center = 1;
     private int number = 1;

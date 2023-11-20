@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Account;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -23,7 +23,7 @@ public class ChangePasswordController implements Initializable {
     @FXML
     private AnchorPane notificationAP;
 
-    private final DataLite dataLite = new DataLite();
+    private final Account dataLite = new Account();
 
     public ChangePasswordController() throws SQLException {
     }
@@ -46,7 +46,7 @@ public class ChangePasswordController implements Initializable {
     @FXML
     public void checkPass() throws SQLException {
         notificationText.setStyle("-fx-text-fill: red");
-        String user = dataLite.getUsername();
+        String user = Account.getUsername();
         if (currentPass.getText().isEmpty()) {
             notificationText.setText("Current password field is empty!");
         } else if (newPass.getText().isEmpty()) {
