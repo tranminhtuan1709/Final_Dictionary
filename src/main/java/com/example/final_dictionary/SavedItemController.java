@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -42,10 +41,7 @@ public class SavedItemController implements Initializable {
     @FXML
     private Label wordLabel;
 
-    @FXML
-    private HBox savedItem;
-
-    private DataLite d = new DataLite();
+    private final DataLite d = new DataLite();
 
     public static int index = 0;
 
@@ -53,20 +49,19 @@ public class SavedItemController implements Initializable {
 
     public static String input = "";
 
-    private ArrayList<String> wordList = d.getFavorite();
+    private final ArrayList<String> wordList = d.getFavorite();
 
-    private ArrayList<String> pronounceList = d.getFavoritePOS();
+    private final ArrayList<String> pronounceList = d.getFavoritePOS();
 
-    private ArrayList<String> detailList = d.getFavoriteDetail();
+    private final ArrayList<String> detailList = d.getFavoriteDetail();
 
 
-    private ArrayList<String> suggestWordList = d.suggestWordsFa(input);
+    private final ArrayList<String> suggestWordList = d.suggestWordsFa(input);
 
-    private ArrayList<String> suggestPronounceList = d.suggestPronounceFa(input);
+    private final ArrayList<String> suggestPronounceList = d.suggestPronounceFa(input);
 
-    private ArrayList<String> suggestDetailList = d.suggestDetailFa(input);
+    private final ArrayList<String> suggestDetailList = d.suggestDetailFa(input);
 
-    private SaveController sv = new SaveController();
 
     public SavedItemController() throws SQLException {
     }
@@ -118,7 +113,7 @@ public class SavedItemController implements Initializable {
                     String userName = d.getUsername();
                     File file = new File("src/main/Note/" + userName + "_" + wordLabel.getText() + ".txt");
                     if (file.delete()) {
-                        //System.out.println(file.getName() + " is deleted!");
+                        //nothing
                     }
                 } catch (Exception ee) {
                     ee.printStackTrace(new PrintStream(System.err));

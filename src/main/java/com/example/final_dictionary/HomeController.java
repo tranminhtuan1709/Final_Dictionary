@@ -31,8 +31,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class HomeController implements Initializable {
@@ -84,9 +82,6 @@ public class HomeController implements Initializable {
 
     @FXML
     private Button saveEditButton;
-
-    @FXML
-    private Rectangle corrector;
 
     @FXML
     private Button trashButton;
