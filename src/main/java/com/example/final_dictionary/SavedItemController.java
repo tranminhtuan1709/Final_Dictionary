@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Favorite;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +41,7 @@ public class SavedItemController implements Initializable {
     @FXML
     private Label wordLabel;
 
-    private final DataLite d = new DataLite();
+    private final Favorite d = new Favorite();
 
     public static int index = 0;
 
@@ -129,10 +129,10 @@ public class SavedItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItem();
-        noteButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        noteButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         noteButton.setTooltip(new Tooltip("Add your note"));
 
-        trashButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        trashButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         trashButton.setTooltip(new Tooltip("Remove from Saved words"));
     }
 }

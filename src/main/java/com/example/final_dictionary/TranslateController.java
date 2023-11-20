@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TranslateController implements Initializable {
@@ -38,10 +39,10 @@ public class TranslateController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setUp();
 
-        transfer.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        transfer.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         transfer.setTooltip(new Tooltip("Swap languages"));
 
-        soundButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        soundButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         soundButton.setTooltip(new Tooltip("Word pronunciation"));
 
         // multi-threading

@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.*;
 import Speech.TextToSpeechOnline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,7 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -132,7 +131,10 @@ public class HomeController implements Initializable {
     private Button seeMoreButton;
 
 
-    private final DataLite d = new DataLite();
+    private final Home d = new Home();
+    private final Favorite d1 = new Favorite();
+    private final History d2 = new History();
+    private final AddWord d3 = new AddWord();
 
     public AtomicReference<String> currentWord = new AtomicReference<>("");
 
@@ -150,7 +152,7 @@ public class HomeController implements Initializable {
             if (w == null) check = false;
 
             try {
-                if(d.isExistFavorite(currentWord.get())) {
+                if(d1.isExistFavorite(currentWord.get())) {
                     saveButton.setVisible(false);
                     saveButton.setDisable(true);
                     unsaveButton.setVisible(true);
@@ -201,7 +203,7 @@ public class HomeController implements Initializable {
         historyList.getItems().clear();
         try {
             historyList.setStyle("-fx-font-size: 14px;");
-            ArrayList<String> list = d.getHistory();
+            ArrayList<String> list = d2.getHistory();
             for (int i = 0; i < list.size(); i += 234) {
                 int endIndex = Math.min(i + 234, list.size());
                 List<String> sublist = list.subList(i, endIndex);
@@ -215,44 +217,44 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         webView.setDisable(true);
-        searchButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        searchButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         searchButton.setTooltip(new Tooltip("Search"));
 
-        saveButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        saveButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         saveButton.setTooltip(new Tooltip("Add to your saved words"));
 
-        unsaveButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        unsaveButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         unsaveButton.setTooltip(new Tooltip("Remove from your saved words"));
 
-        editButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        editButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         editButton.setTooltip(new Tooltip("Edit the word"));
 
-        saveEditButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        saveEditButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         saveEditButton.setTooltip(new Tooltip("Save your changes"));
 
-        discardChangeButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        discardChangeButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         discardChangeButton.setTooltip(new Tooltip("Discard changes"));
 
-        trashButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        trashButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         trashButton.setTooltip(new Tooltip("Remove the word from your dictionary"));
 
-        seeDetail.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        seeDetail.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         seeDetail.setTooltip(new Tooltip("See detail of the word"));
 
-        speech.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        speech.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         speech.setTooltip(new Tooltip("Word pronunciation"));
 
-        speech2.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        speech2.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         speech2.setTooltip(new Tooltip("Word pronunciation"));
 
-        seeMoreButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        seeMoreButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         seeMoreButton.setTooltip(new Tooltip("See more"));
 
         LocalDate today = LocalDate.now();
         int dayOfMonth = today.getDayOfMonth();
         Month month = today.getMonth();
         String monthString = month.toString();
-        String subString = monthString.substring(1, monthString.length());
+        String subString = monthString.substring(1);
         subString = subString.toLowerCase();
         monthString = monthString.charAt(0) + subString;
         int year = today.getYear();
@@ -306,9 +308,9 @@ public class HomeController implements Initializable {
 
             //Search for phrase that has more than one word
             String[] word = currentWord.get().split(" ");
-            String search = "";
-            for (int i = 0; i < word.length - 1; i++) search += word[i] + "-";
-            search += word[word.length - 1];
+            StringBuilder search = new StringBuilder();
+            for (int i = 0; i < word.length - 1; i++) search.append(word[i]).append("-");
+            search.append(word[word.length - 1]);
 
             webEngine.load("https://www.oxfordlearnersdictionaries.com/definition/english/" + search);
         });
@@ -348,7 +350,7 @@ public class HomeController implements Initializable {
             String word = searchBar.getText();
             currentWord.set(word);
             try {
-                d.addHistory(word);
+                d2.addHistory(word);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -376,7 +378,7 @@ public class HomeController implements Initializable {
                 String word = searchBar.getText();
                 currentWord.set(word);
                 try {
-                    d.addHistory(word);
+                    d2.addHistory(word);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -404,7 +406,7 @@ public class HomeController implements Initializable {
             trashButton.setVisible(true);
 
             try {
-                d.addHistory(word);
+                d2.addHistory(word);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -448,7 +450,7 @@ public class HomeController implements Initializable {
             trashButton.setVisible(true);
 
             try {
-                d.addHistory(word);
+                d2.addHistory(word);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -462,11 +464,11 @@ public class HomeController implements Initializable {
 
         saveButton.setOnAction(actionEvent -> {
             try {
-                if(!d.isExistFavorite(currentWord.get())) {
-                    d.addFavorite(currentWord.get());
+                if(!d1.isExistFavorite(currentWord.get())) {
+                    d1.addFavorite(currentWord.get());
                 }
                 //when clicking save word, the star will be brightened
-                //it means that the unsaveButton appears, and the saveButton disappears.
+                //it means that the un save Button appears, and the saveButton disappears.
                 saveButton.setVisible(false);
                 saveButton.setDisable(true);
                 unsaveButton.setVisible(true);
@@ -478,8 +480,8 @@ public class HomeController implements Initializable {
 
         unsaveButton.setOnAction(actionEvent -> {
             try {
-                if(d.isExistFavorite(currentWord.get())) {
-                    d.deleteFavorite(currentWord.get());
+                if(d1.isExistFavorite(currentWord.get())) {
+                    d1.deleteFavorite(currentWord.get());
                 }
 
                 saveButton.setVisible(true);
@@ -529,6 +531,7 @@ public class HomeController implements Initializable {
             if (!h1.isEmpty()) {
                 // Get the text content of the first <h1> tag
                 Element firstH1 = h1.first();
+                assert firstH1 != null;
                 extractedText = firstH1.text();
             }
 
@@ -536,20 +539,20 @@ public class HomeController implements Initializable {
                 System.out.println(extractedText);
                 if (!currentWord.get().equals(extractedText)) {
                     try {
-                        d.updateWord(extractedText, detail, currentWord.get());
+                        d3.updateWord(extractedText, detail, currentWord.get());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                 } else {
                     try {
-                        d.updateWord(currentWord.get(), detail, currentWord.get());
+                        d3.updateWord(currentWord.get(), detail, currentWord.get());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                 }
             } else {
                 try {
-                    d.updateWord(currentWord.get(), detail, currentWord.get());
+                    d3.updateWord(currentWord.get(), detail, currentWord.get());
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -638,7 +641,7 @@ public class HomeController implements Initializable {
         acceptButton1.setOnAction(actionEvent -> {
             //delete word from database
             try {
-                d.deleteWord(currentWord.get());
+                d3.deleteWord(currentWord.get());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

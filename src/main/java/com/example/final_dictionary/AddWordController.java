@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.AddWord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class AddWordController implements Initializable {
@@ -50,7 +51,7 @@ public class AddWordController implements Initializable {
     @FXML
     private Button saveButton;
 
-    private final DataLite d = new DataLite();
+    private final AddWord d = new AddWord();
 
     public AddWordController() throws SQLException {
     }
@@ -77,7 +78,7 @@ public class AddWordController implements Initializable {
                 addNotiPane.setDisable(false);
                 addNotiPane.setVisible(true);
                 addNotiPane.toFront();
-                d.addWord(word, pos, bre, lines);
+                d.addWord(word, pos, bre, Arrays.toString(lines));
             } else {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);

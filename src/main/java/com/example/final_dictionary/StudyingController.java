@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Game;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -30,7 +30,7 @@ public class StudyingController implements Initializable {
     Rectangle rectangle;
     private int attemptCount = 0;
     private static final int MAX_ATTEMPTS = 20;
-    private final DataLite d = new DataLite();
+    private final Game d = new Game();
     private final ArrayList<String> question = d.getQuestion();
     private int center = 1;
     private final Random random = new Random();
