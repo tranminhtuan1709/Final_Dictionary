@@ -5,13 +5,15 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -22,18 +24,18 @@
             <Image url="@../image/back.jpg" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="login_form" layoutX="230.0" layoutY="112.0" prefHeight="551.0" prefWidth="561.0">
+      <AnchorPane fx:id="login_form" layoutX="209.0" layoutY="135.0" prefHeight="558.0" prefWidth="582.0">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="558.0" layoutX="-37.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
-            <Label layoutX="155.0" layoutY="100.0" text="Welcome">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="558.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
+            <Label layoutX="186.0" layoutY="100.0" text="Welcome">
                <font>
                   <Font name="Segoe UI Bold" size="48.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="179.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="216.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/profile.png" />
                </image>
@@ -41,20 +43,17 @@
                   <Glow />
                </effect>
             </ImageView>
-            <TextField fx:id="username" layoutX="43.0" layoutY="223.0" onKeyPressed="#login_enter" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+            <TextField fx:id="username" layoutX="74.0" layoutY="223.0" onKeyPressed="#login_enter" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
                <font>
                   <Font name="Segoe UI Light" size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" layoutX="43.0" layoutY="332.0" onKeyPressed="#login_enter" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
+            <PasswordField fx:id="password" layoutX="75.0" layoutY="333.0" onKeyPressed="#login_enter" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
                <font>
                   <Font name="Segoe UI Light" size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="149.0" layoutY="435.0" mnemonicParsing="false" onAction="#login" onKeyPressed="#login_enter" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign In" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="185.0" layoutY="436.0" mnemonicParsing="false" onAction="#login" onKeyPressed="#login_enter" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign In" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
@@ -62,30 +61,30 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Hyperlink fx:id="createAcc" layoutX="214.0" layoutY="503.0" onAction="#changeForm" text="Create one!">
+            <Hyperlink fx:id="createAcc" layoutX="245.0" layoutY="507.0" onAction="#changeForm" text="Create one!">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Label layoutX="43.0" layoutY="507.0" text="You don't have any accounts?">
+            <Label layoutX="74.0" layoutY="511.0" text="You don't have any accounts?">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="signup_form" layoutX="240.0" layoutY="122.0" prefHeight="551.0" prefWidth="561.0" visible="false">
+      <AnchorPane fx:id="signup_form" layoutX="209.0" layoutY="135.0" prefHeight="558.0" prefWidth="582.0" visible="false">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="558.0" layoutX="-47.0" layoutY="10.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
-            <Label layoutX="155.0" layoutY="100.0" text="Sign up">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="558.0" stroke="TRANSPARENT" strokeType="INSIDE" width="582.0" />
+            <Label layoutX="204.0" layoutY="100.0" text="Sign up">
                <font>
                   <Font name="Segoe UI Bold" size="48.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="169.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="216.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/profile.png" />
                </image>
@@ -93,20 +92,22 @@
                   <Glow />
                </effect>
             </ImageView>
-            <TextField fx:id="su_email" layoutX="43.0" layoutY="185.0" prefHeight="47.0" prefWidth="434.0" promptText="Email" stylesheets="@login.css">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+            <TextField fx:id="su_email" layoutX="74.0" layoutY="185.0" prefHeight="47.0" prefWidth="434.0" promptText="Email" stylesheets="@login.css">
                <font>
                   <Font name="Segoe UI Light" size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="su_pass" layoutX="43.0" layoutY="332.0" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
+            <TextField fx:id="su_username" layoutX="74.0" layoutY="261.0" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
+               <font>
+                  <Font name="Segoe UI Light" size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="su_pass" layoutX="74.0" layoutY="332.0" prefHeight="47.0" prefWidth="435.0" promptText="Pasword" stylesheets="@login.css">
                <font>
                   <Font name="Segoe UI Light" size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="signUpButton" layoutX="149.0" layoutY="435.0" mnemonicParsing="false" onAction="#signup" onKeyPressed="#login" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign Up!" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="signUpButton" layoutX="185.0" layoutY="436.0" mnemonicParsing="false" onAction="#signup" onKeyPressed="#login" prefHeight="39.0" prefWidth="210.0" stylesheets="@login.css" text="Sign Up!" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
@@ -114,32 +115,69 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Hyperlink fx:id="signIn" layoutX="177.0" layoutY="503.0" onAction="#changeForm" text="Sign in now!">
+            <Hyperlink fx:id="signIn" layoutX="208.0" layoutY="506.0" onAction="#changeForm" prefHeight="19.0" prefWidth="86.0" text="Sign in now!">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Label layoutX="43.0" layoutY="507.0" text="Already have accounts?">
+            <Label layoutX="74.0" layoutY="511.0" text="Already have accounts?">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="su_username" layoutX="43.0" layoutY="261.0" prefHeight="47.0" prefWidth="434.0" promptText="Username" stylesheets="@login.css">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="Segoe UI Light" size="14.0" />
-               </font>
-            </TextField>
          </children>
       </AnchorPane>
       <Rectangle fx:id="waiting" arcHeight="5.0" arcWidth="5.0" height="829.0" layoutX="-23.0" layoutY="-17.0" opacity="0.43" stroke="BLACK" strokeType="INSIDE" visible="false" width="1035.0" />
-      <ProgressIndicator fx:id="waiting1" layoutX="460.0" layoutY="372.0" visible="false" />
-      <Label fx:id="waiting2" layoutX="401.0" layoutY="454.0" text="Wait a second..." textFill="WHITE" visible="false">
-         <font>
-            <Font name="Segoe UI Bold" size="24.0" />
-         </font>
-      </Label>
+      <AnchorPane fx:id="gettingStartedPane" prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <ImageView fitHeight="806.0" fitWidth="1231.0" layoutX="-112.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/welcome.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1000.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.057613187728789185" startY="0.06584363283993912">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color opacity="0.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.8205762160696243">
+                           <color>
+                              <Color red="0.9238095283508301" green="0.9219507575035095" blue="0.9219507575035095" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill></Rectangle>
+            <Label fx:id="dictionaryLabel" alignment="CENTER_RIGHT" layoutX="297.0" layoutY="276.0" prefHeight="173.0" prefWidth="702.0" text="English - Vietnamese Learner's Dictionary " textAlignment="RIGHT" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="64.0" />
+               </font>
+            </Label>
+            <Label fx:id="descriptionLabel" layoutX="632.0" layoutY="460.0" text="Make your words more meaningful">
+               <font>
+                  <Font name="Segoe UI Light" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="gettingStartedButton" layoutX="814.0" layoutY="611.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="171.0" styleClass="gettingStarted" stylesheets="@login.css" text="Getting Started">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="image" fitHeight="806.0" fitWidth="1231.0" layoutX="-112.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/welcome.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

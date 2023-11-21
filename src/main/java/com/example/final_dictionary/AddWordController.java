@@ -1,16 +1,17 @@
 package com.example.final_dictionary;
 
+import Database.AddWord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class AddWordController implements Initializable {
@@ -19,9 +20,6 @@ public class AddWordController implements Initializable {
 
     @FXML
     private TextField breIPA;
-
-    @FXML
-    private TextField nameIPA;
 
     @FXML
     private TextField posField;
@@ -42,43 +40,45 @@ public class AddWordController implements Initializable {
     private AnchorPane addNotiPane;
 
     @FXML
-    private AnchorPane changeNotiPane;
-
-    @FXML
     private AnchorPane addwordPane;
 
     @FXML
     private AnchorPane alertPane;
 
+    @FXML
+    private Button discardButton;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    private Button saveButton;
 
+    private final AddWord d = new AddWord();
+
+    public AddWordController() throws SQLException {
     }
+
 
     public void handleDiscardButton(ActionEvent e) {
         wordField.clear();
         posField.clear();
         breIPA.clear();
-        nameIPA.clear();
         addwordmeaning.clear();
     }
 
-    public void handleSaveButton(ActionEvent e) {
+    public void handleSaveButton(ActionEvent e) throws SQLException {
         String word = wordField.getText();
         String pos = posField.getText();
         String bre = breIPA.getText();
-        String name = nameIPA.getText();
         String meaning = addwordmeaning.getText();
+        String[] lines = meaning.split("\n");
         if (!word.isEmpty() && !pos.isEmpty() && !meaning.isEmpty()) {
-            if (false/*word not in the dictionary*/) {
+            if (!d.isExist(word)) {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);
                 }
                 addNotiPane.setDisable(false);
                 addNotiPane.setVisible(true);
                 addNotiPane.toFront();
-                //add word definition to database
+                d.addWord(word, pos, bre, Arrays.toString(lines));
             } else {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);
@@ -109,43 +109,47 @@ public class AddWordController implements Initializable {
             i.setDisable(false);
         }
 
+        wordField.clear();
+        posField.clear();
+        breIPA.clear();
+        addwordmeaning.clear();
         addNotiPane.setDisable(true);
         addNotiPane.setVisible(false);
         addNotiPane.toBack();
     }
 
-    //For changeNotiPane
+
     public void handleOkayButton2(ActionEvent e) {
         for (Node i : addwordPane.getChildren()) {
             i.setDisable(false);
         }
-
-        changeNotiPane.setDisable(true);
-        changeNotiPane.setVisible(false);
-        changeNotiPane.toBack();
-    }
-
-    public void handleUpdateButton(ActionEvent e) {
+        wordField.clear();
+        posField.clear();
+        breIPA.clear();
+        addwordmeaning.clear();
         alertPane.setDisable(true);
         alertPane.setVisible(false);
         alertPane.toBack();
-
-        //Change meaning in the database
-
-        changeNotiPane.setDisable(false);
-        changeNotiPane.setVisible(true);
-        changeNotiPane.toFront();
     }
 
-    public void handleAppendButton(ActionEvent e) {
-        alertPane.setDisable(true);
-        alertPane.setVisible(false);
-        alertPane.toBack();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        wordField.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        wordField.setTooltip(new Tooltip("Word title"));
 
-        //append meaning in the database
+        posField.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        posField.setTooltip(new Tooltip("Part of Speech"));
 
-        changeNotiPane.setDisable(false);
-        changeNotiPane.setVisible(true);
-        changeNotiPane.toFront();
+        breIPA.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        breIPA.setTooltip(new Tooltip("International Phonetic Alphabet (IPA)"));
+
+        addwordmeaning.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        addwordmeaning.setTooltip(new Tooltip("Detailed meaning"));
+
+        discardButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        discardButton.setTooltip(new Tooltip("Discard Changes"));
+
+        saveButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        saveButton.setTooltip(new Tooltip("Save Changes"));
     }
 }

@@ -2,6 +2,9 @@ package Speech;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+
+import java.io.PrintStream;
+
 public class TextToSpeech {
     private static final String VOICES_KEY = "freetts.voices";
     private static final String VOICE_VALUE = "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory";
@@ -16,7 +19,7 @@ public class TextToSpeech {
                 voice.deallocate();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(new PrintStream(System.out));
         }
     }
 }

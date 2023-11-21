@@ -30,12 +30,12 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Hyperlink fx:id="tuphan" layoutX="290.0" layoutY="584.0" onAction="#tuphan" text="Phan Anh Tú" textFill="#0e0101">
+      <Hyperlink fx:id="tuphan" layoutX="597.0" layoutY="584.0" onAction="#tuphan" text="Phan Anh Tú" textFill="#0e0101">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Hyperlink>
-      <Hyperlink fx:id="anhtuan" layoutX="597.0" layoutY="583.0" onAction="#anhtuan" text="Mai Anh Tuấn" textFill="#0e0101">
+      <Hyperlink fx:id="anhtuan" layoutX="290.0" layoutY="583.0" onAction="#anhtuan" text="Mai Anh Tuấn" textFill="#0e0101">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
@@ -50,12 +50,12 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="308.0" layoutY="263.0" text="Search">
+      <Label layoutX="308.0" layoutY="262.0" text="Search">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="207.0" layoutY="146.0" prefHeight="114.0" prefWidth="895.0" text="This is the first edition English - Vietnamese dictionary is planned and implemented by a group of 3 students in University of Engineering and Technology. The Dictionary section includes about 50,000 English words with Vietnamese meanings and explainations, following by comprehensive, practical examples. This application contains:" textAlignment="JUSTIFY" wrapText="true">
+      <Label layoutX="207.0" layoutY="146.0" prefHeight="114.0" prefWidth="895.0" text="This is the first edition English - Vietnamese dictionary is planned and implemented by a group of 3 students in University of Engineering and Technology. The Dictionary section includes about 100,000 English words with Vietnamese meanings and explainations, following by comprehensive, practical examples. This application contains:" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font name="Segoe UI Semibold" size="18.0" />
          </font>
@@ -65,22 +65,22 @@
             <Font name="Segoe UI Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="320.0" text="Save">
+      <Label layoutX="324.0" layoutY="317.0" text="Save">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="328.0" layoutY="346.0" text="Add">
+      <Label layoutX="328.0" layoutY="344.0" text="Add">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="210.0" layoutY="399.0" text="Modifiy / Remove">
+      <Label layoutX="210.0" layoutY="396.0" text="Modifiy / Remove">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="227.0" layoutY="423.0" prefHeight="24.0" prefWidth="140.0" text="Translate online">
+      <Label layoutX="227.0" layoutY="422.0" prefHeight="24.0" prefWidth="140.0" text="Translate online">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>

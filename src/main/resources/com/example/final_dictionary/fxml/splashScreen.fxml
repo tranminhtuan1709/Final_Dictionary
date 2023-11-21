@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="360" prefWidth="637.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.Splash">
+<AnchorPane fx:id="anchorPane" prefHeight="360" prefWidth="637.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.Splash">
     <children>
         <Pane layoutX="3.0" prefHeight="360" prefWidth="640">
             <children>
