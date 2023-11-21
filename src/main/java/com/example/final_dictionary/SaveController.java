@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Favorite;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +53,7 @@ public class SaveController implements Initializable {
     @FXML
     private ImageView image;
 
-    private final DataLite d = new DataLite();
+    private final Favorite d = new Favorite();
 
     public SaveController() throws SQLException {
     }
@@ -134,10 +134,10 @@ public class SaveController implements Initializable {
         handleListSaveWord();
         EventBus.subscribe(this::handleReloadButton);
 
-        launchQuiz1Button.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchQuiz1Button.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         launchQuiz1Button.setTooltip(new Tooltip("Launch Flashcard"));
 
-        launchQuiz2Button.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        launchQuiz2Button.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         launchQuiz2Button.setTooltip(new Tooltip("Launch Studying"));
 
         launchQuiz1Button.setOnMouseClicked(mouseEvent -> Platform.runLater(() -> {

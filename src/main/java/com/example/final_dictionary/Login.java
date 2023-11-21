@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Account;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -81,7 +81,7 @@ public class Login implements Initializable {
 
 
 
-    private final DataLite dataLite = new DataLite();
+    private final Account dataLite = new Account();
 
     public Login() throws SQLException {
     }
@@ -322,7 +322,7 @@ public class Login implements Initializable {
             gettingStartedPane.setDisable(true);
         });
 
-        username.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        username.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         username.setTooltip(new Tooltip("Type your username here"));
         password.setTooltip(new Tooltip("Type your password here"));
         su_email.setTooltip(new Tooltip("Type your email here"));

@@ -1,8 +1,10 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Game;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -19,9 +22,9 @@ import java.util.*;
 
 public class StudyingController implements Initializable {
     @FXML
-    private AnchorPane questionAP1, questionAP2, resultAP;
+    private AnchorPane questionAP1, questionAP2, resultAP, notification;
     @FXML
-    private Button choiceA1, choiceB1, choiceC1, choiceA2, choiceB2, choiceC2, next;
+    private Button choiceA1, choiceB1, choiceC1, choiceA2, choiceB2, choiceC2, next, quit;
     @FXML
     private Label word1, word2, resultText;
     @FXML
@@ -30,7 +33,7 @@ public class StudyingController implements Initializable {
     Rectangle rectangle;
     private int attemptCount = 0;
     private static final int MAX_ATTEMPTS = 20;
-    private final DataLite d = new DataLite();
+    private final Game d = new Game();
     private final ArrayList<String> question = d.getQuestion();
     private int center = 1;
     private final Random random = new Random();
@@ -191,6 +194,16 @@ public class StudyingController implements Initializable {
             } else {
                 next.setText("Finish");
                 System.out.println("Congratulation!");
+                showNotification();
+            }
+        });
+
+        quit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                quitNotification();
+                Stage stage = (Stage) quit.getScene().getWindow();
+                stage.close();
             }
         });
     }
@@ -311,5 +324,19 @@ public class StudyingController implements Initializable {
                 choiceC2.setStyle("-fx-font-weight: bold; -fx-background-color: #C5E0B4; -fx-text-fill: #385723");
             }
         }
+    }
+
+    @FXML
+    public void showNotification() {
+        notification.setVisible(true);
+        notification.setDisable(false);
+        notification.toFront();
+    }
+
+    @FXML
+    public void quitNotification() {
+        notification.setVisible(false);
+        notification.setDisable(true);
+        notification.toBack();
     }
 }

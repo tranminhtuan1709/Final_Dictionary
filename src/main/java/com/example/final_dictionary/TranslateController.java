@@ -6,22 +6,26 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TranslateController implements Initializable {
-
+    @FXML
+    private AnchorPane warning, root;
     @FXML
     private ChoiceBox<String> translate;
     @FXML
     private ChoiceBox<String> meaning;
     @FXML
-    private Button transfer;
+    private Button transfer, okay;
 
     @FXML
     private Button soundButton;
@@ -38,15 +42,19 @@ public class TranslateController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setUp();
 
-        transfer.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        transfer.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         transfer.setTooltip(new Tooltip("Swap languages"));
 
-        soundButton.getStylesheets().add(getClass().getResource("fxml/Tooltip.css").toExternalForm());
+        soundButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("fxml/Tooltip.css")).toExternalForm());
         soundButton.setTooltip(new Tooltip("Word pronunciation"));
 
         // multi-threading
         inputfieldtranslate.textProperty().addListener((observable, oldValue, newValue) -> {
             translateText();
+        });
+
+        okay.setOnAction(actionEvent -> {
+            quitWarning();
         });
     }
     // multi-threading
@@ -117,8 +125,14 @@ public class TranslateController implements Initializable {
     public void handleSoundButton() {
         String meaningText = showmeaning.getText();
         String language = meaning.getValue();
+        if (meaningText.isEmpty() || inputfieldtranslate.getText().isEmpty()) {
+            showWarning();
+            return;
+        }
         if (language.equals("   Vietnamese")) {
             try {
+                System.out.println(meaningText);
+                System.out.println(inputfieldtranslate.getText());
                 TextToSpeechOnline.textToSpeechVie(meaningText);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
@@ -130,5 +144,29 @@ public class TranslateController implements Initializable {
                 throw new RuntimeException(ex);
             }
         }
+    }
+
+    @FXML
+    public void showWarning() {
+        for (Node i : root.getChildren()) {
+            if (i.getId() == null || !i.getId().equals("warning")) {
+                i.setDisable(true);
+            }
+        }
+        warning.setVisible(true);
+        warning.setDisable(false);
+        warning.toFront();
+    }
+
+    @FXML
+    public void quitWarning() {
+        for (Node i : root.getChildren()) {
+            if (i.getId() == null || !i.getId().equals("warning")) {
+                i.setDisable(false);
+            }
+        }
+        warning.setVisible(false);
+        warning.setDisable(true);
+        warning.toBack();
     }
 }

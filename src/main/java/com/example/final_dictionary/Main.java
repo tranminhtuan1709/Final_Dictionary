@@ -1,6 +1,6 @@
 package com.example.final_dictionary;
 
-import Database.DataLite;
+import Database.Account;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -47,5 +47,5 @@ public class Main extends Application {
         launch(args);
     }
 
-    private final DataLite d = new DataLite();
+    private final Account d = new Account();
 }
