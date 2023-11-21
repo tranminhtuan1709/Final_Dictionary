@@ -78,7 +78,7 @@ public class AddWordController implements Initializable {
                 addNotiPane.setDisable(false);
                 addNotiPane.setVisible(true);
                 addNotiPane.toFront();
-                d.addWord(word, pos, bre, Arrays.toString(lines));
+                d.addWord(word, pos, bre, lines);
             } else {
                 for (Node i : addwordPane.getChildren()) {
                     i.setDisable(true);
