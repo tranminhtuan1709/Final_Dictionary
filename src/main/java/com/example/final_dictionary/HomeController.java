@@ -286,7 +286,6 @@ public class HomeController implements Initializable {
             Stage window = new Stage();
             BorderPane bPane = new BorderPane();
             Scene scene = new Scene(bPane, 1200, 700);
-            //scene.setFill(Color.BLACK);
 
             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
             window.setX((screen.getWidth() - 1200) / 2);
