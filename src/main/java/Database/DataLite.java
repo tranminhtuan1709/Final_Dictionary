@@ -132,6 +132,7 @@ public class DataLite {
             meaningSummary += x + ", ";
         }
 
+
         String html = "<h1 style= \"color:#951D05; font-family: Segoe UI\">" + word
                 + "</h1><h3 style=\"font-family: Segoe UI Light; color : #12225B\"><i>" + breIpa
                 + "</i></h3><h2 style=\"font-family: Segoe UI;font-size: 20px;\">" + pos
