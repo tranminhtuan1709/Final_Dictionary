@@ -11,6 +11,28 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_dictionary.StudyingController">
    <children>
+      <AnchorPane fx:id="notification" disable="true" layoutX="355.0" layoutY="155.0" prefHeight="410.0" prefWidth="510.0" styleClass="notificationFinished" stylesheets="@../../../../../../../../Final_Dictionary/src/main/resources/com/example/final_dictionary/fxml/Game.css" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutX="160.0" layoutY="25.0" prefHeight="30.0" prefWidth="200.0" text="Congratulation!">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="quit" layoutX="205.0" layoutY="335.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="discardButton" stylesheets="@../../../../../../../../Final_Dictionary/src/main/resources/com/example/final_dictionary/fxml/Game.css" text="Quit">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="190.0" fitWidth="383.0" layoutX="85.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/msi/congratulation1.gif" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
       <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="630.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffdb93" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
@@ -132,38 +154,6 @@
                </image>
             </ImageView>
          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="notification" layoutX="355.0" layoutY="155.0" prefHeight="410.0" prefWidth="510.0" styleClass="notificationFinished" stylesheets="@../../../../../../../../Final_Dictionary/src/main/resources/com/example/final_dictionary/fxml/Game.css">
-         <children>
-            <Label alignment="CENTER" layoutX="160.0" layoutY="25.0" prefHeight="30.0" prefWidth="200.0" text="Congratulation!">
-               <font>
-                  <Font name="Segoe UI Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="35.0" layoutY="280.0" prefHeight="38.0" prefWidth="440.0" text="Do you want to study again?">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="yes" layoutX="130.0" layoutY="330.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="launchButton" stylesheets="@../../../../../../../../Final_Dictionary/src/main/resources/com/example/final_dictionary/fxml/Game.css" text="Replay">
-               <font>
-                  <Font name="Segoe UI Bold" size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="no" layoutX="280.0" layoutY="330.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="discardButton" stylesheets="@../../../../../../../../Final_Dictionary/src/main/resources/com/example/final_dictionary/fxml/Game.css" text="Quit">
-               <font>
-                  <Font name="Segoe UI Bold" size="18.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="190.0" fitWidth="383.0" layoutX="85.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/msi/congratulation1.gif" />
-               </image>
-            </ImageView>
-         </children>
-         <effect>
-            <DropShadow />
-         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>
